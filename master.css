@@ -1806,7 +1806,7 @@ body {
     height: 30px;
     border-width: 2px;
     font-size: 16px;
-    border-radius: 18px;
+    border-radius: 9px;
   }
 }
 @media (max-width: 380px) {

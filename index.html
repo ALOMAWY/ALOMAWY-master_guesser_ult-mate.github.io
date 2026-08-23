@@ -33,10 +33,10 @@
       rel="stylesheet"
     />
   </head>
-  <body>
-    <canvas id="fx-canvas"></canvas>
-    <div id="count"></div>
-    <div class="container">
+<body>
+     <canvas id="fx-canvas"></canvas>
+     <div id="count"></div>
+     <div class="container">
       <header class="game-info">
         <div class="game-name">Master -_- Guesser</div>
 
@@ -104,16 +104,16 @@
             <div class="wt-dropdown" id="wordTypeDropdown"></div>
           </div>
         </div>
-      </header>
-      <hr />
-      <div class="game-draw">
+</header>
+       <hr />
+       <div class="game-draw">
         <div id="draw-row-div" class="draw-row">
-          <svg
-            class="gallows-svg"
-            viewBox="0 0 230 270"
-            fill="none"
-            aria-hidden="true"
-          >
+<svg
+             class="gallows-svg"
+             viewBox="0 0 230 270"
+             fill="none"
+             aria-hidden="true"
+           >
             <!-- Ghost placeholder : faint preview of the finished drawing -->
             <g class="gallows-ghost">
               <path d="M35 250 C35 242 42 238 50 238 H148 C156 238 163 242 163 250" />
@@ -145,10 +145,10 @@
               <g class="dead-eyes">
                 <path d="M175 78 L180 82 M180 78 L175 82" />
                 <path d="M184 78 L189 82 M189 78 L184 82" />
-              </g>
             </g>
-          </svg>
-          <!-- Mistakes rail : board-aligned stage counter -->
+          </g>
+         </svg>
+           <!-- Mistakes rail : board-aligned stage counter -->
           <div class="mistakes-rail" aria-hidden="true">
             <span class="mr-count">0</span>
             <div class="mr-ticks">
@@ -178,7 +178,7 @@
       </div>
 
       <hr />
-      <div class="guess-word">
+<div class="guess-word">
         <div class="hint">
           <div class="hint-copy">
             <p class="hint-label" data-i18n="wordHint">Word Hint</p>
@@ -199,7 +199,8 @@
           <div class="guess-parent"></div>
         </div>
       </div>
-    </div>
+      <button class="tap-to-guess-btn" aria-label="Tap to Guess">Tap to Guess</button>
+</div>
 
     <audio src="sounds/success.wav" id="success"></audio>
 

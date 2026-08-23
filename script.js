@@ -1063,6 +1063,14 @@ function clickerWords() {
 
 // Keyboard Support : Physical Keyboard Input
 
+const tapToGuessBtn = document.querySelector(".tap-to-guess-btn");
+
+tapToGuessBtn.addEventListener("click", () => {
+  tapToGuessBtn.style.display = "none";
+  document.querySelectorAll(".letter-span").forEach((span) => span.classList.remove("clicked"));
+  inputLockedUntil = 0;
+});
+
 document.addEventListener("keydown", (e) => {
   if (gameEnded) return;
   const key = e.key.toLowerCase();

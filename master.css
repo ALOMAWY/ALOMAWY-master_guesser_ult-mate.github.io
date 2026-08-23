@@ -147,6 +147,20 @@ body {
   padding: 0;
 }
 
+/* Settings Menu : groups name/theme/language/help behind one button on small screens.
+   On desktop the wrappers dissolve (display: contents) so items stay inline as before. */
+.settings-group,
+.settings-panel {
+  display: contents;
+}
+.settings-btn {
+  display: none;
+}
+.settings-panel .sp-title,
+.settings-panel .sp-text {
+  display: none;
+}
+
 /* Timer Pill : always visible in the header */
 .timer-pill {
   display: flex;
@@ -1863,7 +1877,9 @@ body.lang-ar .word-type .wt-label,
 body.lang-ar .word-type .wt-value,
 body.lang-ar .word-type .wt-dropdown,
 body.lang-ar .word-type .wt-dropdown .wt-item,
-body.lang-ar .difficulty-badge {
+body.lang-ar .difficulty-badge,
+body.lang-ar .settings-panel .sp-title,
+body.lang-ar .settings-panel .sp-text {
   font-family: "Cairo", sans-serif;
   letter-spacing: 0;
 }
@@ -2401,48 +2417,106 @@ body.lang-ar .wt-item {
     margin-bottom: 8px;
   }
 
-  /* Header : compact 2-row grid instead of stacked column */
+  /* Header : single compact bar — timer + word type stay visible,
+     name/theme/language/help collapse behind one settings button */
   .game-info {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto auto;
-    grid-template-areas:
-      "timer name help help"
-      "wt    wt   mode lang";
-    align-items: center;
+    margin: 8px 10px 6px;
+    padding: 7px 10px;
     gap: 8px;
-    margin: 10px 12px 8px;
-    padding: 8px 10px;
     border-radius: 14px;
   }
   .game-info .header-tools {
-    display: contents;
-  }
-  .game-info .timer-pill {
-    grid-area: timer;
-    padding: 6px 10px;
+    flex: 1;
+    min-width: 0;
+    justify-content: space-between;
     gap: 6px;
+  }
+  .timer-pill {
+    padding: 6px 10px;
+    gap: 5px;
   }
   .timer-pill i {
     font-size: 11px;
   }
   #time {
     font-size: 11px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
   }
-  .game-info .name-cont {
-    grid-area: name;
-    justify-self: stretch;
+
+  /* Settings trigger */
+  .settings-group {
+    display: block;
+    position: relative;
+    order: 10;
+    flex: none;
+  }
+  .settings-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--panel-border);
+    background: rgba(44,87,69,0.08);
+    color: var(--white-color);
+    font-size: 13px;
+    transition: 0.3s;
+  }
+  .settings-btn:hover {
+    color: var(--mov-color);
+  }
+  .settings-group.open .settings-btn {
+    color: var(--mov-color);
+    border-color: var(--mov-color);
+    box-shadow: 0 0 12px rgba(235,125,0,0.25);
+  }
+
+  /* Dropdown panel */
+  .settings-panel {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 300;
+    min-width: 230px;
+    padding: 12px;
+    flex-direction: column;
+    gap: 7px;
+    text-align: left;
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    background: var(--black-color);
+    background: color-mix(in srgb, var(--black-color) 92%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+    animation: dropdownIn 0.2s ease-out;
+  }
+  .settings-group.open .settings-panel {
+    display: flex;
+  }
+  .settings-panel .sp-title {
+    display: block;
+    margin: 0 0 2px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue-color);
+    font-weight: 700;
+  }
+  .settings-panel .sp-text {
+    display: inline;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--white-color);
+  }
+
+  /* Rows inside the menu */
+  .settings-panel .name-cont {
     width: 100%;
     max-width: none;
-    min-width: 0;
-    justify-content: center;
-    padding: 4px 6px;
-    gap: 5px;
   }
-  .name-cont > i {
-    font-size: 11px;
-  }
-  .name-cont input {
+  .settings-panel .name-cont input {
     flex: 1 1 0;
     width: auto;
     min-width: 0;
@@ -2455,37 +2529,52 @@ body.lang-ar .wt-item {
     height: 22px;
     font-size: 9px;
   }
-  .game-info .mode-cont {
-    grid-area: mode;
-    width: 30px;
-    height: 30px;
-  }
-  .mode-cont > i {
-    font-size: 11px;
-  }
-  .game-info #lang-btn {
-    grid-area: lang;
-  }
-  .game-info #help-btn {
-    grid-area: help;
-  }
-  .icon-btn {
-    width: 30px;
-    height: 30px;
-    font-size: 11px;
-  }
-  .game-info .word-type {
-    grid-area: wt;
+  .settings-panel .icon-btn {
     width: 100%;
-    justify-content: center;
-    padding: 8px 12px;
+    height: auto;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(44,87,69,0.25);
+    background: rgba(44,87,69,0.06);
     font-size: 12px;
   }
-  #time {
+  .settings-panel .icon-btn:hover {
+    border-color: var(--mov-color);
+    color: var(--mov-color);
+  }
+  .settings-panel .mode-cont {
+    width: 100%;
+    height: auto;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(44,87,69,0.25);
+    background: rgba(44,87,69,0.06);
+  }
+  .settings-panel .mode-cont:hover {
+    border-color: var(--mov-color);
+  }
+  .settings-panel .mode-cont > i {
     font-size: 11px;
-    letter-spacing: 0.5px;
+  }
+
+  /* Word type chip stays in the bar : shrink + ellipsis instead of full row */
+  .game-info .word-type {
+    flex: 1;
+    min-width: 0;
+    max-width: fit-content;
+    justify-content: center;
+    padding: 8px 10px;
+    font-size: 11px;
   }
   .game-info .word-type .wt-value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 34vw;
     letter-spacing: 1px;
   }
   .difficulty-badge {
@@ -2495,6 +2584,20 @@ body.lang-ar .wt-item {
   }
   .game-info .word-type .wt-dropdown {
     max-width: min(300px, calc(100vw - 40px));
+  }
+
+  /* Keyboard : merge letters + symbols + numbers into one continuous block */
+  .letters-parent {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    width: min(100%, 420px);
+  }
+  .letters-row,
+  .letters-row-bottom {
+    display: contents;
   }
 
   /* Extra-narrow phones : tighten further */
@@ -2515,10 +2618,10 @@ body.lang-ar .wt-item {
     .timer-pill i {
       display: none;
     }
-    .icon-btn,
-    .game-info .mode-cont {
+    .settings-btn {
       width: 28px;
       height: 28px;
+      font-size: 11px;
     }
     .name-cont span {
       width: 18px;

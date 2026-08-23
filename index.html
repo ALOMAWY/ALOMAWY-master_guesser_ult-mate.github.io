@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HANGMAN GAME</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="master.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Cairo:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <canvas id="fx-canvas"></canvas>
+    <div id="count"></div>
+    <div class="container">
+      <header class="game-info">
+        <div class="game-name">Master -_- Guesser</div>
+
+        <div class="header-tools">
+          <div class="timer-pill" title="Timer">
+            <i class="fa-regular fa-clock"></i>
+            <span id="time">00:00:00</span>
+          </div>
+
+          <div class="settings-group" id="settings-group">
+            <button
+              id="settings-btn"
+              class="icon-btn settings-btn"
+              title="Settings"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="settings-panel"
+            >
+              <i class="fa-solid fa-gear"></i>
+            </button>
+
+            <div class="settings-panel" id="settings-panel">
+              <p class="sp-title" data-i18n="settingsTitle">Settings</p>
+
+              <div class="name-cont">
+                <i class="fa-solid fa-user"></i>
+                <input id="name" type="text" maxlength="17" />
+                <span id="change-name" title="Edit Name">
+                  <i class="fa-solid fa-pen"></i>
+                </span>
+                <span id="reset-name" title="Reset Name">
+                  <i class="fa-solid fa-rotate-right"></i>
+                </span>
+              </div>
+
+              <label for="change-mode" class="mode-cont" title="Light Theme" aria-label="Light Theme">
+                <i class="fa-solid fa-paintbrush"></i>
+                <input type="checkbox" id="change-mode" />
+                <span class="sp-text" data-i18n="themeLabel">Theme</span>
+              </label>
+
+              <button id="lang-btn" class="icon-btn" title="Switch language" aria-label="Switch language">
+                <i class="fa-solid fa-globe"></i>
+                <span class="sp-text" data-i18n="languageLabel">Language</span>
+              </button>
+
+              <button id="help-btn" class="icon-btn" title="How To Play">
+                <i class="fa-solid fa-question"></i>
+                <span class="sp-text" data-i18n="helpLabel">How To Play</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="word-type">
+            <b class="wt-label" data-i18n="wordFrom">Word From :</b>
+            <span class="wt-value" data-i18n-html="letsStart"
+              >Let's Start <i class="fa-regular fa-hand-peace c-blue"></i
+            ></span>
+            <span class="difficulty-badge" id="difficulty-badge"></span>
+            <div class="wt-dropdown" id="wordTypeDropdown"></div>
+          </div>
+        </div>
+      </header>
+      <hr />
+      <div class="game-draw">
+        <div class="wrong-times-container">
+          <span id="wrong-times"
+            ><span data-i18n="mistakes">Number Of Mistake Is :</span>
+            <span>'0 / 10'</span>
+          </span>
+        </div>
+
+        <div id="draw-row-div" class="draw-row">
+          <svg
+            class="gallows-svg"
+            viewBox="0 0 230 270"
+            fill="none"
+            aria-hidden="true"
+          >
+            <!-- Structure — modern rounded frame -->
+            <path class="part part-structure p1" d="M35 250 C35 242 42 238 50 238 H148 C156 238 163 242 163 250" pathLength="100" />
+            <path class="part part-structure p2" d="M80 238 V42 C80 34 86 28 94 28" pathLength="100" />
+            <path class="part part-structure p3" d="M94 28 H168 C176 28 182 34 182 42 V44" pathLength="100" />
+            <path class="part part-structure p4" d="M120 28 L148 28" pathLength="100" />
+            <!-- Noose rope -->
+            <path class="part part-person p5" d="M182 44 V56" pathLength="100" />
+            <!-- Noose loop -->
+            <circle class="part part-person p6" cx="182" cy="62" r="7" pathLength="100" />
+            <!-- The Person — modern rounded figure -->
+            <g class="person">
+              <circle class="part part-person p7" cx="182" cy="82" r="14" pathLength="100" />
+              <path class="part part-person p8" d="M182 96 V138" pathLength="100" />
+              <path class="part part-person p9" d="M182 106 C182 106 164 118 158 126 M182 106 C182 106 200 118 206 126" pathLength="100" />
+              <path class="part part-person p10" d="M182 138 C182 138 168 158 162 174 M182 138 C182 138 196 158 202 174" pathLength="100" />
+              <g class="dead-eyes">
+                <path d="M175 78 L180 82 M180 78 L175 82" />
+                <path d="M184 78 L189 82 M189 78 L184 82" />
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="letters-parent">
+          <div class="letters-row letters-upper-row"></div>
+          <div class="letters-row-bottom">
+            <div class="letters-row chars-row"></div>
+            <div class="letters-row numbers-row"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="correct-word" class="words">
+        <h5 data-i18n="correctWords">Correct Words</h5>
+        <div class="words-container"></div>
+        <span class="word-number"> 0 / 10 </span>
+        <div class="btns">
+          <button id="submit-btn" class="submit-btn btn">Submit</button
+          ><button id="continue-btn" class="submit-btn btn">Continue</button>
+        </div>
+      </div>
+
+      <hr />
+      <div class="guess-word">
+        <div class="hint">
+          <div class="hint-copy">
+            <p class="hint-label" data-i18n="wordHint">Word Hint</p>
+            <p class="word-hint" aria-live="polite"></p>
+            <span class="hint-progress" aria-live="polite"></span>
+          </div>
+          <button
+            type="button"
+            class="show-hint"
+            data-i18n-title="nextHint"
+            title="Next Hint"
+            aria-label="Next Hint"
+          >
+            <i class="fa-solid fa-forward-step"></i>
+          </button>
+        </div>
+        <div class="guess-line">
+          <div class="guess-parent"></div>
+        </div>
+      </div>
+    </div>
+
+    <audio src="sounds/success.wav" id="success"></audio>
+
+    <audio src="sounds/error.wav" id="error"></audio>
+
+    <audio src="sounds/game-over.wav" id="game-over"></audio>
+
+    <script src="effects.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

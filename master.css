@@ -291,7 +291,6 @@ button {
 }
 .mode-cont:has(#change-mode:checked) > i {
   color: var(--blue-color);
-  transform: rotate(180deg);
 }
 
 /* Name Container : modern glass pill */
@@ -336,10 +335,22 @@ button {
 .name-cont span:hover {
   color: var(--white-color);
   background: var(--mov-color);
-  transform: rotate(360deg);
 }
-#reset-name:hover i {
-  transform: none;
+.name-cont span:active {
+  transform: scale(0.85);
+}
+/* Unified press feedback for header & menu actions */
+.mode-cont,
+.lang-btn,
+.help-btn,
+.settings-btn {
+  transition: transform 0.12s ease;
+}
+.mode-cont:active,
+.lang-btn:active,
+.help-btn:active,
+.settings-btn:active {
+  transform: scale(0.92);
 }
 .name-cont input {
   color: var(--white-color);
@@ -517,7 +528,7 @@ button {
    so the whole visual state needs zero extra JS. */
 .mistakes-rail {
   position: absolute;
-  right: -6px;
+  left: calc(50% + min(200px, 30vw) / 2 + 10px);
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -574,7 +585,7 @@ button {
 }
 @media (max-width: 690px) {
   .mistakes-rail {
-    right: -2px;
+    left: calc(50% + min(200px, 52vw) / 2 + 6px);
     gap: 5px;
   }
   .mr-count {
@@ -824,6 +835,9 @@ body.lang-ar .popup-header {
   }
   .gallows-svg {
     width: min(160px, 40vw);
+  }
+  .mistakes-rail {
+    left: calc(50% + min(160px, 40vw) / 2 + 8px);
   }
   .guess-word .guess-span {
     width: 32px;

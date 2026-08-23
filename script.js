@@ -716,6 +716,11 @@ window.addEventListener("load", () => {
 
 let wrongTimes = 0;
 
+// Input Lock : swallow taps landing too close together (double-tap guard).
+// Raise/lower INPUT_LOCK_MS to taste — 500ms feels natural on touch.
+let inputLockedUntil = 0;
+const INPUT_LOCK_MS = 500;
+
 let successSound = document.getElementById("success");
 
 let errorSound = document.getElementById("error");
@@ -952,8 +957,16 @@ let wordTypeArray = [];
 //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
 
 function clickerWords() {
+  // Bind once : re-calling startGame must not stack duplicate listeners
+  if (window._clickerWordsBound) return;
+  window._clickerWordsBound = true;
+
   document.addEventListener("click", (e) => {
     if (e.target.classList.contains("letter-span") && !gameEnded) {
+      // Ignore taps while the input lock is active
+      if (Date.now() < inputLockedUntil) return;
+      inputLockedUntil = Date.now() + INPUT_LOCK_MS;
+
       clickedTarget = e.target.innerText.toLowerCase();
 
       // Set Status Value
@@ -1160,6 +1173,10 @@ function DeclareGuessSpans() {
 // On Submit Word Function
 
 function submitFunction() {
+  // Bind once : re-calling startGame must not stack duplicate listeners
+  if (window._submitFunctionBound) return;
+  window._submitFunctionBound = true;
+
   submitWord.addEventListener("click", () => {
     if (nativeGuessWord === nativeRandomWord) {
       correctWord();
@@ -1263,10 +1280,31 @@ function operationFunction() {
 
 // Reusable game start — used by both setup and Play Again
 function startGame(config) {
+  // Unlock immediately : never leave the board frozen if a later
+  // step throws (the popup had disabled all pointer events)
+  let gameContainer = document.querySelector(".container");
+  gameContainer.classList.remove("diseble");
+  gameContainer.style.pointerEvents = "";
+  gameContainer.style.opacity = "";
+
   // Restore original words if replaying
   if (config && originalWords) {
     Object.keys(words).forEach((k) => delete words[k]);
     Object.assign(words, JSON.parse(JSON.stringify(originalWords)));
+
+    // Re-apply the category selection (labels alone can't filter)
+    if (Array.isArray(config.selectedCategoryKeys)) {
+      Object.keys(words).forEach((type) => {
+        if (!config.selectedCategoryKeys.includes(type)) {
+          delete words[type];
+        }
+      });
+    }
+
+    // Safety net : never run with an empty pool
+    if (Object.keys(words).length === 0) {
+      Object.assign(words, JSON.parse(JSON.stringify(originalWords)));
+    }
   }
 
   limitTimes = config.limitTimes;
@@ -1303,8 +1341,6 @@ function startGame(config) {
   operationFunction();
   clickerWords();
   submitFunction();
-
-  document.querySelector(".container").classList.remove("diseble");
 }
 
 continueBtn.onclick = () => {
@@ -1593,6 +1629,7 @@ function buildSetupScreen() {
       gameDifficulty: diffBtn ? diffBtn.dataset.difficulty : "medium",
       timeLimits: { easy: 40, medium: 30, high: 20 },
       selectedCategories: selectedChips.map((chip) => t("cat_" + chip.dataset.type)),
+      selectedCategoryKeys: selectedChips.map((chip) => chip.dataset.type),
     };
 
     // Save original words and config for Play Again
@@ -1842,8 +1879,6 @@ function showCorrectWords() {
 function gameOverPopup() {
   disebleContainerEvents();
 
-  document.querySelector(".container").style.pointerEvents = "none";
-
   let div = document.createElement("div");
 
   div.classList.add("popup");
@@ -1888,7 +1923,6 @@ function gameOverPopup() {
     // Remove the game over popup
     document.querySelectorAll(".popup").forEach((p) => p.remove());
     document.querySelector(".container").style.opacity = "";
-
     if (savedGameConfig) {
       startGame(savedGameConfig);
     } else {

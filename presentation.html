@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Master Guesser | Web Presentation</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #eaf2ff;
+        --muted: #91a1bb;
+        --deep: #070b16;
+        --panel: rgba(13, 22, 43, 0.72);
+        --line: rgba(147, 166, 204, 0.18);
+        --cyan: #22d3ee;
+        --violet: #b366ff;
+        --mint: #2dd4a7;
+        --coral: #ff4d6d;
+        --display: "Orbitron", sans-serif;
+        --body: "DM Sans", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: var(--deep);
+      }
+
+      body {
+        color: var(--ink);
+        font-family: var(--body);
+      }
+
+      button { font: inherit; }
+
+      .presentation {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 12% 15%, rgba(34, 211, 238, 0.12), transparent 27%),
+          radial-gradient(circle at 87% 80%, rgba(179, 102, 255, 0.13), transparent 31%),
+          var(--deep);
+      }
+
+      .presentation::before,
+      .presentation::after {
+        position: absolute;
+        content: "";
+        pointer-events: none;
+        border-radius: 50%;
+        filter: blur(1px);
+      }
+
+      .presentation::before {
+        width: 42vw;
+        height: 42vw;
+        top: -26vw;
+        right: -8vw;
+        border: 1px solid rgba(34, 211, 238, 0.18);
+        box-shadow: 0 0 90px rgba(34, 211, 238, 0.08);
+      }
+
+      .presentation::after {
+        width: 35vw;
+        height: 35vw;
+        bottom: -26vw;
+        left: 4vw;
+        border: 1px solid rgba(179, 102, 255, 0.16);
+        box-shadow: 0 0 90px rgba(179, 102, 255, 0.08);
+      }
+
+      .grid {
+        position: absolute;
+        inset: 0;
+        opacity: 0.24;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(145, 161, 187, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(145, 161, 187, 0.08) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: linear-gradient(to bottom, black, transparent 74%);
+      }
+
+      .slides {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .slide {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        align-items: center;
+        padding: clamp(58px, 8vh, 96px) clamp(24px, 7vw, 112px) 92px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(28px) scale(0.985);
+        transition: opacity 420ms ease, transform 520ms cubic-bezier(.2,.8,.2,1), visibility 420ms;
+      }
+
+      .slide.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0) scale(1);
+      }
+
+      .slide-content {
+        width: min(1160px, 100%);
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 22px;
+        color: var(--cyan);
+        font: 600 11px/1 var(--display);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 24px;
+        height: 1px;
+        content: "";
+        background: var(--cyan);
+        box-shadow: 0 0 10px var(--cyan);
+      }
+
+      h1,
+      h2,
+      h3,
+      p { margin-top: 0; }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--display);
+        font-weight: 700;
+      }
+
+      h1 {
+        max-width: 820px;
+        margin-bottom: 23px;
+        font-size: clamp(42px, 7.8vw, 104px);
+        line-height: 0.98;
+        letter-spacing: -0.07em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        max-width: 730px;
+        margin-bottom: 20px;
+        font-size: clamp(30px, 5vw, 68px);
+        line-height: 1.02;
+        letter-spacing: -0.055em;
+      }
+
+      .gradient-text {
+        color: transparent;
+        background: linear-gradient(100deg, var(--cyan), #77e6f5 42%, var(--violet));
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .lede {
+        max-width: 600px;
+        margin-bottom: 34px;
+        color: var(--muted);
+        font-size: clamp(17px, 2vw, 22px);
+        line-height: 1.55;
+      }
+
+      .title-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+        gap: clamp(30px, 7vw, 110px);
+        align-items: center;
+      }
+
+      .title-copy { position: relative; z-index: 1; }
+
+      .title-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .tag,
+      .micro-tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: #cbd7e9;
+        background: rgba(255, 255, 255, 0.035);
+        font: 600 11px var(--display);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .hero-console {
+        position: relative;
+        min-height: 390px;
+        padding: 26px;
+        border: 1px solid rgba(34, 211, 238, 0.36);
+        border-radius: 22px;
+        overflow: hidden;
+        background: linear-gradient(145deg, rgba(20, 36, 65, 0.9), rgba(9, 13, 27, 0.84));
+        box-shadow: 0 26px 80px rgba(0, 0, 0, 0.35), 0 0 55px rgba(34, 211, 238, 0.08);
+        transform: rotate(2deg);
+      }
+
+      .hero-console::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        pointer-events: none;
+        background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.06) 50%, transparent 65%);
+        transform: translateX(-120%);
+        animation: sheen 5s ease-in-out infinite;
+      }
+
+      .console-top,
+      .console-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .console-top { margin-bottom: 26px; }
+
+      .console-brand {
+        color: var(--cyan);
+        font: 700 12px var(--display);
+        letter-spacing: 0.16em;
+      }
+
+      .console-status {
+        color: var(--mint);
+        font: 600 10px var(--display);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .mini-gallows {
+        position: relative;
+        width: 185px;
+        height: 190px;
+        margin: 0 auto 20px;
+      }
+
+      .mini-gallows span {
+        position: absolute;
+        display: block;
+        border-radius: 4px;
+        background: var(--cyan);
+        box-shadow: 0 0 14px rgba(34, 211, 238, 0.58);
+      }
+
+      .g-base { right: 20px; bottom: 15px; left: 10px; height: 5px; }
+      .g-pole { bottom: 15px; left: 44px; width: 5px; height: 166px; }
+      .g-top { top: 18px; left: 44px; width: 116px; height: 5px; }
+      .g-support { top: 25px; left: 46px; width: 57px; height: 4px; transform: rotate(-41deg); transform-origin: left center; }
+      .g-noose { top: 39px; right: 20px; width: 5px; height: 28px; }
+      .g-head { top: 67px; right: 3px; width: 37px; height: 37px; border: 4px solid var(--coral); background: transparent !important; box-shadow: 0 0 14px rgba(255, 77, 109, 0.58) !important; border-radius: 50% !important; }
+      .g-body { top: 104px; right: 20px; width: 5px; height: 45px; background: var(--coral) !important; box-shadow: 0 0 14px rgba(255, 77, 109, 0.58) !important; }
+      .g-arm-left, .g-arm-right, .g-leg-left, .g-leg-right { width: 5px !important; height: 35px; background: var(--coral) !important; box-shadow: 0 0 14px rgba(255, 77, 109, 0.58) !important; transform-origin: top center; }
+      .g-arm-left { top: 108px; right: 21px; transform: rotate(49deg); }
+      .g-arm-right { top: 108px; right: 18px; transform: rotate(-49deg); }
+      .g-leg-left { top: 141px; right: 22px; transform: rotate(33deg); }
+      .g-leg-right { top: 141px; right: 18px; transform: rotate(-33deg); }
+
+      .console-letters {
+        display: flex;
+        justify-content: center;
+        gap: 7px;
+        margin-bottom: 24px;
+      }
+
+      .console-letters i {
+        width: 25px;
+        height: 31px;
+        border-bottom: 2px solid var(--cyan);
+        color: var(--ink);
+        font: normal 12px/29px var(--display);
+        text-align: center;
+      }
+
+      .console-bottom { color: var(--muted); font-size: 11px; }
+
+      .slide-header { margin-bottom: 38px; }
+
+      .split {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        gap: clamp(30px, 7vw, 100px);
+        align-items: center;
+      }
+
+      .number-mark {
+        margin-bottom: 16px;
+        color: rgba(145, 161, 187, 0.5);
+        font: 800 clamp(62px, 10vw, 132px)/0.8 var(--display);
+        letter-spacing: -0.1em;
+      }
+
+      .number-mark span { color: var(--cyan); }
+
+      .callout {
+        padding: 24px 28px;
+        border-left: 2px solid var(--cyan);
+        background: linear-gradient(90deg, rgba(34, 211, 238, 0.09), transparent);
+      }
+
+      .callout p { margin: 0; color: #dce7f6; font-size: clamp(18px, 2.3vw, 27px); line-height: 1.38; }
+
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+
+      .flow-step {
+        position: relative;
+        min-height: 150px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--panel);
+      }
+
+      .flow-step:not(:last-child)::after {
+        position: absolute;
+        top: 50%;
+        right: -19px;
+        width: 25px;
+        height: 1px;
+        content: "";
+        background: var(--violet);
+        box-shadow: 0 0 10px var(--violet);
+      }
+
+      .step-num {
+        display: block;
+        margin-bottom: 22px;
+        color: var(--cyan);
+        font: 700 11px var(--display);
+      }
+
+      .flow-step h3 { margin-bottom: 8px; font-size: 15px; letter-spacing: -0.02em; }
+      .flow-step p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+      }
+
+      .feature-card {
+        min-height: 165px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(13, 22, 43, 0.64);
+        transition: transform 200ms ease, border-color 200ms ease;
+      }
+
+      .feature-card:hover { border-color: rgba(34, 211, 238, 0.55); transform: translateY(-4px); }
+
+      .feature-icon {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 21px;
+        border: 1px solid rgba(34, 211, 238, 0.36);
+        border-radius: 10px;
+        color: var(--cyan);
+        font: 700 12px var(--display);
+        background: rgba(34, 211, 238, 0.08);
+      }
+
+      .feature-card:nth-child(2) .feature-icon,
+      .feature-card:nth-child(5) .feature-icon { color: var(--violet); border-color: rgba(179, 102, 255, 0.4); background: rgba(179, 102, 255, 0.08); }
+
+      .feature-card:nth-child(3) .feature-icon,
+      .feature-card:nth-child(6) .feature-icon { color: var(--mint); border-color: rgba(45, 212, 167, 0.4); background: rgba(45, 212, 167, 0.08); }
+
+      .feature-card h3 { margin-bottom: 8px; font-size: 15px; }
+      .feature-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.48; }
+
+      .difficulty-layout {
+        display: grid;
+        grid-template-columns: 0.75fr 1.25fr;
+        gap: clamp(30px, 7vw, 105px);
+        align-items: center;
+      }
+
+      .difficulty-stack { display: grid; gap: 10px; }
+
+      .difficulty-row {
+        display: grid;
+        grid-template-columns: 92px 1fr 75px;
+        align-items: center;
+        gap: 15px;
+        padding: 18px 20px;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        background: rgba(13, 22, 43, 0.62);
+      }
+
+      .difficulty-row strong { font: 700 12px var(--display); text-transform: uppercase; }
+      .difficulty-row span { color: var(--muted); font-size: 13px; }
+      .difficulty-row b { color: var(--cyan); font: 700 13px var(--display); text-align: right; }
+      .difficulty-row:nth-child(2) b { color: var(--violet); }
+      .difficulty-row:nth-child(3) b { color: var(--coral); }
+
+      .meter { height: 4px; overflow: hidden; border-radius: 4px; background: rgba(145, 161, 187, 0.16); }
+      .meter i { display: block; height: 100%; border-radius: inherit; background: var(--cyan); }
+      .difficulty-row:nth-child(2) .meter i { width: 68%; background: var(--violet); }
+      .difficulty-row:nth-child(3) .meter i { width: 38%; background: var(--coral); }
+      .difficulty-row:nth-child(1) .meter i { width: 100%; }
+
+      .architecture {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .code-card {
+        position: relative;
+        min-height: 145px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(4, 9, 20, 0.75);
+      }
+
+      .code-card::before { position: absolute; top: 0; right: 19px; left: 19px; height: 2px; content: ""; background: var(--cyan); box-shadow: 0 0 14px var(--cyan); }
+      .code-card:nth-child(2)::before { background: var(--violet); box-shadow: 0 0 14px var(--violet); }
+      .code-card:nth-child(3)::before { background: var(--mint); box-shadow: 0 0 14px var(--mint); }
+      .code-card b { display: block; margin-bottom: 17px; color: var(--ink); font: 700 13px var(--display); }
+      .code-card code { color: var(--muted); font: 12px/1.7 ui-monospace, SFMono-Regular, Consolas, monospace; }
+      .code-card code span { color: var(--cyan); }
+
+      .closing {
+        max-width: 820px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .closing h2 { max-width: none; margin-bottom: 22px; }
+      .closing .lede { margin-right: auto; margin-left: auto; }
+
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 48px;
+        padding: 0 23px;
+        border: 0;
+        border-radius: 999px;
+        color: #04121e;
+        background: linear-gradient(100deg, var(--cyan), #79e8f5);
+        box-shadow: 0 0 25px rgba(34, 211, 238, 0.22);
+        cursor: pointer;
+        font: 700 12px var(--display);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .cta:hover { transform: translateY(-2px); box-shadow: 0 0 34px rgba(34, 211, 238, 0.42); }
+
+      .closing-note { margin-top: 28px; color: rgba(145, 161, 187, 0.72); font-size: 12px; }
+
+      .top-bar {
+        position: fixed;
+        z-index: 10;
+        top: 24px;
+        right: clamp(24px, 7vw, 112px);
+        left: clamp(24px, 7vw, 112px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        pointer-events: none;
+      }
+
+      .brand { color: var(--ink); font: 700 12px var(--display); letter-spacing: 0.12em; text-transform: uppercase; }
+      .brand span { color: var(--cyan); }
+      .deck-label { color: var(--muted); font: 500 10px var(--display); letter-spacing: 0.12em; text-transform: uppercase; }
+
+      .progress {
+        position: fixed;
+        z-index: 11;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        background: rgba(145, 161, 187, 0.16);
+      }
+
+      .progress i { display: block; width: 16.66%; height: 100%; background: linear-gradient(90deg, var(--cyan), var(--violet)); transition: width 350ms ease; }
+
+      .nav {
+        position: fixed;
+        z-index: 12;
+        right: clamp(24px, 7vw, 112px);
+        bottom: 25px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav button {
+        display: grid;
+        place-items: center;
+        width: 37px;
+        height: 37px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--ink);
+        background: rgba(13, 22, 43, 0.74);
+        cursor: pointer;
+        transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
+      }
+
+      .nav button:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+      .counter { min-width: 48px; color: var(--muted); font: 600 11px var(--display); text-align: center; }
+      .counter strong { color: var(--ink); }
+
+      .hint {
+        position: fixed;
+        z-index: 12;
+        bottom: 31px;
+        left: clamp(24px, 7vw, 112px);
+        color: rgba(145, 161, 187, 0.75);
+        font-size: 11px;
+      }
+
+      @keyframes sheen { 0%, 45% { transform: translateX(-120%); } 70%, 100% { transform: translateX(120%); } }
+      @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+      .float { animation: float 4s ease-in-out infinite; }
+
+      @media (max-width: 850px) {
+        .slide { padding-top: 72px; padding-bottom: 86px; overflow-y: auto; }
+        .title-layout,
+        .split,
+        .difficulty-layout { grid-template-columns: 1fr; gap: 28px; }
+        .hero-console { display: none; }
+        .flow { grid-template-columns: repeat(2, 1fr); }
+        .flow-step:not(:last-child)::after { display: none; }
+        .feature-grid { grid-template-columns: repeat(2, 1fr); }
+        .architecture { margin-top: 18px; }
+        .slide-header { margin-bottom: 22px; }
+      }
+
+      @media (max-width: 540px) {
+        .top-bar { top: 17px; }
+        .deck-label { display: none; }
+        .slide { padding: 66px 20px 86px; }
+        h1 { font-size: clamp(38px, 14vw, 66px); }
+        h2 { font-size: clamp(28px, 10vw, 46px); }
+        .lede { font-size: 15px; }
+        .flow,
+        .feature-grid,
+        .architecture { grid-template-columns: 1fr; }
+        .flow-step { min-height: auto; }
+        .difficulty-row { grid-template-columns: 78px 1fr 62px; gap: 9px; padding: 14px; }
+        .difficulty-row span { font-size: 11px; }
+        .hint { display: none; }
+        .nav { right: 20px; bottom: 20px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="presentation" aria-label="Master Guesser presentation">
+      <div class="grid"></div>
+      <div class="top-bar">
+        <div class="brand"><span>01</span> / MASTER GUESSER</div>
+        <div class="deck-label">Interactive web presentation</div>
+      </div>
+
+      <div class="slides">
+        <section class="slide active" aria-label="Title slide">
+          <div class="slide-content title-layout">
+            <div class="title-copy">
+              <p class="eyebrow">Product demo / 2026</p>
+              <h1>Classic words.<br /><span class="gradient-text">New energy.</span></h1>
+              <p class="lede">Master Guesser turns a familiar hangman challenge into a focused, neon-lit web experience built for curiosity, quick thinking, and one more round.</p>
+              <div class="title-meta">
+                <span class="tag">Vanilla HTML / CSS / JS</span>
+                <span class="tag">Play in browser</span>
+              </div>
+            </div>
+            <div class="hero-console float" aria-hidden="true">
+              <div class="console-top"><span class="console-brand">GUESS // 001</span><span class="console-status">● LIVE ROUND</span></div>
+              <div class="mini-gallows">
+                <span class="g-base"></span><span class="g-pole"></span><span class="g-top"></span><span class="g-support"></span><span class="g-noose"></span><span class="g-head"></span><span class="g-body"></span><span class="g-arm-left"></span><span class="g-arm-right"></span><span class="g-leg-left"></span><span class="g-leg-right"></span>
+              </div>
+              <div class="console-letters"><i>M</i><i>A</i><i>S</i><i>T</i><i>E</i><i>R</i></div>
+              <div class="console-bottom"><span>10 mistakes available</span><span>02:30</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" aria-label="The idea slide">
+          <div class="slide-content split">
+            <div>
+              <div class="number-mark"><span>01</span></div>
+              <p class="eyebrow">The idea</p>
+              <h2>A game people already understand.</h2>
+            </div>
+            <div>
+              <div class="callout"><p>Make the rules familiar, then make every decision feel immediate, visible, and rewarding.</p></div>
+              <p class="lede" style="margin: 25px 0 0; font-size: 16px;">Instead of overwhelming players with instructions, the interface gives them a clear loop: choose a challenge, read the clue, guess a letter, and react to the result.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" aria-label="Gameplay loop slide">
+          <div class="slide-content">
+            <div class="slide-header"><p class="eyebrow">The gameplay loop</p><h2>Four moves from setup to victory.</h2></div>
+            <div class="flow">
+              <article class="flow-step"><span class="step-num">01 / SETUP</span><h3>Choose the arena</h3><p>Pick categories, word count, and difficulty before the round begins.</p></article>
+              <article class="flow-step"><span class="step-num">02 / READ</span><h3>Find the clue</h3><p>Use the category and optional hint to build a mental shortlist.</p></article>
+              <article class="flow-step"><span class="step-num">03 / GUESS</span><h3>Commit a letter</h3><p>Click the on-screen keyboard or type directly from a physical keyboard.</p></article>
+              <article class="flow-step"><span class="step-num">04 / REPEAT</span><h3>Chase the win</h3><p>Complete every word before ten mistakes close the round.</p></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" aria-label="Features slide">
+          <div class="slide-content">
+            <div class="slide-header"><p class="eyebrow">Built for replay</p><h2>Small details make the loop stick.</h2></div>
+            <div class="feature-grid">
+              <article class="feature-card"><div class="feature-icon">⌁</div><h3>Eight categories</h3><p>From programming languages to fruits, every round can feel different.</p></article>
+              <article class="feature-card"><div class="feature-icon">◈</div><h3>Three difficulty levels</h3><p>Adjust the pressure with Easy, Medium, or High challenge modes.</p></article>
+              <article class="feature-card"><div class="feature-icon">✓</div><h3>Instant feedback</h3><p>Correct sounds, error states, drawing stages, and confetti make progress tangible.</p></article>
+              <article class="feature-card"><div class="feature-icon">◌</div><h3>Hints when needed</h3><p>The eye button offers a nudge without taking the decision away from the player.</p></article>
+              <article class="feature-card"><div class="feature-icon">AR</div><h3>English + Arabic</h3><p>Switch the interface language without restarting the game.</p></article>
+              <article class="feature-card"><div class="feature-icon">☼</div><h3>Your atmosphere</h3><p>Choose dark or light mode and keep the experience comfortable.</p></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" aria-label="Difficulty slide">
+          <div class="slide-content difficulty-layout">
+            <div>
+              <p class="eyebrow">Pressure, by design</p>
+              <h2>The clock changes the way you think.</h2>
+              <p class="lede" style="font-size: 16px; margin-bottom: 0;">Difficulty is not just a label. It changes time, mistake cost, and how repeated letters reveal themselves.</p>
+            </div>
+            <div class="difficulty-stack">
+              <div class="difficulty-row"><strong>Easy</strong><div><span>Comfortable pace</span><div class="meter"><i></i></div></div><b>40 sec</b></div>
+              <div class="difficulty-row"><strong>Medium</strong><div><span>Balanced focus</span><div class="meter"><i></i></div></div><b>30 sec</b></div>
+              <div class="difficulty-row"><strong>High</strong><div><span>Fast decisions</span><div class="meter"><i></i></div></div><b>20 sec</b></div>
+              <div class="micro-tag" style="align-self: start; margin-top: 7px; color: var(--coral); border-color: rgba(255,77,109,.35);">10 mistakes = round over</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" aria-label="Technology slide">
+          <div class="slide-content">
+            <div class="slide-header"><p class="eyebrow">Under the interface</p><h2>Simple stack. Deliberate experience.</h2></div>
+            <div class="architecture">
+              <article class="code-card"><b>STRUCTURE</b><code><span>index.html</span><br />semantic game shell<br />keyboard + SVG drawing<br />audio hooks</code></article>
+              <article class="code-card"><b>BEHAVIOR</b><code><span>script.js</span><br />word selection<br />difficulty + timer<br />keyboard events</code></article>
+              <article class="code-card"><b>ATMOSPHERE</b><code><span>master.css</span> + <span>effects.js</span><br />responsive layout<br />particles + confetti<br />reduced motion</code></article>
+            </div>
+            <p class="lede" style="max-width: 650px; margin-top: 28px; font-size: 16px;">No framework or build pipeline is required. The result is lightweight, portable, and easy to open, inspect, and customize.</p>
+          </div>
+        </section>
+
+        <section class="slide" aria-label="Closing slide">
+          <div class="slide-content closing">
+            <p class="eyebrow" style="justify-content: center;">The invitation</p>
+            <h2>Ready to make<br /><span class="gradient-text">one more guess?</span></h2>
+            <p class="lede">The presentation ends where the experience begins. Open the game, choose your category, and see how far your instincts take you.</p>
+            <button class="cta" type="button" onclick="window.location.href='index.html'">Launch Master Guesser <span>↗</span></button>
+            <p class="closing-note">Use ← → or the buttons to navigate · Press Home or End to jump</p>
+          </div>
+        </section>
+      </div>
+
+      <div class="hint">← → navigate · Space next · click to advance</div>
+      <div class="nav" aria-label="Presentation navigation">
+        <button type="button" id="prev" aria-label="Previous slide">←</button>
+        <div class="counter"><strong id="current">1</strong> / <span id="total">7</span></div>
+        <button type="button" id="next" aria-label="Next slide">→</button>
+      </div>
+      <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+    </main>
+
+    <script>
+      const slides = [...document.querySelectorAll(".slide")];
+      const currentLabel = document.getElementById("current");
+      const progress = document.getElementById("progress");
+      let current = 0;
+
+      function showSlide(index) {
+        current = Math.max(0, Math.min(index, slides.length - 1));
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle("active", slideIndex === current);
+        });
+        currentLabel.textContent = current + 1;
+        progress.style.width = ((current + 1) / slides.length) * 100 + "%";
+      }
+
+      function nextSlide() { showSlide(current + 1); }
+      function previousSlide() { showSlide(current - 1); }
+
+      document.getElementById("next").addEventListener("click", nextSlide);
+      document.getElementById("prev").addEventListener("click", previousSlide);
+
+      document.addEventListener("keydown", (event) => {
+        if (["ArrowRight", "ArrowDown", " "].includes(event.key)) {
+          event.preventDefault();
+          nextSlide();
+        }
+        if (["ArrowLeft", "ArrowUp"].includes(event.key)) {
+          event.preventDefault();
+          previousSlide();
+        }
+        if (event.key === "Home") showSlide(0);
+        if (event.key === "End") showSlide(slides.length - 1);
+      });
+
+      let touchStartX = 0;
+      document.addEventListener("touchstart", (event) => {
+        touchStartX = event.changedTouches[0].clientX;
+      }, { passive: true });
+      document.addEventListener("touchend", (event) => {
+        const distance = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(distance) > 50) distance < 0 ? nextSlide() : previousSlide();
+      }, { passive: true });
+
+      document.querySelector(".slides").addEventListener("click", (event) => {
+        if (!event.target.closest("button, a")) nextSlide();
+      });
+
+      showSlide(0);
+    </script>
+  </body>
+</html>

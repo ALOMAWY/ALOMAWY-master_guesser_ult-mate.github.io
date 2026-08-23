@@ -621,6 +621,29 @@ window.addEventListener("load", () => {
     buildRulesScreen();
   });
 
+  // Settings Menu : group name / theme / language / help behind one button (mobile)
+  let settingsGroup = document.getElementById("settings-group");
+  let settingsBtn = document.getElementById("settings-btn");
+
+  let closeSettingsMenu = () => {
+    settingsGroup.classList.remove("open");
+    settingsBtn.setAttribute("aria-expanded", "false");
+  };
+
+  settingsBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    let open = settingsGroup.classList.toggle("open");
+    settingsBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!settingsGroup.contains(e.target)) closeSettingsMenu();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeSettingsMenu();
+  });
+
   // Theme Toggle
   let changeModeToggle = document.getElementById("change-mode");
   changeModeToggle.addEventListener("click", () => {
@@ -754,6 +777,10 @@ difficulty: "Difficulty",
     timeLimitNote: "Time per word. 0 = no limit",
     timeUp: "Time's Up!",
     timeUpMistake: "Time expired! Mistake added.",
+    settingsTitle: "Settings",
+    themeLabel: "Theme",
+    languageLabel: "Language",
+    helpLabel: "How To Play",
   },
   ar: {
     wordFrom: "الفئة :",
@@ -819,6 +846,10 @@ difficulty: "Difficulty",
     timeLimitNote: "الوقت لكل كلمة. 0 = لا حد",
     timeUp: "انتهى الوقت!",
     timeUpMistake: "انتهى الوقت! تمت إضافة خطأ.",
+    settingsTitle: "الإعدادات",
+    themeLabel: "المظهر",
+    languageLabel: "اللغة",
+    helpLabel: "كيف تلعب",
   },
 };
 

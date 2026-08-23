@@ -2,9 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <title>HANGMAN GAME</title>
+    <meta name="description" content="Master Guesser — an interactive hangman-style word game with categories, difficulties, bilingual hints, and offline support." />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#e8dfd2" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Master Guesser" />
+    <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
     <link rel="stylesheet" href="normalize.css" />
     <link rel="stylesheet" href="master.css" />
     <link
@@ -77,6 +89,11 @@
               </button>
             </div>
           </div>
+
+          <button id="install-btn" class="install-btn" data-i18n-title="installApp" title="Install App" aria-label="Install App" hidden>
+            <i class="fa-solid fa-download"></i>
+            <span data-i18n="installApp">Install App</span>
+          </button>
 
           <div class="word-type">
             <b class="wt-label" data-i18n="wordFrom">Word From :</b>

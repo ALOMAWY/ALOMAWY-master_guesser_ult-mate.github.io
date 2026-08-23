@@ -57,6 +57,37 @@ body {
   font-weight: 700;
   max-width: 100%;
   overflow-y: visible;
+  overscroll-behavior-y: contain;
+}
+
+/* PWA / Mobile polish */
+html {
+  overscroll-behavior: none;
+}
+.letter-span,
+.icon-btn,
+.mode-cont,
+.show-hint,
+.submit-btn,
+.settings-btn,
+.word-type,
+button {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+/* Safe-area padding for notched phones (standalone + browser) */
+.container {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+/* Launched from home screen : keep content clear of the status bar */
+@media all and (display-mode: standalone) {
+  body {
+    -webkit-user-select: none;
+    user-select: none;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -145,6 +176,31 @@ body {
 }
 .lang-btn {
   padding: 0;
+}
+
+/* PWA Install Button */
+.install-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(235,125,0,0.5);
+  background: rgba(235,125,0,0.12);
+  color: var(--mov-color);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-family: var(--font-display);
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.install-btn i {
+  font-size: 11px;
+}
+.install-btn:hover {
+  background: rgba(235,125,0,0.28);
+  box-shadow: 0 0 14px var(--glow-orange);
+  transform: translateY(-2px);
 }
 
 /* Settings Menu : groups name/theme/language/help behind one button on small screens.
@@ -275,14 +331,14 @@ body {
   outline: none;
 }
 
-/* Word Type chip */
+/* Word Type chip : same pill style as the timer */
 .game-info .word-type {
   display: flex;
   align-items: center;
   gap: 6px;
   border: 1px solid var(--panel-border);
-  border-radius: 0;
-  padding: 5px 10px;
+  border-radius: 999px;
+  padding: 5px 14px;
   background: rgba(44,87,69,0.05);
   font-size: 11px;
   white-space: nowrap;
@@ -549,6 +605,17 @@ body {
     go-title-pulse 1.2s ease-in-out 0.6s infinite;
   pointer-events: none;
 }
+/* Small screens : keep "GAME OVER" on one compact line instead of
+   wrapping letter-by-letter down the screen */
+@media (max-width: 768px) {
+  .game-over-title {
+    font-size: clamp(20px, 6.5vw, 30px);
+    letter-spacing: 4px;
+    white-space: nowrap;
+    max-width: 96vw;
+    text-align: center;
+  }
+}
 body.lang-ar .game-over-title,
 body.lang-ar .popup-header {
   font-family: "Cairo", sans-serif;
@@ -627,7 +694,7 @@ body.lang-ar .popup-header {
     gap: 12px;
   }
   .letters-parent {
-    gap: 4px;
+    gap: 5px;
   }
   .letters-row .letter-span {
     width: 32px;
@@ -670,19 +737,22 @@ body.lang-ar .popup-header {
     flex-basis: auto;
     width: auto;
     max-width: 100%;
-    max-height: 150px;
+    max-height: 250px;
+    flex-grow: 1;
   }
   .game-draw .letters-parent {
     flex-direction: column;
     width: 100%;
-    gap: 4px;
+    gap: 5px;
+    flex: none;
   }
   .letters-upper-row,
   .letters-row-bottom {
     flex-basis: auto;
   }
   .gallows-svg {
-    width: min(120px, 30vw);
+    width: min(200px, 52vw);
+    max-height: 240px;
   }
   .name-cont {
     min-width: 100%;
@@ -694,23 +764,30 @@ body.lang-ar .popup-header {
     width: 26px;
     height: 26px;
     font-size: 13px;
-    margin: 1px;
+    margin: 0;
   }
   .words {
     margin: 3px 10px;
     padding: 5px 10px;
     gap: 4px 8px;
+    flex: none;
   }
   .words h5 {
     font-size: 10px;
   }
+  .words-container span {
+    font-size: 10px;
+    padding: 2px 8px;
+  }
   .word-number {
     font-size: 11px;
     padding: 3px 8px;
+    margin-left: auto;
   }
   .guess-word {
     gap: 4px;
-    padding: 2px 10px;
+    padding: 2px 10px 6px;
+    flex: none;
   }
   .guess-word .guess-span {
     width: 28px;
@@ -727,7 +804,7 @@ body.lang-ar .popup-header {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 5px;
   flex: 1;
   min-width: 0;
 }
@@ -743,7 +820,7 @@ body.lang-ar .popup-header {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   justify-content: center;
 }
 .letter-span {
@@ -752,7 +829,7 @@ body.lang-ar .popup-header {
   color: var(--white-color);
   background-color: rgba(44,87,69,0.08);
   border: 1px solid rgba(44,87,69,0.35);
-  margin: 1.5px;
+  margin: 0;
   font-size: 16px;
   border-radius: 7px;
   transition: transform 0.25s ease, background-color 0.25s ease,
@@ -776,7 +853,7 @@ body.lang-ar .popup-header {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 2px;
+  gap: 5px;
 }
 .numbers-row {
   /* no special override needed */
@@ -784,10 +861,10 @@ body.lang-ar .popup-header {
 
 @media (max-width: 690px) {
   .letters-parent {
-    gap: 4px;
+    gap: 5px;
   }
   .letters-row-bottom {
-    gap: 6px;
+    gap: 5px;
   }
 }
 @media (max-width: 450px) {
@@ -800,10 +877,10 @@ body.lang-ar .popup-header {
 }
 @media (max-width: 300px) {
   .letters-parent {
-    gap: 2px;
+    gap: 5px;
   }
   .letters-row-bottom {
-    gap: 4px;
+    gap: 5px;
   }
   .letters-row .letter-span {
     width: 23px;
@@ -2318,7 +2395,7 @@ body.lang-ar .wt-item {
 
   /* Popups : content spreads over the full screen, items clearly separated */
   .popup {
-    gap: 14px;
+    gap: 10px;
     justify-content: space-evenly;
     align-items: stretch;
   }
@@ -2327,33 +2404,40 @@ body.lang-ar .wt-item {
     align-self: center;
   }
   .popup-header {
-    font-size: clamp(18px, 5vw, 22px);
-    letter-spacing: 3px;
-    padding-bottom: 10px;
+    font-size: clamp(16px, 4.5vw, 20px);
+    letter-spacing: 2px;
+    padding-bottom: 8px;
   }
   .popup-icon {
-    font-size: 46px;
+    font-size: 30px;
     margin-bottom: 0;
   }
   .popup-word-reveal {
     width: 100%;
     align-self: center;
     max-width: 420px;
-    padding: 18px 20px;
+    padding: 12px 16px;
     margin: 0;
+    gap: 3px;
+  }
+  .reveal-label {
+    font-size: 9px;
   }
   .reveal-word {
-    font-size: clamp(22px, 6.5vw, 28px);
-    letter-spacing: 4px;
+    font-size: clamp(17px, 5.5vw, 23px);
+    letter-spacing: 3px;
   }
   .reveal-cat {
-    font-size: 13px;
+    font-size: 11px;
+  }
+  .reveal-cat i {
+    font-size: 9px;
   }
   .popup-actions {
     width: 100%;
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
+    gap: 8px;
     margin-top: 0;
   }
   .popup-btn {
@@ -2361,11 +2445,12 @@ body.lang-ar .wt-item {
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 14px 20px;
-    font-size: 11px;
+    padding: 11px 18px;
+    font-size: 10px;
   }
   .popup-thanks {
     margin-top: 0;
+    font-size: 11px;
   }
 
   /* Words list : separated rows filling the screen */
@@ -2586,18 +2671,23 @@ body.lang-ar .wt-item {
     max-width: min(300px, calc(100vw - 40px));
   }
 
-  /* Keyboard : merge letters + symbols + numbers into one continuous block */
+  /* Keyboard : letters + symbols + numbers as one stacked block.
+     No flex-wrap on the parent — each group keeps its own row,
+     5px gaps horizontally and vertically */
   .letters-parent {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3px;
-    width: min(100%, 420px);
+    gap: 5px;
+    width: min(100%, 440px);
   }
   .letters-row,
   .letters-row-bottom {
-    display: contents;
+    display: flex;
+  }
+  .letters-row-bottom {
+    flex-direction: column;
+    gap: 5px;
   }
 
   /* Extra-narrow phones : tighten further */

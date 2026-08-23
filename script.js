@@ -1064,11 +1064,30 @@ function clickerWords() {
 // Keyboard Support : Physical Keyboard Input
 
 const tapToGuessBtn = document.querySelector(".tap-to-guess-btn");
+const mobileInput = document.querySelector(".mobile-keyboard-input");
 
 tapToGuessBtn.addEventListener("click", () => {
   tapToGuessBtn.style.display = "none";
   document.querySelectorAll(".letter-span").forEach((span) => span.classList.remove("clicked"));
   inputLockedUntil = 0;
+  mobileInput.focus();
+  mobileInput.select();
+});
+
+mobileInput.addEventListener("input", (e) => {
+  const typedChar = e.data;
+  if (!typedChar || gameEnded) return;
+  
+  const targetSpan = [...document.querySelectorAll(".letter-span")].find(
+    (span) => span.innerText.toLowerCase() === typedChar.toLowerCase()
+  );
+  
+  if (targetSpan && !targetSpan.classList.contains("clicked")) {
+    targetSpan.click();
+  }
+  
+  // Clear the input after processing
+  e.target.value = "";
 });
 
 document.addEventListener("keydown", (e) => {

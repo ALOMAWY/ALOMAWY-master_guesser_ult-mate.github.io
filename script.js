@@ -563,43 +563,50 @@ inputName.onfocus = () => inputName.classList.add("no-event");
 
 //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
 
+// Register Service Worker (PWA offline support) — http(s) only
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  navigator.serviceWorker.register("sw.js").catch(() => {});
+}
+
+// PWA Install Button — top-level so we never miss the early-firing event
+let deferredInstallPrompt = null;
+let installBtn = document.getElementById("install-btn");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  if (window.matchMedia("(display-mode: standalone)").matches) return;
+  deferredInstallPrompt = e;
+  if (installBtn) installBtn.hidden = false;
+});
+
+window.addEventListener("appinstalled", () => {
+  deferredInstallPrompt = null;
+  if (installBtn) installBtn.hidden = true;
+});
+
+if (installBtn) {
+  installBtn.addEventListener("click", async () => {
+    if (!deferredInstallPrompt) {
+      console.info(
+        "Install prompt unavailable — use the browser menu → Install / Add to Home Screen."
+      );
+      return;
+    }
+    deferredInstallPrompt.prompt();
+    let choice = await deferredInstallPrompt.userChoice;
+    if (choice && choice.outcome === "accepted") installBtn.hidden = true;
+    deferredInstallPrompt = null;
+  });
+}
+
+//-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
+
 window.addEventListener("load", () => {
   //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
 
   //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
 
   // Remove 'Diseble' Class From  Popup After Loading
-
-  // Register Service Worker (PWA offline support) — http(s) only
-  if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
-    navigator.serviceWorker.register("sw.js").catch(() => {});
-  }
-
-  // PWA Install Button — appears when the browser allows installation
-  let deferredInstallPrompt = null;
-  let installBtn = document.getElementById("install-btn");
-
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    if (window.matchMedia("(display-mode: standalone)").matches) return;
-    deferredInstallPrompt = e;
-    if (installBtn) installBtn.hidden = false;
-  });
-
-  window.addEventListener("appinstalled", () => {
-    deferredInstallPrompt = null;
-    if (installBtn) installBtn.hidden = true;
-  });
-
-  if (installBtn) {
-    installBtn.addEventListener("click", async () => {
-      if (!deferredInstallPrompt) return;
-      deferredInstallPrompt.prompt();
-      let choice = await deferredInstallPrompt.userChoice;
-      if (choice && choice.outcome === "accepted") installBtn.hidden = true;
-      deferredInstallPrompt = null;
-    });
-  }
 
   setTimeout(() => {
     [...document.querySelectorAll(".popup")].forEach((e) =>

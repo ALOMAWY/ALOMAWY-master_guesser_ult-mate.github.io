@@ -805,7 +805,7 @@ body.lang-ar .popup-header {
   align-items: center;
   justify-content: center;
   gap: 5px;
-  flex: 1;
+  flex: 0.75;
   min-width: 0;
 }
 .letters-parent hr {

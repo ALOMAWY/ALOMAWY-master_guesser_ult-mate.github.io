@@ -50,7 +50,10 @@ self.addEventListener("fetch", (event) => {
 
   if (request.method !== "GET") return;
 
+  // Only handle real web requests — skip chrome-extension:, blob:, data:, etc.
   const url = new URL(request.url);
+  if (url.protocol !== "http:" && url.protocol !== "https:") return;
+
   const isThirdParty =
     url.origin !== self.location.origin &&
     (url.hostname.includes("fonts.googleapis.com") ||

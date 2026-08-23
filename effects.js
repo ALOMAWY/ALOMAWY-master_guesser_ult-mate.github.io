@@ -3,6 +3,12 @@
    Particle background + confetti + shake FX
    Loaded before script.js — exposes:
    fxConfetti(), fxShake(element)
+
+   Performance notes :
+   - Phones/tablets get a light budget : fewer
+     particles, no O(n²) linking lines, 30fps.
+   - The rAF loop skips frames until the target
+     interval elapses and pauses when hidden.
    ============================================ */
 
 (function () {
@@ -14,15 +20,27 @@
   var ctx = canvas.getContext("2d");
 
   // Match the color tokens in master.css
-  var COLORS = ["#2C5745", "#EB7D00", "#EBE3A7"];
+  var COLORS = ["#22d3ee", "#b366ff", "#eaf2ff", "#2dd4a7"];
 
   var reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
+  // Lighter budget on small / touch devices
+  var lowPower =
+    window.matchMedia("(max-width: 768px)").matches ||
+    window.matchMedia("(pointer: coarse)").matches;
+
+  var MAX_PARTICLES = lowPower ? 34 : 70;
+  var LINK_DISTANCE = 130;
+  var FRAME_INTERVAL = 1000 / (lowPower ? 30 : 60);
+  var CONFETTI_COUNT = lowPower ? 70 : 140;
+
   var particles = [];
   var confettiPieces = [];
-  var mouse = { x: -1000, y: -1000 };
+
+  var lastFrameTime = 0;
+  var rafId = null;
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -31,7 +49,8 @@
 
   function createParticles() {
     particles = [];
-    var count = Math.min(90, Math.floor((canvas.width * canvas.height) / 18000));
+    var density = lowPower ? 30000 : 18000;
+    var count = Math.min(MAX_PARTICLES, Math.floor((canvas.width * canvas.height) / density));
 
     for (var i = 0; i < count; i++) {
       particles.push({
@@ -46,6 +65,8 @@
   }
 
   function drawParticles() {
+    var linkDistSq = LINK_DISTANCE * LINK_DISTANCE;
+
     for (var i = 0; i < particles.length; i++) {
       var p = particles[i];
 
@@ -65,20 +86,23 @@
       ctx.fill();
 
       // Connect nearby particles with faint lines
-      for (var j = i + 1; j < particles.length; j++) {
-        var q = particles[j];
-        var dx = p.x - q.x;
-        var dy = p.y - q.y;
-        var dist = dx * dx + dy * dy;
+      // (desktop only — this O(n²) pass is too costly for phones)
+      if (!lowPower) {
+        for (var j = i + 1; j < particles.length; j++) {
+          var q = particles[j];
+          var dx = p.x - q.x;
+          var dy = p.y - q.y;
+          var dist = dx * dx + dy * dy;
 
-        if (dist < 130 * 130) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(q.x, q.y);
-          ctx.strokeStyle = p.c;
-          ctx.globalAlpha = 0.08 * (1 - dist / (130 * 130));
-          ctx.lineWidth = 1;
-          ctx.stroke();
+          if (dist < linkDistSq) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = p.c;
+            ctx.globalAlpha = 0.08 * (1 - dist / linkDistSq);
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
         }
       }
     }
@@ -111,11 +135,34 @@
     ctx.globalAlpha = 1;
   }
 
-  function frame() {
+  function frame(now) {
+    rafId = requestAnimationFrame(frame);
+
+    // Skip work entirely while the tab/app is not visible
+    if (document.hidden) return;
+
+    // Frame-rate gate : halves the cost on phones (30fps),
+    // keeps full smoothness on desktop (60fps)
+    if (now - lastFrameTime < FRAME_INTERVAL) return;
+    lastFrameTime = now;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawParticles();
     drawConfetti();
-    requestAnimationFrame(frame);
+  }
+
+  function startLoop() {
+    if (rafId === null && !reduceMotion) {
+      lastFrameTime = 0;
+      rafId = requestAnimationFrame(frame);
+    }
+  }
+
+  function stopLoop() {
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
   }
 
   // ---------- Public helpers used by script.js ----------
@@ -125,7 +172,7 @@
 
     var centerX = canvas.width / 2;
 
-    for (var i = 0; i < 140; i++) {
+    for (var i = 0; i < CONFETTI_COUNT; i++) {
       confettiPieces.push({
         x: centerX + (Math.random() - 0.5) * 120,
         y: canvas.height * 0.25 + (Math.random() - 0.5) * 60,
@@ -165,14 +212,23 @@
   resizeCanvas();
   createParticles();
 
+  // Debounced resize : mobile browsers fire resize while scrolling
+  // (URL bar show/hide) — recreating particles on every tick is waste
+  var resizeTimer = null;
   window.addEventListener("resize", function () {
-    resizeCanvas();
-    createParticles();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      resizeCanvas();
+      createParticles();
+    }, 150);
   });
 
-  window.addEventListener("mousemove", function (e) {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      stopLoop();
+    } else {
+      startLoop();
+    }
   });
 
   if (reduceMotion) {
@@ -180,6 +236,6 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawParticles();
   } else {
-    requestAnimationFrame(frame);
+    startLoop();
   }
 })();

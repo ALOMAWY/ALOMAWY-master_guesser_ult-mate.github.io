@@ -502,18 +502,22 @@ let styleTag = document.createElement("style");
 // Light Theme Definition
 const lightTheme = `
 :root {
-  --black-color: #EBE3A7;
-  --white-color: #2E2910;
-  --mov-color: #C06500;
-  --blue-color: #1F3F31;
-  --danger-color: #A03C2D;
-  --success-color: #1F3F31;
-  --panel-border: rgba(31, 63, 49, 0.4);
-  --glow-green: rgba(31, 63, 49, 0.25);
-  --glow-orange: rgba(192, 101, 0, 0.25);
+  --black-color: #edf2fa;
+  --white-color: #131c2e;
+  --mov-color: #7c3aed;
+  --blue-color: #0891b2;
+  --mint-color: #0d9488;
+  --danger-color: #e11d48;
+  --success-color: #0d9488;
+  --panel-border: rgba(19, 28, 46, 0.18);
+  --glow-green: rgba(8, 145, 178, 0.25);
+  --glow-orange: rgba(124, 58, 237, 0.25);
 }
 body {
   background-color: var(--black-color);
+  background-image:
+    radial-gradient(circle at 12% 15%, rgba(8, 145, 178, 0.08), transparent 30%),
+    radial-gradient(circle at 87% 80%, rgba(124, 58, 237, 0.09), transparent 32%);
 }
 `;
  
@@ -1004,6 +1008,7 @@ function clickerWords() {
 
         if (theStatus) {
           successSound.play().catch(() => {});
+          fxHaptic(15);
         }
       } else {
         if (gameDifficulty !== "high") {
@@ -1018,6 +1023,7 @@ function clickerWords() {
         document.querySelector(".draw-row").classList.add(`show-${wrongTimes}`);
 
         errorSound.play().catch(() => {});
+        fxHaptic([40, 60, 40]);
       }
 
       let nativeGuessArray = [];
@@ -1182,6 +1188,13 @@ function submitFunction() {
 
 // If All Gallows Slides Showing Function
 
+// Light Haptic Feedback For Mobile (no-op where unsupported)
+function fxHaptic(pattern) {
+  try {
+    if (navigator.vibrate) navigator.vibrate(pattern);
+  } catch (_) {}
+}
+
 function ifGameOver() {
   // Run Only Once : Lock Everything Immediately
 
@@ -1213,7 +1226,11 @@ function ifGameOver() {
 
       document.body.appendChild(titleDiv);
 
+      // Blur The Game & Background While The Title Is Up
+      document.body.classList.add("go-title-active");
+
       gameOver.play().catch(() => {});
+      fxHaptic([60, 50, 60, 50, 120]);
     }, 500);
 
     // Show The Popup After The Death Effect Finishes
@@ -1222,6 +1239,8 @@ function ifGameOver() {
       document
         .querySelectorAll(".game-over-title")
         .forEach((title) => title.remove());
+
+      document.body.classList.remove("go-title-active");
 
       gameOverPopup();
     }, 4300);

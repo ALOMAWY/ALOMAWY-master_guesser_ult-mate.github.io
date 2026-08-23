@@ -8,15 +8,15 @@
     />
     <title>HANGMAN GAME</title>
     <meta name="description" content="Master Guesser — an interactive hangman-style word game with categories, difficulties, bilingual hints, and offline support." />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#e8dfd2" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#070b16" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#edf2fa" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Master Guesser" />
     <link rel="manifest" href="manifest.webmanifest" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="icon" type="image/svg+xml" href="icons/master-gusser.svg" />
+    <link rel="apple-touch-icon" href="icons/master-gusser.svg" />
     <link rel="stylesheet" href="normalize.css" />
     <link rel="stylesheet" href="master.css" />
     <link
@@ -29,7 +29,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Cairo:wght@400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800;900&family=Cairo:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -107,13 +107,6 @@
       </header>
       <hr />
       <div class="game-draw">
-        <div class="wrong-times-container">
-          <span id="wrong-times"
-            ><span data-i18n="mistakes">Number Of Mistake Is :</span>
-            <span>'0 / 10'</span>
-          </span>
-        </div>
-
         <div id="draw-row-div" class="draw-row">
           <svg
             class="gallows-svg"
@@ -121,6 +114,19 @@
             fill="none"
             aria-hidden="true"
           >
+            <!-- Ghost placeholder : faint preview of the finished drawing -->
+            <g class="gallows-ghost">
+              <path d="M35 250 C35 242 42 238 50 238 H148 C156 238 163 242 163 250" />
+              <path d="M80 238 V42 C80 34 86 28 94 28" />
+              <path d="M94 28 H168 C176 28 182 34 182 42 V44" />
+              <path d="M120 28 L148 28" />
+              <path d="M182 44 V56" />
+              <circle cx="182" cy="62" r="7" />
+              <circle cx="182" cy="82" r="14" />
+              <path d="M182 96 V138" />
+              <path d="M182 106 C182 106 164 118 158 126 M182 106 C182 106 200 118 206 126" />
+              <path d="M182 138 C182 138 168 158 162 174 M182 138 C182 138 196 158 202 174" />
+            </g>
             <!-- Structure — modern rounded frame -->
             <path class="part part-structure p1" d="M35 250 C35 242 42 238 50 238 H148 C156 238 163 242 163 250" pathLength="100" />
             <path class="part part-structure p2" d="M80 238 V42 C80 34 86 28 94 28" pathLength="100" />
@@ -142,6 +148,15 @@
               </g>
             </g>
           </svg>
+          <!-- Mistakes rail : board-aligned stage counter -->
+          <div class="mistakes-rail" aria-hidden="true">
+            <span class="mr-count">0</span>
+            <div class="mr-ticks">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <span class="mr-total">/ 10</span>
+          </div>
         </div>
         <div class="letters-parent">
           <div class="letters-row letters-upper-row"></div>

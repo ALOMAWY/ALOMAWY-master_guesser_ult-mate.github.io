@@ -15,17 +15,19 @@
 /* 1. Start Design Tokens         */
 /* ============================== */
 :root {
-  --black-color: #000000; /* black background */
-  --white-color: #EBE3A7; /* light cream text      */
-  --mov-color: #EB7D00;   /* orange accent         */
-  --blue-color: #2C5745;  /* dark green accent     */
+  --black-color: #070b16; /* deep space navy background */
+  --white-color: #eaf2ff; /* ink text                   */
+  --mov-color: #b366ff;   /* violet accent              */
+  --blue-color: #22d3ee;  /* neon cyan accent           */
 
-  --danger-color: #A03C2D;
-  --success-color: #2C5745;
-  --panel-border: rgba(44, 87, 69, 0.45);
-  --glow-green: rgba(44, 87, 69, 0.3);
-  --glow-orange: rgba(235, 125, 0, 0.3);
+  --mint-color: #2dd4a7;
+  --danger-color: #ff4d6d;
+  --success-color: #2dd4a7;
+  --panel-border: rgba(147, 166, 204, 0.18);
+  --glow-green: rgba(34, 211, 238, 0.3);
+  --glow-orange: rgba(179, 102, 255, 0.35);
   --font-display: "Orbitron", sans-serif;
+  --font-body: "DM Sans", sans-serif;
 }
 
 /* ============================== */
@@ -33,6 +35,15 @@
 /* ============================== */
 * {
   box-sizing: border-box;
+}
+/* Mobile input responsiveness :
+   kills the double-tap-zoom delay between fast key presses
+   and removes grey tap-highlight flashes */
+body {
+  touch-action: manipulation;
+}
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 ::selection {
   background-color: transparent;
@@ -47,17 +58,32 @@ button:focus {
   outline: none;
 }
 body {
-  font-weight: bold;
   background-color: var(--black-color);
+  background-image:
+    radial-gradient(circle at 12% 15%, rgba(34, 211, 238, 0.1), transparent 30%),
+    radial-gradient(circle at 87% 80%, rgba(179, 102, 255, 0.11), transparent 32%);
   background-attachment: fixed;
   text-transform: capitalize;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   line-height: 1.5;
-  font-family: var(--font-display);
-  font-weight: 700;
+  font-family: var(--font-body);
+  font-weight: 500;
   max-width: 100%;
   overflow-y: visible;
   overscroll-behavior-y: contain;
+}
+/* Faint blueprint grid, echoing the presentation backdrop */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(145, 161, 187, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(145, 161, 187, 0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
 }
 
 /* PWA / Mobile polish */
@@ -92,7 +118,7 @@ button {
 
 ::-webkit-scrollbar {
   width: 4px;
-  background-color: rgba(235,125,0,0.25);
+  background-color: rgba(179,102,255,0.2);
 }
 ::-webkit-scrollbar-thumb {
   width: 4px;
@@ -183,8 +209,8 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid rgba(235,125,0,0.5);
-  background: rgba(235,125,0,0.12);
+  border: 1px solid rgba(179,102,255,0.5);
+  background: rgba(179,102,255,0.12);
   color: var(--mov-color);
   border-radius: 999px;
   padding: 6px 14px;
@@ -198,7 +224,7 @@ button {
   font-size: 11px;
 }
 .install-btn:hover {
-  background: rgba(235,125,0,0.28);
+  background: rgba(179,102,255,0.28);
   box-shadow: 0 0 14px var(--glow-orange);
   transform: translateY(-2px);
 }
@@ -226,7 +252,7 @@ button {
   border: 1px solid var(--panel-border);
   border-radius: 999px;
   padding: 5px 12px;
-  background: rgba(44,87,69,0.05);
+  background: rgba(147,166,204,0.06);
 }
 .timer-pill i {
   color: var(--blue-color);
@@ -281,7 +307,7 @@ button {
   max-width: 200px;
   min-width: fit-content;
   transition: border-color 0.3s, box-shadow 0.3s;
-  background: rgba(44,87,69,0.05);
+  background: rgba(147,166,204,0.06);
 }
 .name-cont > i {
   color: var(--mov-color);
@@ -290,11 +316,11 @@ button {
 .name-cont:hover,
 .name-cont:focus-within {
   border-color: var(--mov-color);
-  box-shadow: 0 0 14px rgba(235,125,0,0.25);
+  box-shadow: 0 0 14px rgba(179,102,255,0.3);
 }
 .name-cont span {
   border: none;
-  background: rgba(44,87,69,0.08);
+  background: rgba(147,166,204,0.09);
   border-radius: 50%;
   width: 22px;
   height: 22px;
@@ -339,7 +365,7 @@ button {
   border: 1px solid var(--panel-border);
   border-radius: 999px;
   padding: 5px 14px;
-  background: rgba(44,87,69,0.05);
+  background: rgba(147,166,204,0.06);
   font-size: 11px;
   white-space: nowrap;
   cursor: pointer;
@@ -406,8 +432,8 @@ button {
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #EBE3A7;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  color: #04121e;
+  text-shadow: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   margin-left: 8px;
   white-space: nowrap;
@@ -429,7 +455,7 @@ button {
   transition: background 0.2s;
 }
 .game-info .word-type .wt-dropdown .wt-item:hover {
-  background: rgba(44,87,69,0.1);
+  background: rgba(147,166,204,0.12);
 }
 .game-info .word-type .wt-dropdown .wt-item i {
   color: var(--mov-color);
@@ -486,19 +512,84 @@ button {
   max-height: 320px;
 }
 
-.wrong-times-container {
+/* Mistakes rail : board-aligned on the side of the drawing.
+   Tick fills are driven by the existing .show-1 … .show-10 classes,
+   so the whole visual state needs zero extra JS. */
+.mistakes-rail {
   position: absolute;
-  top: -2px;
-  transform: translateX(-50%);
-  left: 50%;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  pointer-events: none;
 }
-#wrong-times {
+.mr-count {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
   color: var(--white-color);
-  width: max-content;
-  font-size: 12px;
+  opacity: 0.85;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-#wrong-times span {
-  color: var(--mov-color);
+.draw-row.show-1 .mr-count {
+  color: var(--danger-color);
+  text-shadow: 0 0 12px rgba(255, 77, 109, 0.55);
+}
+.mr-ticks {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.mr-ticks span {
+  width: 20px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--white-color);
+  opacity: 0.14;
+  transition: background 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+.draw-row.show-1 .mr-ticks span:nth-child(-n+1),
+.draw-row.show-2 .mr-ticks span:nth-child(-n+2),
+.draw-row.show-3 .mr-ticks span:nth-child(-n+3),
+.draw-row.show-4 .mr-ticks span:nth-child(-n+4),
+.draw-row.show-5 .mr-ticks span:nth-child(-n+5),
+.draw-row.show-6 .mr-ticks span:nth-child(-n+6),
+.draw-row.show-7 .mr-ticks span:nth-child(-n+7),
+.draw-row.show-8 .mr-ticks span:nth-child(-n+8),
+.draw-row.show-9 .mr-ticks span:nth-child(-n+9),
+.draw-row.show-10 .mr-ticks span:nth-child(-n+10) {
+  background: linear-gradient(180deg, #ff4d6d, #c9184a);
+  opacity: 1;
+  box-shadow: 0 0 8px rgba(255, 77, 109, 0.45);
+}
+.mr-total {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--white-color);
+  opacity: 0.45;
+}
+@media (max-width: 690px) {
+  .mistakes-rail {
+    right: -2px;
+    gap: 5px;
+  }
+  .mr-count {
+    font-size: 19px;
+  }
+  .mr-ticks {
+    gap: 3px;
+  }
+  .mr-ticks span {
+    width: 13px;
+    height: 3px;
+  }
+  .mr-total {
+    font-size: 8px;
+  }
 }
 
 /* ============================== */
@@ -526,7 +617,20 @@ button {
 .part-person {
   stroke: var(--danger-color);
   stroke-width: 3.5;
-  filter: drop-shadow(0 0 4px rgba(160,60,45,0.5));
+  filter: drop-shadow(0 0 4px rgba(255,77,109,0.5));
+}
+
+/* Faint full-figure preview sitting behind the unrevealed strokes */
+.gallows-ghost {
+  fill: none;
+  stroke: var(--white-color);
+  stroke-width: 2;
+  opacity: 0.07;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.game-draw .game-over .gallows-ghost {
+  opacity: 0;
 }
 
 .game-draw .show-1 .p1,
@@ -542,7 +646,7 @@ button {
   stroke-dashoffset: 0;
 }
 .game-draw .show-10 .part-person {
-  filter: drop-shadow(0 0 14px rgba(160,60,45,1));
+  filter: drop-shadow(0 0 14px rgba(255,77,109,1));
 }
 
 /* Death Effect : the person hangs and swings from the noose */
@@ -588,7 +692,9 @@ button {
   opacity: 1;
 }
 
-/* "Game Over" title shown at the top while the death effect plays */
+/* "Game Over" title shown at the top while the death effect plays.
+   The game & background behind it get blurred (body.go-title-active)
+   while the title itself stays big, ultra-heavy and razor sharp. */
 .game-over-title {
   position: fixed;
   top: 50%;
@@ -596,24 +702,38 @@ button {
   transform: translate(-50%, -50%);
   z-index: 998;
   font-family: var(--font-display);
-  font-size: clamp(40px, 8vw, 90px);
-  letter-spacing: 12px;
+  font-size: clamp(48px, 11vw, 110px);
+  font-weight: 900;
+  letter-spacing: 10px;
   text-transform: uppercase;
+  white-space: nowrap;
   color: var(--danger-color);
-  filter: drop-shadow(0 0 12px rgba(179, 92, 101, 0.35));
-  animation: go-title-in 0.6s cubic-bezier(0.34, 1.4, 0.64, 1),
-    go-title-pulse 1.2s ease-in-out 0.6s infinite;
+  text-shadow:
+    0 0 18px rgba(255, 77, 109, 0.55),
+    0 4px 24px rgba(0, 0, 0, 0.6);
+  animation: go-title-in 0.6s cubic-bezier(0.34, 1.4, 0.64, 1);
   pointer-events: none;
 }
-/* Small screens : keep "GAME OVER" on one compact line instead of
-   wrapping letter-by-letter down the screen */
+/* Blur every gameplay surface + the particle canvas while the
+   title is up — text-shadow keeps the glyphs themselves sharp */
+.game-info,
+.words,
+.guess-word,
+.letters-parent,
+#fx-canvas {
+  transition: filter 0.45s ease;
+}
+body.go-title-active :is(.game-info, .words, .guess-word, .letters-parent, #fx-canvas) {
+  filter: blur(7px);
+}
+body.go-title-active .letters-parent {
+  pointer-events: none;
+}
+/* Small screens : still big and bold, scaled to fit one line */
 @media (max-width: 768px) {
   .game-over-title {
-    font-size: clamp(20px, 6.5vw, 30px);
-    letter-spacing: 4px;
-    white-space: nowrap;
-    max-width: 96vw;
-    text-align: center;
+    font-size: clamp(30px, 9vw, 46px);
+    letter-spacing: 5px;
   }
 }
 body.lang-ar .game-over-title,
@@ -626,11 +746,6 @@ body.lang-ar .popup-header {
   from {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.6);
-  }
-}
-@keyframes go-title-pulse {
-  50% {
-    filter: drop-shadow(0 0 30px rgba(160,60,45,0.95));
   }
 }
 
@@ -827,10 +942,11 @@ body.lang-ar .popup-header {
   width: 36px;
   height: 36px;
   color: var(--white-color);
-  background-color: rgba(44,87,69,0.08);
-  border: 1px solid rgba(44,87,69,0.35);
+  background-color: rgba(147,166,204,0.08);
+  border: 1px solid rgba(147,166,204,0.28);
   margin: 0;
   font-size: 16px;
+  font-family: var(--font-display);
   border-radius: 7px;
   transition: transform 0.25s ease, background-color 0.25s ease,
     border-color 0.25s ease, box-shadow 0.25s ease, opacity 0.5s;
@@ -843,7 +959,7 @@ body.lang-ar .popup-header {
   text-transform: uppercase;
 }
 .letter-span:hover {
-  background-color: rgba(235,125,0,0.25);
+  background-color: rgba(179,102,255,0.2);
   border-color: var(--mov-color);
   transform: translateY(-3px);
   box-shadow: 0 4px 14px var(--glow-orange);
@@ -937,7 +1053,7 @@ body.lang-ar .popup-header {
   padding: 3px 10px;
   border-radius: 999px;
   border: 1px solid var(--panel-border);
-  background: rgba(44,87,69,0.06);
+  background: rgba(147,166,204,0.07);
   animation: chip-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 @keyframes chip-in {
@@ -954,8 +1070,8 @@ body.lang-ar .popup-header {
   letter-spacing: 2px;
   padding: 4px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(235,125,0,0.35);
-  background: rgba(235,125,0,0.08);
+  border: 1px solid rgba(179,102,255,0.35);
+  background: rgba(179,102,255,0.1);
 }
 
 /* ============================== */
@@ -1018,7 +1134,7 @@ body.lang-ar .popup-header {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   color: var(--white-color);
-  box-shadow: 0 0 50px var(--glow-green), inset 0 0 40px rgba(235,125,0,0.06);
+  box-shadow: 0 0 50px var(--glow-green), inset 0 0 40px rgba(179,102,255,0.06);
   border-radius: 20px;
   border: 1px solid var(--panel-border);
   transform: translate(-50%, -50%);
@@ -1115,11 +1231,11 @@ body.lang-ar .popup-header {
 }
 .c-danger {
   color: var(--danger-color);
-  filter: drop-shadow(0 0 12px rgba(160,60,45,0.55));
+  filter: drop-shadow(0 0 12px rgba(255,77,109,0.55));
 }
 .c-success {
   color: var(--success-color);
-  filter: drop-shadow(0 0 12px rgba(44,87,69,0.55));
+  filter: drop-shadow(0 0 12px rgba(45,212,167,0.55));
 }
 .popup-word-reveal {
   display: flex;
@@ -1129,7 +1245,7 @@ body.lang-ar .popup-header {
   padding: 14px 26px;
   border: 1px solid var(--panel-border);
   border-radius: 14px;
-  background: rgba(44,87,69,0.06);
+  background: rgba(147,166,204,0.07);
   margin: 14px 0 4px;
 }
 .reveal-label {
@@ -1350,9 +1466,9 @@ body.lang-ar .popup-header {
 .setup-chip.selected {
   background: var(--blue-color);
   border-color: var(--blue-color);
-  color: #EBE3A7;
+  color: #04121e;
   opacity: 1;
-  box-shadow: 0 0 12px rgba(44,87,69,0.45);
+  box-shadow: 0 0 12px rgba(34,211,238,0.4);
 }
 .setup-stepper {
   display: flex;
@@ -1364,7 +1480,7 @@ body.lang-ar .popup-header {
   height: 38px;
   border-radius: 50%;
   border: 1px solid var(--panel-border);
-  background: rgba(44,87,69,0.06);
+  background: rgba(147,166,204,0.07);
   color: var(--blue-color);
   font-size: 18px;
   cursor: pointer;
@@ -1384,7 +1500,7 @@ body.lang-ar .popup-header {
   color: var(--mov-color);
   border: 1px solid var(--panel-border);
   border-radius: 10px;
-  background: rgba(44,87,69,0.05);
+  background: rgba(147,166,204,0.06);
 }
 
 /* Difficulty Selector */
@@ -1398,7 +1514,7 @@ body.lang-ar .popup-header {
   padding: 10px 20px;
   border-radius: 999px;
   border: 1px solid var(--panel-border);
-  background: rgba(44,87,69,0.05);
+  background: rgba(147,166,204,0.06);
   color: var(--white-color);
   font-size: 13px;
   font-family: var(--font-display);
@@ -1414,8 +1530,8 @@ body.lang-ar .popup-header {
 .diff-btn.selected {
   background: var(--blue-color);
   border-color: var(--blue-color);
-  color: #EBE3A7;
-  box-shadow: 0 0 14px rgba(44,87,69,0.4);
+  color: #04121e;
+  box-shadow: 0 0 14px rgba(34,211,238,0.4);
 }
 .diff-note {
   font-size: 11px;
@@ -1434,7 +1550,7 @@ body.lang-ar .popup-header {
   padding: 10px 16px;
   border: 1px solid var(--panel-border);
   border-radius: 999px;
-  background: rgba(44,87,69,0.05);
+  background: rgba(147,166,204,0.06);
   animation: slideDown 0.4s ease-out;
 }
 @keyframes slideDown {
@@ -1465,8 +1581,8 @@ body.lang-ar .popup-header {
   font-size: 12px;
   font-family: var(--font-display);
   color: var(--white-color);
-  background: rgba(44,87,69,0.2);
-  border: 1px solid rgba(44,87,69,0.3);
+  background: rgba(147,166,204,0.12);
+  border: 1px solid rgba(147,166,204,0.25);
   animation: tagPop 0.3s ease-out backwards;
 }
 .sc-tag:nth-child(1) { animation-delay: 0.05s; }
@@ -1491,9 +1607,9 @@ body.lang-ar .popup-header {
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 2px;
-  color: #EBE3A7;
+  color: #04121e;
   background: var(--success-color);
-  box-shadow: 0 0 30px rgba(44,87,69,0.6), 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 30px rgba(45,212,167,0.55), 0 8px 24px rgba(0, 0, 0, 0.2);
   opacity: 0;
   z-index: 100;
   pointer-events: none;
@@ -1583,10 +1699,10 @@ body.lang-ar .popup-header {
 .start,
 .start-btn {
   padding: 13px 46px;
-  background: rgba(44,87,69,0.12);
+  background: linear-gradient(100deg, var(--blue-color), #79e8f5);
   border: 1px solid var(--blue-color);
   border-radius: 999px;
-  color: var(--blue-color);
+  color: #04121e;
   text-transform: uppercase;
   font-size: 1.05rem;
   transition: 0.35s;
@@ -1594,14 +1710,14 @@ body.lang-ar .popup-header {
   font-style: normal;
   display: block;
   width: fit-content;
-  box-shadow: 0 0 18px rgba(44,87,69,0.25);
+  box-shadow: 0 0 18px rgba(34,211,238,0.25);
   animation: shadow-popup 2.4s ease-in-out infinite;
   cursor: pointer;
 }
 .start:hover,
 .start-btn:hover {
   border-color: var(--mov-color);
-  color: var(--white-color);
+  color: #04121e;
   box-shadow: 0 0 26px var(--glow-orange);
   transform: translateY(-2px);
 }
@@ -1639,7 +1755,7 @@ body.lang-ar .popup-header {
 /* Words Number Input */
 .words-number {
   border: 1px solid var(--blue-color);
-  background-color: rgba(44,87,69,0.06);
+  background-color: rgba(147,166,204,0.07);
   width: 4.5rem;
   height: 3rem;
   border-radius: 10px;
@@ -1834,8 +1950,11 @@ body.lang-ar .popup-header {
   width: fit-content;
   margin: 0;
   font-size: 14px;
-  font-family: "Cairo", sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
+}
+body.lang-ar .guess-word .word-hint {
+  font-family: "Cairo", sans-serif;
 }
 body.lang-ar .guess-word .hint-copy {
   direction: rtl;
@@ -1861,20 +1980,21 @@ body.lang-ar .guess-word .hint-copy {
   height: 44px;
   border: 2px solid var(--panel-border);
   border-radius: 10px;
-  background: rgba(44, 87, 69, 0.04);
+  background: rgba(147, 166, 204, 0.05);
   color: var(--white-color);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 22px;
+  font-family: var(--font-display);
   text-transform: capitalize;
   transition: all 0.3s ease;
 }
 .guess-word .guess-span:not(:empty) {
   border-color: var(--blue-color);
-  background: rgba(44, 87, 69, 0.1);
-  color: var(--blue-color);
-  box-shadow: 0 0 12px rgba(44, 87, 69, 0.3);
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--white-color);
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.3);
 }
 .guess-word .space-span {
   width: 20px;
@@ -2164,7 +2284,7 @@ body.lang-ar .wt-item {
   padding: 4px 11px;
   border-radius: 999px;
   border: 1px solid var(--panel-border);
-  background: rgba(44,87,69,0.05);
+  background: rgba(147,166,204,0.06);
   color: var(--white-color);
   font-size: 10px;
   font-family: var(--font-display);
@@ -2181,8 +2301,8 @@ body.lang-ar .wt-item {
 .setup-screen-full .setup-chip.selected {
   background: var(--blue-color);
   border-color: var(--blue-color);
-  color: #EBE3A7;
-  box-shadow: 0 0 16px rgba(44,87,69,0.45);
+  color: #04121e;
+  box-shadow: 0 0 16px rgba(34,211,238,0.45);
 }
 .setup-screen-full .setup-stepper {
   display: flex;
@@ -2195,7 +2315,7 @@ body.lang-ar .wt-item {
   height: 26px;
   border-radius: 50%;
   border: 1px solid var(--panel-border);
-  background: rgba(44,87,69,0.06);
+  background: rgba(147,166,204,0.07);
   color: var(--blue-color);
   font-size: 13px;
   cursor: pointer;
@@ -2215,7 +2335,7 @@ body.lang-ar .wt-item {
   color: var(--mov-color);
   border: 1px solid var(--panel-border);
   border-radius: 8px;
-  background: rgba(44,87,69,0.05);
+  background: rgba(147,166,204,0.06);
 }
 .setup-screen-full .setup-difficulty {
   display: flex;
@@ -2228,7 +2348,7 @@ body.lang-ar .wt-item {
   padding: 4px 13px;
   border-radius: 999px;
   border: 1px solid var(--panel-border);
-  background: rgba(44,87,69,0.05);
+  background: rgba(147,166,204,0.06);
   color: var(--white-color);
   font-size: 10px;
   font-family: var(--font-display);
@@ -2244,8 +2364,8 @@ body.lang-ar .wt-item {
 .setup-screen-full .diff-btn.selected {
   background: var(--blue-color);
   border-color: var(--blue-color);
-  color: #EBE3A7;
-  box-shadow: 0 0 16px rgba(44,87,69,0.45);
+  color: #04121e;
+  box-shadow: 0 0 16px rgba(34,211,238,0.45);
 }
 .setup-screen-full .setup-note {
   font-size: 10px;
@@ -2280,7 +2400,7 @@ body.lang-ar .wt-item {
   padding: 6px 10px;
   border-radius: 8px;
   border: 1px solid var(--panel-border);
-  background: rgba(44,87,69,0.06);
+  background: rgba(147,166,204,0.07);
   color: var(--mov-color);
   font-family: var(--font-display);
   font-size: 13px;
@@ -2289,10 +2409,10 @@ body.lang-ar .wt-item {
 }
 .setup-screen-full .setup-btn {
   padding: 8px 34px;
-  background: rgba(44,87,69,0.2);
+  background: linear-gradient(100deg, var(--blue-color), #79e8f5);
   border: 1px solid var(--blue-color);
   border-radius: 999px;
-  color: var(--blue-color);
+  color: #04121e;
   text-transform: uppercase;
   font-size: 12px;
   font-family: var(--font-display);
@@ -2300,12 +2420,12 @@ body.lang-ar .wt-item {
   font-weight: 700;
   transition: 0.35s;
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(44,87,69,0.35);
+  box-shadow: 0 0 20px rgba(34,211,238,0.35);
   animation: shadow-popup 2.4s ease-in-out infinite;
 }
 .setup-screen-full .setup-btn:hover {
   border-color: var(--mov-color);
-  color: var(--white-color);
+  color: #04121e;
   box-shadow: 0 0 28px var(--glow-orange);
   transform: translateY(-2px);
 }
@@ -2542,7 +2662,7 @@ body.lang-ar .wt-item {
     width: 32px;
     height: 32px;
     border: 1px solid var(--panel-border);
-    background: rgba(44,87,69,0.08);
+    background: rgba(147,166,204,0.09);
     color: var(--white-color);
     font-size: 13px;
     transition: 0.3s;
@@ -2553,7 +2673,7 @@ body.lang-ar .wt-item {
   .settings-group.open .settings-btn {
     color: var(--mov-color);
     border-color: var(--mov-color);
-    box-shadow: 0 0 12px rgba(235,125,0,0.25);
+    box-shadow: 0 0 12px rgba(179,102,255,0.3);
   }
 
   /* Dropdown panel */
@@ -2621,8 +2741,8 @@ body.lang-ar .wt-item {
     gap: 10px;
     padding: 9px 12px;
     border-radius: 10px;
-    border: 1px solid rgba(44,87,69,0.25);
-    background: rgba(44,87,69,0.06);
+    border: 1px solid rgba(147,166,204,0.22);
+    background: rgba(147,166,204,0.07);
     font-size: 12px;
   }
   .settings-panel .icon-btn:hover {
@@ -2636,8 +2756,8 @@ body.lang-ar .wt-item {
     gap: 10px;
     padding: 9px 12px;
     border-radius: 10px;
-    border: 1px solid rgba(44,87,69,0.25);
-    background: rgba(44,87,69,0.06);
+    border: 1px solid rgba(147,166,204,0.22);
+    background: rgba(147,166,204,0.07);
   }
   .settings-panel .mode-cont:hover {
     border-color: var(--mov-color);
@@ -2729,5 +2849,30 @@ body.lang-ar .wt-item {
       font-size: 11px;
       gap: 6px;
     }
+  }
+}
+
+/* ============================== */
+/* 19. Mobile Performance Pass     */
+/* ============================== */
+@media (max-width: 768px) {
+  /* backdrop-filter blurs are extremely expensive on mobile GPUs,
+     and #fx-canvas animates behind these panels forcing the blur to
+     be recomputed every frame. Swap them for near-opaque,
+     theme-aware fills instead. */
+  .game-info,
+  .wt-dropdown,
+  .words,
+  .popup,
+  .settings-panel,
+  .setup-screen-full {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: color-mix(in srgb, var(--black-color) 93%, transparent) !important;
+  }
+
+  /* fixed backgrounds repaint on every scroll tick on mobile */
+  body {
+    background-attachment: scroll;
   }
 }

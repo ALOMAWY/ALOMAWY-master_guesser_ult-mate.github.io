@@ -4,7 +4,7 @@
    - Google Fonts / CDN: network-first with cache fallback
    - Sounds: cached on first use
 */
-const CACHE_NAME = "master-guesser-v1";
+const CACHE_NAME = "master-guesser-v2";
 
 const APP_SHELL = [
   "./",
@@ -15,9 +15,7 @@ const APP_SHELL = [
   "./script.js",
   "./effects.js",
   "./favicon.svg",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./icons/icon-512-maskable.png",
+  "./icons/master-gusser.svg",
   "./sounds/success.wav",
   "./sounds/error.wav",
   "./sounds/game-over.wav",

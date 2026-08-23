@@ -716,8 +716,6 @@ window.addEventListener("load", () => {
 
 let wrongTimes = 0;
 
-let numberOfMistakeSpan = document.getElementById("wrong-times");
-
 let successSound = document.getElementById("success");
 
 let errorSound = document.getElementById("error");
@@ -1035,7 +1033,7 @@ function clickerWords() {
       nativeGuessWord = nativeGuessArray.join("").toLowerCase();
       ifGameOver();
 
-      numberOfMistakeSpan.innerHTML = `${t("mistakes")} <span>'${wrongTimes} / 10'</span>`;
+      updateMistakesRail();
     }
 
     let emptySpansArray = [];
@@ -1195,6 +1193,12 @@ function fxHaptic(pattern) {
   } catch (_) {}
 }
 
+// Sync The Board-Aligned Mistakes Rail With The Current Count
+function updateMistakesRail() {
+  let railCount = document.querySelector(".mistakes-rail .mr-count");
+  if (railCount) railCount.textContent = wrongTimes;
+}
+
 function ifGameOver() {
   // Run Only Once : Lock Everything Immediately
 
@@ -1290,8 +1294,8 @@ function startGame(config) {
   let gp = document.querySelector(".guess-parent");
   if (gp) gp.innerHTML = "";
 
-  // Reset mistake display
-  numberOfMistakeSpan.innerHTML = `${t("mistakes")} <span>'0 / 10'</span>`;
+  // Reset mistake display (ticks clear automatically with .draw-row classes)
+  updateMistakesRail();
 
   populateWordTypeDropdown();
   updateDifficultyBadge();
@@ -1713,7 +1717,7 @@ function handleTimeUp() {
   }
 
   errorSound.play().catch(() => {});
-  numberOfMistakeSpan.innerHTML = `${t("mistakes")} <span>'${wrongTimes} / 10'</span>`;
+  updateMistakesRail();
 
   ifGameOver();
 

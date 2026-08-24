@@ -1100,7 +1100,9 @@ document.addEventListener("keydown", (e) => {
 });
 
 // Mobile Keyboard : Keep Tap-to-Guess button above the on-screen keyboard
+// and shrink the game container to the visible area so nothing scrolls.
 if (window.visualViewport && tapToGuessBtn) {
+  const gameContainer = document.querySelector(".container");
   const adjustForKeyboard = () => {
     const vv = window.visualViewport;
     const keyboardHeight = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
@@ -1108,10 +1110,12 @@ if (window.visualViewport && tapToGuessBtn) {
       tapToGuessBtn.style.position = "fixed";
       tapToGuessBtn.style.bottom = keyboardHeight + 20 + "px";
       document.body.classList.add("keyboard-open");
+      if (gameContainer) gameContainer.style.height = vv.height + "px";
     } else {
       tapToGuessBtn.style.position = "";
       tapToGuessBtn.style.bottom = "";
       document.body.classList.remove("keyboard-open");
+      if (gameContainer) gameContainer.style.height = "";
     }
   };
   window.visualViewport.addEventListener("resize", adjustForKeyboard);

@@ -216,6 +216,7 @@ button {
 .settings-panel .sp-title,
 .settings-panel .sp-text {
   display: none;
+  font-family: var(--font-display);
 }
 
 /* Timer Pill : always visible in the header.
@@ -339,6 +340,7 @@ button {
   width: 110px;
   min-width: 0;
   font-size: 13px;
+  font-family: var(--font-display);
 }
 .name-cont input:focus {
   outline: none;
@@ -2277,11 +2279,13 @@ body.lang-ar .popup-header {
   font-size: 9px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  font-family: var(--font-display);
 }
 .guess-word .hint-progress {
   color: var(--mov-color);
   font-size: 9px;
   font-weight: 400;
+  font-family: var(--font-display);
 }
 .guess-word .hint .show-hint {
   color: var(--blue-color);

@@ -433,7 +433,7 @@ function randomizingValues() {
 
   randomGuessWordArray = [...randomGuessWord];
 
-  wordFrom = document.querySelector(".game-info .word-type span");
+  wordFrom = document.querySelector(".game-info .word-type .wt-value");
 
   wordFrom.innerHTML = t("cat_" + objectKeys[randomPropOfObject]);
 

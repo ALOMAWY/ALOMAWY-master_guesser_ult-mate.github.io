@@ -345,13 +345,11 @@ button {
   outline: none;
 }
 
-/* Word Type : original chip (stable) + arrow from the compact cloud trigger */
+/* Word Type : label pill in the header line, cloud hangs below it */
 .game-info .word-type {
-  display: flex;
-  align-items: center;
-  max-width: 100%;
-  cursor: pointer;
   position: relative;
+  cursor: pointer;
+  z-index: 60;
 }
 
 /* Category box : label only, same pill style as before the cloud idea */
@@ -366,9 +364,11 @@ button {
   white-space: nowrap;
 }
 
-/* Cloud : shows the word type (all words / current category) */
+/* Cloud : hangs under the box without affecting header size */
 .wt-cloud {
-  position: relative;
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 0;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -377,7 +377,7 @@ button {
   background: linear-gradient(145deg, rgba(20, 36, 65, 0.92), rgba(9, 13, 27, 0.86));
   border: 1px solid rgba(34, 211, 238, 0.36);
   box-shadow: 0 0 16px rgba(34, 211, 238, 0.12), inset 0 0 12px rgba(34, 211, 238, 0.05);
-  max-width: 34vw;
+  max-width: min(340px, 60vw);
 }
 .wt-cloud::before,
 .wt-cloud::after {
@@ -408,25 +408,26 @@ button {
   transform: rotate(180deg);
 }
 
-/* Arrow : category box ← cloud */
+/* Arrow : rises from the cloud up into the box's underside */
 .wt-arrow {
-  position: relative;
-  flex: none;
-  width: 24px;
-  height: 2px;
-  margin: 0 -2px;
-  background: linear-gradient(90deg, var(--blue-color), var(--mov-color));
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 50%;
+  width: 2px;
+  height: 12px;
+  margin-left: -1px;
+  background: linear-gradient(180deg, var(--blue-color), var(--mov-color));
   filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.35));
 }
 .wt-arrow::after {
   content: "";
   position: absolute;
-  left: -6px;
-  top: 50%;
-  transform: translateY(-50%);
-  border-right: 7px solid var(--blue-color);
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom: 6px solid var(--blue-color);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
 }
 .game-info .word-type .wt-label {
   color: var(--blue-color);
@@ -1092,7 +1093,7 @@ body.lang-ar .popup-header {
   align-items: center;
   flex-wrap: wrap;
   gap: 6px 10px;
-  margin: 0 16px;
+  margin: 0;
   padding: 4px 12px;
   min-height: 0;
   min-width: 0;
@@ -2056,9 +2057,10 @@ body.lang-ar .guess-word .hint-copy {
 .guess-word .guess-span {
   width: 44px;
   height: 44px;
-  border: 2px solid var(--panel-border);
-  border-radius: 10px;
-  background: rgba(147, 166, 204, 0.05);
+  border: none;
+  border-bottom: 2px solid var(--mov-color);
+  border-radius: 0;
+  background: transparent;
   color: var(--white-color);
   display: flex;
   justify-content: center;
@@ -2067,10 +2069,11 @@ body.lang-ar .guess-word .hint-copy {
   font-family: var(--font-display);
   text-transform: capitalize;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 .guess-word .guess-span:not(:empty) {
-  border-color: var(--blue-color);
-  background: rgba(34, 211, 238, 0.1);
+  border-bottom-color: var(--blue-color);
+  background: transparent;
   color: var(--white-color);
   box-shadow: 0 0 12px rgba(34, 211, 238, 0.3);
 }
@@ -2844,17 +2847,17 @@ body.lang-ar .wt-item {
     font-size: 11px;
   }
 
-  /* Word type : stays on the single header line, cloud shrinks with ellipsis */
+  /* Word type : pill stays in line, cloud keeps hanging below */
   .game-info .word-type {
     min-width: 0;
-  }
-  .wt-arrow {
-    width: 14px;
   }
   .wt-cloud {
     padding: 4px 9px;
     gap: 4px;
-    max-width: 30vw;
+    max-width: min(280px, 64vw);
+  }
+  .wt-arrow {
+    height: 10px;
   }
   .game-info .word-type .wt-value {
     letter-spacing: 0.5px;
@@ -2929,10 +2932,7 @@ body.lang-ar .wt-item {
     .wt-cloud {
       padding: 4px 7px;
       gap: 3px;
-      max-width: 34vw;
-    }
-    .wt-arrow {
-      width: 10px;
+      max-width: min(240px, 60vw);
     }
     .wt-box {
       padding: 4px 8px;

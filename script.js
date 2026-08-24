@@ -408,6 +408,8 @@ let nativeRandomWord;
 
 let nativeGuessWord;
 
+let wordDeck = [];
+
 let wordHint = document.querySelector(".word-hint");
 
 let hintProgress = document.querySelector(".hint-progress");
@@ -416,21 +418,47 @@ let showHintButton = document.querySelector(".show-hint");
 
 //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
 
+function buildWordDeck() {
+  let pool = [];
+  Object.keys(words).forEach((catKey) => {
+    words[catKey].forEach((entry, idx) => {
+      pool.push({ catKey, idx });
+    });
+  });
+  for (let i = pool.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  wordDeck = pool;
+}
+
+function drawNextWord(prevWord) {
+  if (!wordDeck.length) {
+    buildWordDeck();
+  }
+  let last = wordDeck.length - 1;
+  if (
+    prevWord &&
+    last > 0 &&
+    words[wordDeck[last].catKey][wordDeck[last].idx].word === prevWord
+  ) {
+    let swapWith = Math.floor(Math.random() * last);
+    [wordDeck[last], wordDeck[swapWith]] = [wordDeck[swapWith], wordDeck[last]];
+  }
+  return wordDeck.pop();
+}
+
 function randomizingValues() {
   objectKeys = Object.keys(words);
 
-  randomPropOfObject = Math.floor(Math.random() * objectKeys.length);
+  let pick = drawNextWord(randomGuessWord);
 
-  randomValueFromObjectProp = words[objectKeys[randomPropOfObject]];
+  randomPropOfObject = objectKeys.indexOf(pick.catKey);
+  randomValueFromObjectProp = words[pick.catKey];
+  randomWordFromObjectPropValue = pick.idx;
 
-  randomWordFromObjectPropValue = Math.floor(
-    Math.random() * randomValueFromObjectProp.length
-  );
-
-  randomGuessWord =
-    words[objectKeys[randomPropOfObject]][randomWordFromObjectPropValue].word;
-  randomGuessHint =
-    words[objectKeys[randomPropOfObject]][randomWordFromObjectPropValue].hints;
+  randomGuessWord = randomValueFromObjectProp[pick.idx].word;
+  randomGuessHint = randomValueFromObjectProp[pick.idx].hints;
 
   currentHintIndex = 0;
 
@@ -1405,6 +1433,8 @@ function startGame(config) {
       Object.assign(words, JSON.parse(JSON.stringify(originalWords)));
     }
   }
+
+  buildWordDeck();
 
   limitTimes = config.limitTimes;
   gameDifficulty = config.gameDifficulty;

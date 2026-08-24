@@ -35,7 +35,9 @@ let lettersKeyboard = document.querySelector(".letters-row span");
 // Add Letters To Div
 
 lettersArray.forEach((e) => {
-  let span = document.createElement("span");
+  let span = document.createElement("button");
+  span.type = "button";
+  span.setAttribute("aria-label", `Guess ${e}`);
 
   let spanContent = document.createTextNode(e);
 
@@ -49,7 +51,9 @@ lettersArray.forEach((e) => {
 // Add Chars To Div
 
 charsArray.forEach((e) => {
-  let span = document.createElement("span");
+  let span = document.createElement("button");
+  span.type = "button";
+  span.setAttribute("aria-label", `Guess ${e}`);
 
   let spanContent = document.createTextNode(e);
 
@@ -63,7 +67,9 @@ charsArray.forEach((e) => {
 // Add Numbers To Div
 
 numbersArray.forEach((e) => {
-  let span = document.createElement("span");
+  let span = document.createElement("button");
+  span.type = "button";
+  span.setAttribute("aria-label", `Guess ${e}`);
 
   let spanContent = document.createTextNode(e);
 
@@ -622,15 +628,15 @@ window.addEventListener("load", () => {
 
   // If No Custom Name Name Equal Default Name
 
-  if (localStorage.getItem("mainName") == undefined) {
+  if (localStorage.getItem("mainName") === null) {
     localStorage.setItem("mainName", defaultName);
   }
   //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
-  if (localStorage.getItem("mainName") != undefined) {
+  if (localStorage.getItem("mainName") !== null) {
     inputName.value = localStorage.getItem("mainName");
   }
 
-  if (localStorage.getItem("mainName") === undefined) {
+  if (localStorage.getItem("mainName") === null) {
     inputName.value = defaultName;
   }
 
@@ -703,7 +709,7 @@ window.addEventListener("load", () => {
 
   // First Visit : Show The Rules Screen Once
 
-  if (localStorage.getItem("seenRules") == undefined) {
+  if (localStorage.getItem("seenRules") === null) {
     buildRulesScreen();
 
     localStorage.setItem("seenRules", "true");
@@ -920,6 +926,8 @@ function t(key) {
 
 function applyLang() {
   document.body.classList.toggle("lang-ar", lang === "ar");
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     el.textContent = t(el.dataset.i18n);
@@ -963,6 +971,18 @@ showHintButton.addEventListener("click", () => {
 });
 
 let wordTypeArray = [];
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>'"]/g, (character) =>
+    ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "'": "&#39;",
+      '"': "&quot;",
+    })[character]
+  );
+}
 
 //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
 
@@ -1168,7 +1188,9 @@ function correctWord() {
   let solvedCount =
     [...document.querySelectorAll(".correct-word-span")].length + 1;
 
-  document.querySelector(".word-number").innerHTML = `${solvedCount} / ${limitTimes}`;
+  let wordNumber = document.querySelector(".word-number");
+  wordNumber.innerHTML = `${solvedCount} / ${limitTimes}`;
+  wordNumber.setAttribute("aria-label", `Solved ${solvedCount} of ${limitTimes}`);
 
   // Celebration Effect For Correct Word
   if (typeof fxConfetti === "function") {
@@ -1278,7 +1300,6 @@ function DeclareGuessSpans() {
 
       guessSpans.classList.remove("basic-span");
 
-      letter.innerHTML = " ";
     }
   });
   let oldBadge = document.querySelector(".word-length");
@@ -1309,9 +1330,13 @@ function submitFunction() {
   submitWord.addEventListener("click", () => {
     if (nativeGuessWord === nativeRandomWord) {
       correctWord();
+      let isFinalWord =
+        document.querySelectorAll(".correct-word-span").length +
+          (window._pendingFlights || 0) >=
+        limitTimes;
 
-      // Reset timer for the next word
-      StartTimeFunction();
+      // Reset the timer only when another word is actually starting.
+      if (!isFinalWord) StartTimeFunction();
 
       document
         .querySelectorAll(".letter-span")
@@ -1320,6 +1345,8 @@ function submitFunction() {
         e.remove();
       });
       if (littersLength) littersLength.remove();
+
+      if (isFinalWord) return;
     }
     // Win is checked when the flown word lands (checkMatchComplete)
     continueBtn.click();
@@ -1341,6 +1368,8 @@ function fxHaptic(pattern) {
 function updateMistakesRail() {
   let railCount = document.querySelector(".mistakes-rail .mr-count");
   if (railCount) railCount.textContent = wrongTimes;
+  let rail = document.querySelector(".mistakes-rail");
+  if (rail) rail.setAttribute("aria-label", `Mistakes: ${wrongTimes} of 10`);
 }
 
 function ifGameOver() {
@@ -1352,6 +1381,7 @@ function ifGameOver() {
 
   if (document.getElementById("draw-row-div").classList.contains("show-10")) {
     gameEnded = true;
+    stopGameTimer();
 
     // Death Effect : hang the person
 
@@ -1435,12 +1465,15 @@ function startGame(config) {
   }
 
   buildWordDeck();
+  stopGameTimer();
 
   limitTimes = config.limitTimes;
   gameDifficulty = config.gameDifficulty;
   timeLimits = config.timeLimits;
   selectedCategories = config.selectedCategories;
   gameEnded = false;
+  wordTypeArray = [];
+  inputLockedUntil = 0;
 
   // Match clock : total playtime shown on the result screen
   window.matchStartStamp = Date.now();
@@ -1456,7 +1489,9 @@ function startGame(config) {
   let cw = document.querySelector(".words-container");
   if (cw) cw.innerHTML = "";
 
-  document.querySelector(".word-number").innerHTML = ` 0 / ${limitTimes}`;
+  let wordNumber = document.querySelector(".word-number");
+  wordNumber.innerHTML = ` 0 / ${limitTimes}`;
+  wordNumber.setAttribute("aria-label", `Solved 0 of ${limitTimes}`);
 
   // Reset letter spans
   document.querySelectorAll(".letter-span").forEach((e) => {
@@ -1487,6 +1522,53 @@ continueBtn.onclick = () => {
 //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
 
 // Build Rules Screen — How To Play (Closable : Informational Only)
+
+let popupReturnFocus = null;
+
+function mountPopup(popupDiv, initialFocus, onEscape) {
+  popupReturnFocus = document.activeElement;
+  popupDiv.setAttribute("role", "dialog");
+  popupDiv.setAttribute("aria-modal", "true");
+  popupDiv.setAttribute("aria-labelledby", "popup-title");
+  popupDiv.tabIndex = -1;
+  popupDiv.querySelector(".popup-header")?.setAttribute("id", "popup-title");
+  document.body.appendChild(popupDiv);
+
+  let focusable = () =>
+    [...popupDiv.querySelectorAll("button, input, [href], [tabindex]:not([tabindex='-1'])")].filter(
+      (el) => !el.disabled && el.offsetParent !== null
+    );
+
+  popupDiv.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && onEscape) {
+      onEscape();
+      return;
+    }
+    if (event.key !== "Tab") return;
+
+    let items = focusable();
+    if (!items.length) return;
+    let first = items[0];
+    let last = items[items.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  (initialFocus || popupDiv).focus();
+}
+
+function closePopup(popupDiv) {
+  popupDiv.remove();
+  if (popupReturnFocus && document.contains(popupReturnFocus)) {
+    popupReturnFocus.focus();
+  }
+  popupReturnFocus = null;
+}
 
 function buildRulesScreen() {
   let rulesDiv = document.createElement("div");
@@ -1532,7 +1614,7 @@ function buildRulesScreen() {
 
   okBtn.textContent = t("rulesOk");
 
-  okBtn.addEventListener("click", () => rulesDiv.remove());
+  okBtn.addEventListener("click", () => closePopup(rulesDiv));
 
   actionsDiv.appendChild(okBtn);
 
@@ -1540,9 +1622,9 @@ function buildRulesScreen() {
 
   // Closable : Rules Do Not Control Game Logic
 
-  addCloseIcon(rulesDiv, () => rulesDiv.remove());
+  addCloseIcon(rulesDiv, () => closePopup(rulesDiv));
 
-  document.body.appendChild(rulesDiv);
+  mountPopup(rulesDiv, okBtn, () => closePopup(rulesDiv));
 }
 
 //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
@@ -1557,6 +1639,7 @@ function addCloseIcon(popupDiv, onClose) {
   closeBtn.className = "popup-close";
 
   closeBtn.title = "Close";
+  closeBtn.setAttribute("aria-label", "Close");
 
   closeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
 
@@ -1599,7 +1682,7 @@ function buildSetupScreen() {
   welcome.className = "setup-words setup-welcome";
 
   welcome.innerHTML = `${t("welcomeWord")} <span class="setup-spans">${
-    inputName.value
+    escapeHtml(inputName.value)
   }</span> — ${t("welcomeTail")}`;
 
   // Categories Label + Chips
@@ -1808,10 +1891,7 @@ function StartTimeFunction() {
   let timeRemaining = currentTimeLimit;
   let timerInterval = null;
 
-  // Clear any existing timer
-  if (window.gameTimerInterval) {
-    clearInterval(window.gameTimerInterval);
-  }
+  stopGameTimer();
 
   // Update timer display
   function updateTimerDisplay() {
@@ -1858,6 +1938,13 @@ function StartTimeFunction() {
   }
 
   window.gameTimerInterval = timerInterval;
+}
+
+function stopGameTimer() {
+  if (window.gameTimerInterval) {
+    clearInterval(window.gameTimerInterval);
+    window.gameTimerInterval = null;
+  }
 }
 
 // Handle time up - add mistakes and skip to next word
@@ -2075,8 +2162,10 @@ function resultStatsHTML(stats) {
 
 function showResultScreen(win) {
   disebleContainerEvents();
+  stopGameTimer();
 
   let stats = collectMatchStats();
+  let safeName = escapeHtml(inputName.value === "" ? '" "' : inputName.value);
 
   let div = document.createElement("div");
   div.className = "popup result-screen " + (win ? "result-win" : "result-lose");
@@ -2092,9 +2181,7 @@ function showResultScreen(win) {
 
     ${
       win
-        ? `<p class="result-sub">${t("winSub")}<span class="popup-spans">${
-            inputName.value === "" ? '" "' : inputName.value
-          }</span></p>`
+          ? `<p class="result-sub">${t("winSub")}<span class="popup-spans">${safeName}</span></p>`
         : `<div class="popup-word-reveal">
             <span class="reveal-label">${t("theWordWas")}</span>
             <span class="reveal-word">${randomGuessWord}</span>
@@ -2132,12 +2219,10 @@ function showResultScreen(win) {
     </div>
 
     <p class="popup-words popup-thanks">${t("thanksPre")}
-      <span class="popup-spans">${
-        inputName.value === "" ? '" "' : inputName.value
-      }</span></p>
+      <span class="popup-spans">${safeName}</span></p>
   `;
 
-  document.body.appendChild(div);
+  mountPopup(div, null);
 
   // Win celebration : confetti waves + victory haptic
   if (win) {

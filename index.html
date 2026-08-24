@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <title>HANGMAN GAME</title>
+    <title>Master Guesser | Hangman Game</title>
     <meta name="description" content="Master Guesser — an interactive hangman-style word game with categories, difficulties, bilingual hints, and offline support." />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#070b16" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#edf2fa" />
@@ -43,7 +43,7 @@
         <div class="header-tools">
           <div class="timer-pill" title="Timer">
             <i class="fa-regular fa-clock"></i>
-            <span id="time">00:00:00</span>
+             <span id="time" role="timer" aria-live="off">00:00:00</span>
           </div>
 
           <span class="difficulty-badge" id="difficulty-badge"></span>
@@ -78,12 +78,12 @@
               <div class="name-cont">
                 <i class="fa-solid fa-user"></i>
                 <input id="name" type="text" maxlength="17" />
-                <span id="change-name" title="Edit Name">
+                <button id="change-name" type="button" title="Edit Name" aria-label="Edit Name">
                   <i class="fa-solid fa-pen"></i>
-                </span>
-                <span id="reset-name" title="Reset Name">
+                </button>
+                <button id="reset-name" type="button" title="Reset Name" aria-label="Reset Name">
                   <i class="fa-solid fa-rotate-right"></i>
-                </span>
+                </button>
               </div>
 
               <label for="change-mode" class="mode-cont" title="Light Theme" aria-label="Light Theme">
@@ -149,7 +149,7 @@
           </g>
          </svg>
            <!-- Mistakes rail : board-aligned stage counter -->
-          <div class="mistakes-rail" aria-hidden="true">
+           <div class="mistakes-rail" role="status" aria-live="polite" aria-label="Mistakes: 0 of 10">
             <span class="mr-count">0</span>
             <div class="mr-ticks">
               <span></span><span></span><span></span><span></span><span></span>
@@ -170,7 +170,7 @@
       <div id="correct-word" class="words">
         <h5 data-i18n="correctWords">Correct Words</h5>
         <div class="words-container"></div>
-        <span class="word-number"> 0 / 10 </span>
+        <span class="word-number" role="status" aria-live="polite" aria-label="Solved 0 of 10">0 / 10</span>
         <div class="btns">
           <button id="submit-btn" class="submit-btn btn">Submit</button
           ><button id="continue-btn" class="submit-btn btn">Continue</button>

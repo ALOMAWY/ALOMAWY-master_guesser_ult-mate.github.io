@@ -399,7 +399,7 @@ button {
   top: -4px;
   right: 9px;
 }
-.wt-caret {
+.game-info .word-type .wt-caret {
   display: none;
   font-size: 10px;
   color: var(--blue-color);

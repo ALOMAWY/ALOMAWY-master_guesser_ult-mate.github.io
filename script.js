@@ -1816,10 +1816,13 @@ function populateWordTypeDropdown() {
   if (!dropdown) return;
 
   // Arrow beside the word type only when more than one type is in play
+  let multi = selectedCategories.length > 1;
   let wordType = document.querySelector(".word-type");
   if (wordType) {
-    wordType.classList.toggle("has-multi", selectedCategories.length > 1);
-    if (selectedCategories.length <= 1) wordType.classList.remove("open");
+    wordType.classList.toggle("has-multi", multi);
+    if (!multi) wordType.classList.remove("open");
+    let caret = wordType.querySelector(".wt-caret");
+    if (caret) caret.style.display = multi ? "" : "none";
   }
 
   if (selectedCategories.length === 0) {

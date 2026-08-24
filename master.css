@@ -441,6 +441,7 @@ button {
   letter-spacing: 2px;
   text-transform: uppercase;
   white-space: nowrap;
+  font-family: var(--font-display);
 }
 .game-info .word-type .wt-value {
   color: var(--mov-color);
@@ -450,6 +451,7 @@ button {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family: var(--font-display);
 }
 .game-info .word-type .wt-dropdown {
   position: absolute;
@@ -1221,6 +1223,7 @@ body.lang-ar .popup-header {
   border-radius: 999px;
   border: 1px solid rgba(179,102,255,0.35);
   background: rgba(179,102,255,0.1);
+  font-family: var(--font-display);
 }
 
 /* ============================== */
@@ -2305,8 +2308,8 @@ body.lang-ar .popup-header {
   color: var(--white-color);
   width: fit-content;
   margin: 0;
-  font-size: 14px;
-  font-family: var(--font-body);
+  font-size: 13px;
+  font-family: var(--font-display);
   font-weight: 400;
 }
 body.lang-ar .guess-word .word-hint {
@@ -3072,6 +3075,7 @@ body.lang-ar .wt-item {
     font-size: 12px;
     letter-spacing: 1px;
     color: var(--white-color);
+    font-family: var(--font-display);
   }
 
   /* Rows inside the menu */

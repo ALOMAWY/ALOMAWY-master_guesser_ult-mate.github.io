@@ -1096,10 +1096,10 @@ function clickerWords() {
 const tapToGuessBtn = document.querySelector(".tap-to-guess-btn");
 const mobileInput = document.querySelector(".mobile-keyboard-input");
 
-tapToGuessBtn.addEventListener("click", () => {
+function openMobileKeyboard() {
   document.querySelectorAll(".letter-span").forEach((span) => span.classList.remove("clicked"));
   inputLockedUntil = 0;
-  
+
   // Show input briefly to trigger mobile keyboard, then hide it
   mobileInput.style.position = "fixed";
   mobileInput.style.left = "0";
@@ -1110,12 +1110,22 @@ tapToGuessBtn.addEventListener("click", () => {
   mobileInput.style.pointerEvents = "none";
   mobileInput.focus();
   mobileInput.select();
-  
+
   // Hide again after a short delay
   setTimeout(() => {
     mobileInput.style.position = "absolute";
     mobileInput.style.left = "-9999px";
   }, 100);
+}
+
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('guess-span') && window.innerWidth <= 768) {
+    openMobileKeyboard();
+  }
+});
+
+tapToGuessBtn.addEventListener("click", () => {
+  openMobileKeyboard();
 });
 
 mobileInput.addEventListener("input", (e) => {

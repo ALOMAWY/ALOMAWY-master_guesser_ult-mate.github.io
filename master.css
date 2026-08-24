@@ -400,9 +400,13 @@ button {
   right: 9px;
 }
 .wt-caret {
+  display: none;
   font-size: 10px;
   color: var(--blue-color);
   transition: transform 0.2s;
+}
+.game-info .word-type.has-multi .wt-caret {
+  display: inline-block;
 }
 .game-info .word-type.open .wt-caret {
   transform: rotate(180deg);

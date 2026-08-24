@@ -205,174 +205,177 @@ words.programming_Language = [
   { word: "HTML", hints: bilingualHints(["It describes the structure of web pages.", "Its full name is HyperText Markup Language."], ["تصف بنية صفحات الويب.", "اسمها الكامل هو لغة ترميز النص التشعبي."]) },
 ];
 
+words.programming_Language = [
+  { word: "Objective-C", hints: bilingualHints(["I dominated iOS apps for years, heavy on square brackets [ ]!", "A hybrid beast combining C's speed with Smalltalk's objects."], ["سيطرتُ على تطبيقات iOS لسنوات، مع كثرة الأقواس المربعة [ ]!", "وحش هجين يجمع بين سرعة C وكائنية Smalltalk."]) },
+  { word: "TypeScript", hints: bilingualHints(["JavaScript's strict big brother who hates runtime errors.", "I bring static types to the wild west of web scripts."], ["أخو JavaScript الصارم الذي يكره أخطاء وقت التشغيل.", "أفرض الأنواع الثابتة على عالم سكريبتات الويب الفوضوي."]) },
+  { word: "Dart", hints: bilingualHints(["Flutter's soulmate, built by Google to target every screen.", "A language crafted to shoot straight into multi-platform apps."], ["توأم روح Flutter، طوّرتني Google لاستهداف كل الشاشات.", "لغة صُممت لترمي هدفها مباشرة نحو تطبيقات متعددة المنصات."]) },
+  { word: "Ruby", hints: bilingualHints(["Gem of a language, written to make developers happy.", "Rails made me famous for building web apps in record time."], ["جوهرة اللغات، كُتبت لجعل المطورين سعداء.", "إطار عمل Rails جعلني شهيرة لبناء تطبيقات الويب في وقت قياسي."]) },
+  { word: "Rust", hints: bilingualHints(["Borrow checker is my strict bouncer; memory safety is my game.", "I deliver C++ speed without the random memory crashes."], ["فاحص الاستعارة هو حارسي الصارم، وأمان الذاكرة لعبتي.", "أقدم سرعة C++ دون انهيارات الذاكرة العشوائية."]) },
+  { word: "Go", hints: bilingualHints(["Google's minimalist, concurrency-loving mascot is a gopher.", "Two letters, ultra-fast compilation, built for backend power."], ["حيواني الجرذ الميمون يحب البساطة والتزامن من Google.", "حرفان فقط، وتجميع خارق السرعة، بُنيت لقوة الخوادم."]) },
+  { word: "Kotlin", hints: bilingualHints(["Android's favorite language, killing NullPointerExceptions step by step.", "I run on the JVM, making Java code look ancient."], ["لغة Android المفضل، وأقضي على أخطاء المؤشر الفارغ تدريجياً.", "أعمل على JVM وأجعل كود Java يبدو قديماً."]) },
+  { word: "Swift", hints: bilingualHints(["Fast by name, modern by design, replacing Objective-C on Apple devices.", "Apple's shiny toy for writing clean iOS code."], ["سريعة باسمها، حديثة بتصميمها، وبديلة Objective-C على أجهزة Apple.", "لعبة Apple البراقة لكتابة كود iOS نظيف."]) },
+  { word: "Java", hints: bilingualHints(["Write once, run anywhere... assuming you installed the JVM!", "Coffee cup logo, heavily object-oriented, powers enterprise servers."], ["اكتب مرة واحدة، وشغّل في أي مكان... بشرط تثبيت JVM!", "شعار فنجان قهوة، كائنية التوجه بشدة، وتدير خوادم الشركات."]) },
+  { word: "C", hints: bilingualHints(["The god-mother of modern programming—manual memory, pure speed.", "No classes, no garbage collector, just raw pointers and danger."], ["أم لغات البرمجة الحديثة—إدارة ذاكرة يدوية وسرعة مطلقة.", "لا فئات، لا جامع قمامة، فقط مؤشرات مباشرة ومغامرة."]) },
+  { word: "C++", hints: bilingualHints(["C with classes, power, and enough complexity to confuse experts.", "Game engines love my extreme performance and control."], ["C مع فئات، وقوة، وتعقيد يكفي وإرباك الخبراء.", "تعشقني محركات الألعاب لأدائي العالي والتحكم الفائق."]) },
+  { word: "C#", hints: bilingualHints(["Microsoft's child, loved by Unity game developers worldwide.", "Sounds like a musical note, but runs heavy .NET systems."], ["طفل Microsoft المدلل، ومحبوب مطوري ألعاب Unity حول العالم.", "تبدو كعلامة موسيقية، لكنها تدير أنظمة .NET الضخمة."]) },
+  { word: "SQL", hints: bilingualHints(["SELECT * FROM answers WHERE knowledge = 'Database queries'.", "The universal language for talking to relational tables."], ["اختر جميع الإجابات حيث المعرفة تساوي استعلامات قواعد البيانات.", "اللغة العالمية للتحدث مع الجداول العلائقية."]) },
+  { word: "Python", hints: bilingualHints(["I love indentation, hate curly braces, and rule the AI world.", "Named after a comedy circus, but coders take me very seriously."], ["أعشق المسافات البادئة، وأكره الأقواس المزخرفة، وأحكم عالم الذكاء الاصطناعي.", "سُمّيت على اسم فرقة كوميدية، لكن المبرمجين يأخذونني بجدية تامة."]) },
+  { word: "PHP", hints: bilingualHints(["The elephant in the room powering over 70% of web backends.", "WordPress made me immortal, love me or hate me!"], ["الفيل الصامد الذي يشغل أكثر من 70% من خوادم الويب.", "WordPress جعلني خالدة، سواء أحببتني أم كرهتني!"]) },
+  { word: "JavaScript", hints: bilingualHints(["Created in 10 days, now running on every browser on Earth.", "I make web pages dynamic, interactive, and sometimes unpredictable."], ["بُنيت في 10 أيام، وأعمل الآن على كل متصفح في كوكب الأرض.", "أجعل صفحات الويب تفاعلية، وأحياناً غير متوقعة."]) },
+  { word: "CSS", hints: bilingualHints(["Centered a div? Congratulations, you mastered me!", "I turn plain HTML skeletons into beautiful visual designs."], ["هل قمت بتوسيط العنصر؟ تهانينا، لقد أتقنتني!", "أحول هياكل HTML الجافة إلى تصاميم بصرية جذابة."]) },
+  { word: "HTML", hints: bilingualHints(["Not a programming language! Just the skeletal bones of every web page.", "I open with <html> and end with </html>."], ["لستُ لغة برمجة! أنا فقط العظام الهيكلية لكل صفحة ويب.", "أبدأ بـ <html> وأختم بـ </html>."]) },
+];
+
 words.Popular_Brands = [
-  { word: "Starbucks", hints: bilingualHints(["It is a coffeehouse chain founded in Seattle.", "Its logo features a two-tailed siren."], ["هي سلسلة مقاهٍ تأسست في سياتل.", "يظهر في شعارها مخلوق أسطوري ذو ذيلين."]) },
-  { word: "Nestle", hints: bilingualHints(["It is a Swiss food and beverage company.", "Its name is associated with chocolate, coffee, and baby food."], ["هي شركة سويسرية للأغذية والمشروبات.", "يرتبط اسمها بالشوكولاتة والقهوة وأغذية الأطفال."]) },
-  { word: "McDonald's", hints: bilingualHints(["It is known for burgers and the Golden Arches.", "Its name begins with the letter M and includes an apostrophe."], ["تشتهر بالبرغر وبالقوسين الذهبيين.", "يبدأ اسمها بحرف M ويحتوي على فاصلة عليا."]) },
-  { word: "Pizza Hut", hints: bilingualHints(["It is an international pizza restaurant chain.", "Its logo is associated with a red roof."], ["هي سلسلة مطاعم بيتزا عالمية.", "يرتبط شعارها بسقف أحمر."]) },
-  { word: "KFC", hints: bilingualHints(["Its initials stand for Kentucky Fried Chicken.", "Its branding is associated with Colonel Sanders."], ["اختصار لاسم كنتاكي للدجاج المقلي.", "يرتبط شعارها بالكولونيل ساندرز."]) },
-  { word: "Lay's", hints: bilingualHints(["It is a potato chip brand.", "Its logo is usually shown on a yellow package."], ["هي علامة تجارية لرقائق البطاطا.", "يظهر شعارها عادةً على عبوة صفراء."]) },
+  { word: "Starbucks", hints: bilingualHints(["Siren logo selling overpriced caffeine in green cups.", "Where people spend $7 to write code or read on laptops."], ["شعار الحورية الشاطئة الذي يبيع الكافيين في أكواب خضراء.", "حيث يدفع الناس ثروة صغيرة للجلوس والعمل على حواسيبهم."]) },
+  { word: "Nestle", hints: bilingualHints(["Swiss food giant with a bird nest for its iconic icon.", "From KitKat to bottled water, they own half your pantry."], ["عملاق الأغذية السويسري بشعار عش الطيور الشهير.", "من كيت كات إلى المياه المعبأة، يملكون نصف خزانة طعامك."]) },
+  { word: "McDonald's", hints: bilingualHints(["Golden Arches serving billions of burgers worldwide.", "Home of the Happy Meal and the notoriously broken ice cream machine."], ["الأقواس الذهبية التي تقدم المليارات من وجبات البرغر عالمياً.", "بيت الوجبة السعيدة وآلة الآيس كريم المعطلة دائماً."]) },
+  { word: "Pizza Hut", hints: bilingualHints(["Famous red roof icon serving stuffed crust slices.", "Where family pizza night started in the 90s."], ["سقف أحمر شهير يقدم شرائح البيتزا بجبن الأطراف.", "حيث بدأت ليلة البيتزا العائلية التسعينات."]) },
+  { word: "KFC", hints: bilingualHints(["Secret recipe of 11 herbs and spices by a white-suited Colonel.", "Finger Lickin' Good fried chicken in a bucket."], ["وصفة سرية من 11 عشبة وبهاراً مع كولونيل ببدلة بيضاء.", "دجاج مقلي في دلو يجعلك تلعق أصابعك للذة."]) },
+  { word: "Lay's", hints: bilingualHints(["You buy a bag of air, but get free crispy potato chips inside!", "Bet you can't eat just one of these yellow bags."], ["تشتري كيساً من الهواء، وتحصل على رقائق بطاطس مقرمشة مجاناً بالداخل!", "أتحداك أن تأكل قطعة واحدة فقط من أكياسهم الصفراء."]) },
 ];
 
 words.Arabic_Country = [
-  { word: "Algeria", hints: bilingualHints(["It is the largest Arab country by area.", "Its capital is Algiers."], ["هي أكبر دولة عربية من حيث المساحة.", "عاصمتها الجزائر."]) },
-  { word: "Bahrain", hints: bilingualHints(["It is a small island country in the Arabian Gulf.", "Its capital is Manama."], ["هي دولة جزرية صغيرة في الخليج العربي.", "عاصمتها المنامة."]) },
-  { word: "Kuwait", hints: bilingualHints(["Its currency is the Kuwaiti dinar.", "It lies between Iraq and Saudi Arabia."], ["عملتها هي الدينار الكويتي.", "تقع بين العراق والسعودية."]) },
-  { word: "Egypt", hints: bilingualHints(["It has the largest population in the Arab world.", "The Nile flows through its capital, Cairo."], ["لديها أكبر عدد من السكان في العالم العربي.", "يمر نهر النيل عبر عاصمتها القاهرة."]) },
-  { word: "Iraq", hints: bilingualHints(["Kuwait lies to its south.", "The Tigris and Euphrates rivers run through it."], ["تقع الكويت إلى جنوبها.", "يمر فيها نهرا دجلة والفرات."]) },
-  { word: "Jordan", hints: bilingualHints(["It is home to the ancient city of Petra.", "It borders the West Bank to the west."], ["توجد فيها مدينة البتراء الأثرية.", "تحدها الضفة الغربية من جهة الغرب."]) },
-  { word: "Lebanon", hints: bilingualHints(["Syria borders it to the east.", "Its capital is Beirut."], ["تحدها سوريا من جهة الشرق.", "عاصمتها بيروت."]) },
-  { word: "Libya", hints: bilingualHints(["It was the home of Omar Mukhtar.", "Its northern coast faces the Mediterranean Sea."], ["كانت موطن عمر المختار.", "يقابل ساحلها الشمالي البحر المتوسط."]) },
-  { word: "Morocco", hints: bilingualHints(["Casablanca is one of its best-known cities.", "Its capital is Rabat."], ["الدار البيضاء من أشهر مدنها.", "عاصمتها الرباط."]) },
-  { word: "Oman", hints: bilingualHints(["It is a sultanate on the southeastern Arabian Peninsula.", "Its capital is Muscat."], ["هي سلطنة في جنوب شرق شبه الجزيرة العربية.", "عاصمتها مسقط."]) },
-  { word: "Palestine", hints: bilingualHints(["Jerusalem is central to its history and identity.", "It lies on the eastern Mediterranean coast."], ["تحتل القدس مكانة محورية في تاريخها وهويتها.", "تقع على الساحل الشرقي للبحر المتوسط."]) },
-  { word: "Qatar", hints: bilingualHints(["It hosted the FIFA World Cup in 2022.", "Its capital is Doha."], ["استضافت كأس العالم لكرة القدم عام 2022.", "عاصمتها الدوحة."]) },
-  { word: "Saudi Arabia", hints: bilingualHints(["It is one of the largest Arab countries by area.", "Mecca and Medina are located there."], ["هي من أكبر الدول العربية مساحةً.", "تقع فيها مكة المكرمة والمدينة المنورة."]) },
-  { word: "Sudan", hints: bilingualHints(["It has many ancient pyramids, including those at Meroe.", "The Blue Nile and White Nile meet in its capital region."], ["تضم أهرامات قديمة كثيرة، منها أهرامات مروي.", "يلتقي النيل الأزرق والنيل الأبيض في منطقة عاصمتها."]) },
-  { word: "United Arab Emirates", hints: bilingualHints(["It is home to the Burj Khalifa.", "Its capital is Abu Dhabi."], ["يوجد فيها برج خليفة.", "عاصمتها أبوظبي."]) },
-  { word: "Tunisia", hints: bilingualHints(["It is often called the Green Tunisia.", "Its capital is Tunis."], ["تُلقب غالباً بتونس الخضراء.", "عاصمتها تونس."]) },
-  { word: "Yemen", hints: bilingualHints(["It occupies the southern end of the Arabian Peninsula.", "Sana'a is its historic capital."], ["تقع في الطرف الجنوبي من شبه الجزيرة العربية.", "صنعاء عاصمتها التاريخية."]) },
-  { word: "Somalia", hints: bilingualHints(["Its capital is Mogadishu.", "It has a long coastline along the Indian Ocean."], ["عاصمتها مقديشو.", "لديها ساحل طويل على المحيط الهندي."]) },
-  { word: "Syria", hints: bilingualHints(["Damascus is one of the world's oldest continuously inhabited cities.", "It is home to the ancient city of Palmyra."], ["دمشق من أقدم المدن المأهولة باستمرار في العالم.", "توجد فيها مدينة تدمر الأثرية."]) },
+  { word: "Algeria", hints: bilingualHints(["Land of One and a Half Million Martyrs, largest in Africa.", "From Saharan dunes to Mediterranean coast, capital is Algiers."], ["بلد المليون والنصف مليون شهيد، والأكبر مساحةً في أفريقيا.", "من كثبان الصحراء إلى ساحل المتوسط، وعاصمتها الجزائر."]) },
+  { word: "Bahrain", hints: bilingualHints(["Tiny Gulf kingdom connected to Saudi Arabia by a giant bridge.", "Pearl of the Gulf with Manama as its heart."], ["مملكة خليجية صغيرة ترتبط بالسعودية عبر جسر ضخم.", "لؤلؤة الخليج وعاصمتها المنامة."]) },
+  { word: "Kuwait", hints: bilingualHints(["Home of the world's highest valued currency unit.", "Recognizable by its iconic trio of slender water towers."], ["وطن أعلى عملة نقدية قيمةً في العالم.", "تشتهر بأبراج المياه الثلاثة الرفيعة والمميزة."]) },
+  { word: "Egypt", hints: bilingualHints(["Um al-Dunya, where the Nile waters ancient Pharaoh secrets.", "Home to Cairo, pyramids, and a famously witty accent."], ["أم الدنيا، حيث يروي النيل أسرار الفراعنة القدماء.", "موطن القاهرة، الأهرامات، واللهمجة المليئة بالفكاهة."]) },
+  { word: "Iraq", hints: bilingualHints(["Cradle of civilization between the Tigris and Euphrates.", "Land of Mesopotamia, ancient Babylon, and palm trees."], ["مهد الحضارات القائم بين دجلة والفرات.", "أرض بلاد الرافدين، بابل القديمة، والنخيل."]) },
+  { word: "Jordan", hints: bilingualHints(["Rosy red sandstone city of Petra cut into cliffs.", "Where you float effortlessly in the Dead Sea."], ["مدينة البتراء وردية الصخور المنحوتة في الجبال.", "حيث تطفو فوق مياه البحر الميت دون أي جهد."]) },
+  { word: "Lebanon", hints: bilingualHints(["Cedar tree flag, mountain slopes, and Beirut nightlife.", "Paris of the Middle East, famous for cuisine and culture."], ["علم شجرة الأرز، قمم الجبال، وحياة بيروت الصاخبة.", "باريس الشرق الأوسط، الشهيرة بجمال ثقافة طعامها."]) },
+  { word: "Libya", hints: bilingualHints(["Land of Omar Mukhtar, with immense desert oil reserves.", "Extensive North African coast facing Italy across the sea."], ["أرض عمر المختار، واحتياطيات النفط الصحراوية الضخمة.", "ساحل شمال أفريقي طويل يواجه إيطاليا عبر البحر."]) },
+  { word: "Morocco", hints: bilingualHints(["Land of Tagine, Atlas mountains, and green mint tea.", "Marrakech red, Casablanca coast, and Rabat capital."], ["أرض الطاجين، جبال الأطلس، وأتاي النعناع الأخضر.", "حمرة مراكش، ساحل الدار البيضاء، والرباط العاصمة."]) },
+  { word: "Oman", hints: bilingualHints(["Frankincense, quiet majesty, and traditional dhows in Muscat.", "Sultanate known for hospitable culture and pristine fjords."], ["أرض اللبان، والهدوء الملكي، والسفن التقليدية في مسقط.", "سلطنة تشتهر بضيافتها وأخوارها البحرية النقية."]) },
+  { word: "Palestine", hints: bilingualHints(["Land of Olives, dome of the rock, and unwavering resilience.", "Jerusalem stands at the heart of its history."], ["أرض الزيتون، قبة الصخرة، والصمود الذي لا يلين.", "القدس تقف في قلب تاريخها وهيئتها."]) },
+  { word: "Qatar", hints: bilingualHints(["Host of the historic 2022 FIFA World Cup.", "Doha skyline meets Arabian desert dunes."], ["مستضيفة كأس العالم التاريخية لعام 2022.", "ناطحات سحاب الدوحة تلتئم مع كثبان الصحراء."]) },
+  { word: "Saudi Arabia", hints: bilingualHints(["Heart of the Islamic world housing Mecca and Medina.", "Kingdom undergoing massive Green and Vision 2030 transformations."], ["قلب العالم الإسلامي والحاضنة لمكة المكرمة والمدينة المنورة.", "مملكة تشهد تحولات ضخمة ورؤية متطورة 2030."]) },
+  { word: "Sudan", hints: bilingualHints(["Where White and Blue Niles unite in Khartoum.", "Home to more pyramids than Egypt, located in Meroe."], ["حيث يلتقي النيلان الأبيض والأزرق في الخرطوم.", "تضم أهرامات أكثر من مصر، وتحديداً في مروي."]) },
+  { word: "United Arab Emirates", hints: bilingualHints(["Seven emirates housing the tallest tower on Earth.", "Burj Khalifa, futuristic innovation, and Abu Dhabi capital."], ["سبع إمارات تحتضن أطول برج على وجه الأرض.", "برج خليفة، والابتكار المستقبلي، وأبوظبي العاصمة."]) },
+  { word: "Tunisia", hints: bilingualHints(["Green Tunisia, ancient Carthage, and Mediterranean olive groves.", "Where the Arab Spring was born in 2011."], ["تونس الخضراء، قرطاج القديمة، وبساتين الزيتون المتوسطية.", "مهد مهد الثورات العربية عام 2011."]) },
+  { word: "Yemen", hints: bilingualHints(["Happy Arabia, famous for Mocha coffee and ancient Sana'a architecture.", "Southern tip of the peninsula rich in ancient history."], ["العرب السعيد، الشهير بقهوة المخا وعمارة صنعاء القديمة.", "الطرف الجنوبي للجزيرة العربية المليء بالتاريخ."]) },
+  { word: "Somalia", hints: bilingualHints(["Horn of Africa with the longest coastline on the mainland.", "Mogadishu capital, rich poetry traditions, and ocean views."], ["قرن أفريقيا بأطول ساحل على اليابسة الأفريقية.", "عاصمتها مقديشو، وتشتهر بثقافة الشعر وعشق المحيط."]) },
+  { word: "Syria", hints: bilingualHints(["Home of Damascus, the oldest continuously inhabited capital.", "Jasmine flowers, ancient Palmyra, and rich historic culture."], ["موطن دمشق، أقدم عاصمة مأهولة بالسكان في العالم.", "زهر الياسمين، تدمر الأثرية، والثقافة التاريخية العريقة."]) },
 ];
 
 words.Video_Games = [
-  { word: "GTA V", hints: bilingualHints(["Rockstar Games released it in 2013.", "Its open world is centered on Los Santos."], ["أصدرتها Rockstar Games عام 2013.", "تدور عالمها المفتوح حول مدينة لوس سانتوس."]) },
-  { word: "GTA IV", hints: bilingualHints(["It was released by Rockstar Games in 2008.", "Its protagonist is Niko Bellic."], ["أصدرتها Rockstar Games عام 2008.", "بطلها هو نيكو بيلك."]) },
-  { word: "GTA San Andreas", hints: bilingualHints(["Its protagonist is Carl Johnson.", "The story begins in the fictional state of San Andreas."], ["بطلها هو كارل جونسون.", "تبدأ قصتها في ولاية سان أندرياس الخيالية."]) },
-  { word: "GTA Vice City", hints: bilingualHints(["Rockstar Games released it in 2002.", "Its setting is inspired by 1980s Miami."], ["أصدرتها Rockstar Games عام 2002.", "تجري أحداثها في مدينة مستوحاة من ميامي في الثمانينيات."]) },
-  { word: "Counter-Strike: Global Offensive", hints: bilingualHints(["Valve released it in 2012.", "It is commonly abbreviated as CS:GO."], ["أطلقتها Valve عام 2012.", "يُختصر اسمها عادةً إلى CS:GO."]) },
-  { word: "Overwatch 2", hints: bilingualHints(["It is the sequel to Overwatch.", "It is a team-based action game from Blizzard."], ["هي تكملة للعبة Overwatch.", "هي لعبة حركة جماعية من Blizzard."]) },
-  { word: "Dota 2", hints: bilingualHints(["It is a major competitive game from Valve.", "Two teams of five players battle on one map."], ["هي لعبة تنافسية كبيرة من Valve.", "يتنافس فريقان من خمسة لاعبين على خريطة واحدة."]) },
-  { word: "Counter-Strike 1.6", hints: bilingualHints(["It became a classic in internet cafes.", "It is an older version of the Counter-Strike series."], ["أصبحت لعبة كلاسيكية في مقاهي الإنترنت.", "هي نسخة قديمة من سلسلة Counter-Strike."]) },
-  { word: "Counter-Strike 2", hints: bilingualHints(["It replaced Counter-Strike: Global Offensive.", "It uses the Source 2 engine."], ["حلّت محل Counter-Strike: Global Offensive.", "تستخدم محرك Source 2."]) },
-  { word: "PUBG Mobile", hints: bilingualHints(["It brings battle royale matches to mobile devices.", "Players search for equipment while the play area shrinks."], ["تنقل مباريات الباتل رويال إلى الهواتف.", "يبحث اللاعبون عن المعدات بينما تضيق منطقة اللعب."]) },
-  { word: "Rocket League", hints: bilingualHints(["Cars play football in this game.", "It combines driving with competitive team matches."], ["تلعب السيارات كرة القدم في هذه اللعبة.", "تجمع بين القيادة والمباريات الجماعية التنافسية."]) },
-  { word: "Fortnite", hints: bilingualHints(["It became famous for its battle royale mode.", "Its first battle royale release was in 2017."], ["اشتهرت بنمط الباتل رويال.", "صدر نمط الباتل رويال فيها عام 2017."]) },
-  { word: "PUBG: Battlegrounds", hints: bilingualHints(["It is the PC and console version of PUBG.", "Its matches begin with players parachuting onto an island."], ["هي نسخة PUBG للحاسوب والمنصات المنزلية.", "تبدأ مبارياتها بهبوط اللاعبين بالمظلات على جزيرة."]) },
-  { word: "eFootball PES 2020", hints: bilingualHints(["It is a football simulation game.", "PES stands for Pro Evolution Soccer."], ["هي لعبة محاكاة لكرة القدم.", "يرمز PES إلى Pro Evolution Soccer."]) },
-  { word: "The Legend of Zelda", hints: bilingualHints(["Its hero is usually named Link.", "Many entries feature the land of Hyrule."], ["يُسمى بطلها عادةً Link.", "تظهر في أجزاء كثيرة منها أرض Hyrule."]) },
-  { word: "Apex Legends", hints: bilingualHints(["It is a battle royale game with unique heroes.", "It was developed by Respawn Entertainment."], ["هي لعبة باتل رويال تضم أبطالاً بقدرات مختلفة.", "طورتها Respawn Entertainment."]) },
-  { word: "Cyberpunk 2077", hints: bilingualHints(["Its story takes place in the year 2077.", "Its setting is the futuristic Night City."], ["تدور قصتها في عام 2077.", "تجري أحداثها في مدينة Night City المستقبلية."]) },
-  { word: "The Witcher 3", hints: bilingualHints(["Its protagonist is Geralt of Rivia.", "It is an open-world fantasy role-playing game."], ["بطلها هو جيرالت من ريفيا.", "هي لعبة تقمص أدوار خيالية بعالم مفتوح."]) },
-  { word: "FIFA 22", hints: bilingualHints(["It is a football video game from EA.", "Its title refers to the 2022 edition."], ["هي لعبة كرة قدم من EA.", "يشير اسمها إلى إصدار عام 2022."]) },
-  { word: "Among Us", hints: bilingualHints(["Players try to identify the impostor.", "It became especially popular in 2020."], ["يحاول اللاعبون اكتشاف المحتال.", "أصبحت شديدة الشعبية خصوصاً في عام 2020."]) },
-  { word: "Genshin Impact", hints: bilingualHints(["It is an action role-playing game with anime-inspired art.", "Its world is called Teyvat."], ["هي لعبة تقمص أدوار حركية برسوم مستوحاة من الأنمي.", "اسم عالمها هو Teyvat."]) },
-  { word: "Call of Duty: Warzone", hints: bilingualHints(["It is a free-to-play battle royale game.", "Its title contains the word War."], ["هي لعبة باتل رويال مجانية.", "يحتوي اسمها على كلمة War."]) },
-  { word: "Red Dead Redemption 2", hints: bilingualHints(["Its story follows Arthur Morgan and the Van der Linde gang.", "It is set in the American frontier era."], ["تتبع قصتها آرثر مورغان وعصابة فان دير ليند.", "تجري أحداثها في عصر الغرب الأمريكي."]) },
-  { word: "Minecraft", hints: bilingualHints(["Its world is built from blocks.", "Players can mine, craft, and explore."], ["يتكوّن عالمها من مكعبات.", "يمكن للاعبين التعدين والصناعة والاستكشاف."]) },
-  { word: "Assassin's Creed Mirage", hints: bilingualHints(["Its story is set in ninth-century Baghdad.", "Its protagonist is named Basim."], ["تدور قصتها في بغداد خلال القرن التاسع.", "بطلها يُدعى باسم."]) },
-  { word: "Valorant", hints: bilingualHints(["It is a tactical shooter from Riot Games.", "It combines gunplay with agent abilities."], ["هي لعبة تصويب تكتيكية من Riot Games.", "تجمع بين الأسلحة وقدرات العملاء."]) },
+  { word: "GTA V", hints: bilingualHints(["Three protagonists, Los Santos heist missions, and endless online madness.", "Rockstar's cash cow that spans three console generations."], ["ثلاثة أبطال، سرقات في لوس سانتوس، وجنون أونلاين لا ينتهي.", "بقرة Rockstar الحلوب التي عاشت عبر ثلاثة أجيال أجهزة."]) },
+  { word: "GTA IV", hints: bilingualHints(["Hey cousin, want to go bowling? set in Liberty City.", "Niko Bellic chasing the dark American Dream."], ["مرحباً يا ابن عمي، هل نذهب للعب البولينج؟ في ليبيرتي سيتي.", "نيكو بيلك يطارد الحلم الأمريكي المظلم."]) },
+  { word: "GTA San Andreas", hints: bilingualHints(["Ah shit, here we go again with CJ in Grove Street.", "Follow the damn train, jetpacks, and 90s West Coast vibes."], ["تباً، هأنذا أعود مجدداً مع CJ في شارع غروف.", "اتبع القطار اللعين، نفاثات الطيران، وأجواء التسعينات."]) },
+  { word: "GTA Vice City", hints: bilingualHints(["1980s neon lights, Hawaiian shirts, and Tommy Vercetti.", "Synthwave music, palm trees, and ocean drive style."], ["أضواء النيون في الثمانينات، قمصان هاواي، وتومي فيرسيتي.", "موسيقى السينثوايف، النخيل، وطرقات الميامي الساحلية."]) },
+  { word: "Counter-Strike: Global Offensive", hints: bilingualHints(["Rush B my friend! Bomb has been planted.", "Dragon Lore skins, competitive ranks, and AWP snipers."], ["اسرع إلى B يا صديقي! تم زرع القنبلة.", "سكنات دراجون لور، الرتب التنافسية، وقناصات AWP."]) },
+  { word: "Overwatch 2", hints: bilingualHints(["Hero shooter that replaced its predecessor, now 5v5.", "Blizzard's team game with payloads, ultimate voice lines, and shields."], ["لعبة أبطال حلت محل الجزء الأول وصارت 5 ضد 5.", "لعبة فريق من Blizzard مع حمولات، ونداءات القاضية، والدروع."]) },
+  { word: "Dota 2", hints: bilingualHints(["The International prize pool worth tens of millions.", "Valve's complex MOBA where defense of the Ancients is everything."], ["بطولة العالم ذات الجوائز التي تقدر بعشرات الملايين.", "لعبة MOBA معقدة من Valve حيث حماية المبنى الرئيسي هي كل شيء."]) },
+  { word: "Counter-Strike 1.6", hints: bilingualHints(["Internet cafe golden era: de_dust2 and green crosshairs.", "The legendary LAN party shooter that started it all."], ["العصر الذهبي لمقاهي الإنترنت: خريطة de_dust2 والمؤشر الأخضر.", "لعبة شبكات LAN الأسطورية التي أطلقت كل شيء."]) },
+  { word: "Counter-Strike 2", hints: bilingualHints(["Volumetric smoke grenades and Source 2 engine upgrades.", "The direct modern evolution replacing CS:GO."], ["قنابل دخانية واقعية مع تحديثات محرك Source 2.", "التطور الحديث المباشر الذي حل محل CS:GO."]) },
+  { word: "PUBG Mobile", hints: bilingualHints(["Winner Winner Chicken Dinner on your phone screen.", "100 players parachute into Erangel, looting for level 3 helmets."], ["عشاء دجاج للفائز على شاشة هاتفك.", "100 لاعب يهبطون بالمظلات في إرانغل بحثاً عن خوذة المستوى 3."]) },
+  { word: "Rocket League", hints: bilingualHints(["Rocket-powered cars playing soccer with a giant ball.", "Aerial boosts, wall rides, and epic goal explosions."], ["سيارات بنفاثات صاروخية تلعب كرة القدم بكرة ضخمة.", "اندفاعات هوائية، قيادة على الجدران، وانفجارات أهداف ملحمية."]) },
+  { word: "Fortnite", hints: bilingualHints(["Crank 90s, drop from the battle bus, and dance like crazy.", "Building walls while getting shot at, featuring every pop-culture character."], ["بناء سريع، هبوط من حافلة المعركة، ورقصات مجنونة.", "تبني جدراناً أثناء إطلاق النار عليك، وبشخصيات من كل ثقافة."]) },
+  { word: "PUBG: Battlegrounds", hints: bilingualHints(["The original battle royale that started the parachuting craze on PC.", "Frying pans as melee armor and realistic bullet drop."], ["لعبة الباتل رويال الأصلية التي أطلقت هوس المظلات على الحاسوب.", "مقلاة المطبخ كدرع حماية وفيزياء رصاص واقعية."]) },
+  { word: "eFootball PES 2020", hints: bilingualHints(["Konami's football simulator right before the rebrand.", "Master League modes, tactical football, and licensed team rivalries."], ["محاكي كرة القدم من Konami قبل تغيير الاسم التجاري.", "طور طور الماستر ليغ، التكتيكات الكروية، وصراع الأندية."]) },
+  { word: "The Legend of Zelda", hints: bilingualHints(["Link saves the princess, but everyone calls HIM by her name!", "Exploring Hyrule, Master Sword, and Triforce legends."], ["لينك ينقذ الأميرة، لكن الجميع ينادونه باسمها هي!", "استكشاف هايرول، السيف الأسطوري، وأسطورة الترايفورس."]) },
+  { word: "Apex Legends", hints: bilingualHints(["Slide-hopping battle royale set in the Titanfall universe.", "Ping system revolutionizer with unique agent ultimate abilities."], ["باتل رويال مع انزلاقات سريعة في عالم Titanfall.", "ثورة نظام الإشارات الإرشادية مع قدرات أبطال خارقة."]) },
+  { word: "Cyberpunk 2077", hints: bilingualHints(["Wake up Samurai, we have a city to burn with Keanu Reeves.", "Night City cyberware, corporate greed, and futuristic hacking."], ["استيقظ يا ساموراي، لدينا مدينة لنحرقها مع كيانو ريفز.", "تعديلات سيبرانية في نايت سيتي، جشع الشركات، والتهكير المستقبلي."]) },
+  { word: "The Witcher 3", hints: bilingualHints(["Tossing a coin to your witcher while playing Gwent for hours.", "Geralt hunting monsters and searching for Ciri."], ["دفع قطعة نقدية للمشعوذ أثناء لعب الجوينت لعدة ساعات.", "جيرالت يصطاد الوحوش ويبحث عن سيري."]) },
+  { word: "FIFA 22", hints: bilingualHints(["HyperMotion technology football game before losing the official FIFA name.", "Ultimate Team packs, FUT Champions, and rage-quits."], ["لعبة كرة قدم بتقنية HyperMotion قبل فقدان اسم FIFA الرسمي.", "حزم أولتيميت تيم، طور FUT، والانسحاب بسبب الغضب."]) },
+  { word: "Among Us", hints: bilingualHints(["Red is sus! Emergency meeting called in the spaceship.", "Crewmates doing tasks while Impostors sabotage vents."], ["الأحمر مشكوك فيه! اجتماع طارئ في المركبة الفضائية.", "أفراد الطاقم يؤدون المهام بينما المحتال يتعمد التخريب."]) },
+  { word: "Genshin Impact", hints: bilingualHints(["Anime gacha RPG exploring the seven elements of Teyvat.", "Paimon is emergency food, wishing for 5-star characters."], ["لعبة غاتشا أنمي تجمع العناصر السبعة في عالم تيفات.", "بايمون هي طعام طوارئ، والدعاء للحصول على شخصيات 5 نجوم."]) },
+  { word: "Call of Duty: Warzone", hints: bilingualHints(["Gulag 1v1 fights to earn your respawn back.", "Verdansk contract drops, armor plates, and loadout drops."], ["قتال 1 ضد 1 في الغولاغ لإعادة إحيائك إلى اللعبة.", "عقود فردانسك، صفائح الدروع، وصناديق العتاد."]) },
+  { word: "Red Dead Redemption 2", hints: bilingualHints(["Cowboy masterpiece following Arthur Morgan's emotional journey.", "Outlaws, horse bonding, and wild west gang life."], ["تحفة رعاة البقر التي تتبع رحلة آرثر مورغان العاطفية.", "خارجون عن القانون، ترابط مع الخيول، وحياة العصابات."]) },
+  { word: "Minecraft", hints: bilingualHints(["Punching trees to craft your first wooden pickaxe.", "Creeper hiss sounds, diamond mining, and building blocky worlds."], ["لكم الأشجار لصنع أول معول خشبي.", "صوت فحيح الكريبر، تنقيب الألماس، وبناء عوالم المكعبات."]) },
+  { word: "Assassin's Creed Mirage", hints: bilingualHints(["Basim leaping through rooftops in 9th-century Baghdad.", "A return to roots with hidden blades and stealth assassinations."], ["باسم يتقافز بين أسطح المنازل في بغداد خلال القرن التاسع.", "عودة للجذور مع الشفرات الخفية والاغتيالات الهادئة."]) },
+  { word: "Valorant", hints: bilingualHints(["Tactical 5v5 shooter with spike plants, flashbangs, and radiant ranks.", "Precise gunplay where headshots mean instant elimination."], ["لعبة تصويب تكتيكية 5 ضد 5 مع زرع السبايك والقدرات.", "إطلاق نار دقيق حيث الضربة في الرأس تعني الإقصاء الفوري."]) },
 ];
 
 words.phones = [
-  { word: "Nokia", hints: bilingualHints(["It is a well-known Finnish phone brand.", "It became famous for durable mobile phones."], ["هي علامة هواتف فنلندية معروفة.", "اشتهرت بهواتف محمولة متينة."]) },
-  { word: "Samsung", hints: bilingualHints(["It is a major South Korean electronics company.", "Its Galaxy line includes many smartphones."], ["هي شركة إلكترونيات كورية جنوبية كبرى.", "تضم سلسلة Galaxy العديد من الهواتف الذكية."]) },
-  { word: "iPhone", hints: bilingualHints(["Apple introduced the first model in 2007.", "It uses Apple's iOS operating system."], ["قدمت Apple أول طراز منه عام 2007.", "يستخدم نظام التشغيل iOS من Apple."]) },
-  { word: "HTC", hints: bilingualHints(["It is a Taiwanese electronics company.", "It was known for Android smartphones and the One series."], ["هي شركة إلكترونيات تايوانية.", "اشتهرت بهواتف Android وسلسلة One."]) },
-  { word: "Redmi", hints: bilingualHints(["It is a smartphone brand from Xiaomi.", "It is known for value-focused devices."], ["هي علامة هواتف تابعة لـ Xiaomi.", "تشتهر بأجهزة ذات قيمة جيدة مقابل السعر."]) },
-  { word: "Nothing", hints: bilingualHints(["It is known for transparent-style phone designs.", "Its phone branding uses a minimalist identity."], ["تشتهر بتصاميم هواتف ذات مظهر شفاف.", "تستخدم هوية بصرية بسيطة في هواتفها."]) },
-  { word: "Huawei", hints: bilingualHints(["It is a Chinese technology company.", "It has produced phones, tablets, and networking equipment."], ["هي شركة تقنية صينية.", "أنتجت هواتف وأجهزة لوحية ومعدات شبكات."]) },
-  { word: "Honor", hints: bilingualHints(["It was once a sub-brand of Huawei.", "It makes smartphones and other consumer devices."], ["كانت في السابق علامة تابعة لـ Huawei.", "تصنع الهواتف الذكية وأجهزة استهلاكية أخرى."]) },
-  { word: "BlackBerry", hints: bilingualHints(["It became known for physical keyboards.", "Its devices were popular for messaging and email."], ["اشتهرت بلوحات المفاتيح الحقيقية.", "كانت أجهزتها محبوبة للمراسلة والبريد الإلكتروني."]) },
-  { word: "Pixel", hints: bilingualHints(["It is Google's smartphone brand.", "Pixel phones are known for computational photography."], ["هي علامة الهواتف الذكية من Google.", "تشتهر هواتف Pixel بالتصوير الحاسوبي."]) },
-  { word: "OnePlus", hints: bilingualHints(["Its name combines the words One and Plus.", "It is known for fast-charging Android phones."], ["يجمع اسمها بين كلمتي One وPlus.", "تشتهر بهواتف Android سريعة الشحن."]) },
-  { word: "Sony Xperia", hints: bilingualHints(["It is a smartphone line from Sony.", "Sony's camera and entertainment expertise influences the line."], ["هي سلسلة هواتف ذكية من Sony.", "تؤثر خبرة Sony في الكاميرات والترفيه على هذه السلسلة."]) },
-  { word: "LG", hints: bilingualHints(["It is a South Korean electronics brand.", "It produced phones, televisions, and home appliances."], ["هي علامة إلكترونيات كورية جنوبية.", "أنتجت الهواتف والتلفزيونات والأجهزة المنزلية."]) },
-  { word: "Xiaomi", hints: bilingualHints(["It is a Chinese electronics company.", "Its products include phones, wearables, and smart-home devices."], ["هي شركة إلكترونيات صينية.", "تشمل منتجاتها الهواتف والأجهزة القابلة للارتداء والمنزل الذكي."]) },
-  { word: "Motorola", hints: bilingualHints(["It is associated with the Razr foldable phone.", "It is one of the oldest names in mobile communications."], ["ترتبط بهاتف Razr القابل للطي.", "هي من أقدم الأسماء في مجال الاتصالات المحمولة."]) },
-  { word: "Vivo", hints: bilingualHints(["It is a Chinese smartphone brand.", "Its name ends with the letter O."], ["هي علامة هواتف ذكية صينية.", "ينتهي اسمها بحرف O."]) },
-  { word: "Realme", hints: bilingualHints(["It is a smartphone brand from China.", "It is part of the wider BBK electronics family."], ["هي علامة هواتف ذكية من الصين.", "تنتمي إلى عائلة BBK Electronics الأوسع."]) },
-  { word: "OPPO", hints: bilingualHints(["It is a Chinese smartphone brand.", "Its four-letter name begins and ends with O."], ["هي علامة هواتف ذكية صينية.", "يتكون اسمها من أربعة أحرف ويبدأ وينتهي بحرف O."]) },
-  { word: "ROG Phone", hints: bilingualHints(["It is a gaming phone line from ASUS.", "Its name stands for Republic of Gamers."], ["هي سلسلة هواتف للألعاب من ASUS.", "يرمز اسمها إلى Republic of Gamers."]) },
-  { word: "Infinix", hints: bilingualHints(["It is a smartphone brand based in Hong Kong.", "It focuses on affordable phones with modern features."], ["هي علامة هواتف ذكية مقرها هونغ كونغ.", "تركز على هواتف اقتصادية بميزات حديثة."]) },
-  { word: "Sony Ericsson", hints: bilingualHints(["It was a partnership between Sony and Ericsson.", "The Walkman and Cyber-shot phones carried its branding."], ["كانت شراكة بين Sony وEricsson.", "حملت هواتف Walkman وCyber-shot علامتها التجارية."]) },
-  { word: "Alcatel", hints: bilingualHints(["It is a telecommunications brand with a long history.", "Its name is associated with mobile phones and network equipment."], ["هي علامة اتصالات ذات تاريخ طويل.", "يرتبط اسمها بالهواتف المحمولة ومعدات الشبكات."]) },
+  { word: "Nokia", hints: bilingualHints(["Famous for the indestructible 3310 and the connecting hands intro.", "The Finnish giant that used to own the entire mobile market."], ["شهيرة بهاتف 3310 الذي لا ينكسر ونغمة الأيادي المتقاربة.", "العملاق الفنلندي الذي كان يمتلك سوق الهواتف بالكامل."]) },
+  { word: "Samsung", hints: bilingualHints(["South Korean titan selling foldable Z Flips and Galaxy Ultra zoom.", "Curved AMOLED displays and Stylus Pens in your pocket."], ["العملاق الكوري الجنوبي الذي يبيع الهواتف القابلة للطي و أجهزة الغالاكسي.", "شاشات AMOLED منحنية وأقلام ذكية في جيبك."]) },
+  { word: "iPhone", hints: bilingualHints(["Steve Jobs introduced it in 2007 without a physical keyboard.", "Bitten apple logo, dynamic island, and high resale value."], ["قدمه ستيف جوبز عام 2007 بدون لوحة مفاتيح حقيقية.", "شعار التفاحة المعضوضة، الجزيرة التفاعلية، والسعر المرتفع."]) },
+  { word: "HTC", hints: bilingualHints(["Early Android pioneer famous for the full-metal One M8 design.", "First brand to release a commercially available Android phone."], ["رائد Android الأول الذي اشتهر بتصميم One M8 المعدني الكامل.", "أول علامة تطلق هاتف Android تجاري في السوق."]) },
+  { word: "Redmi", hints: bilingualHints(["Xiaomi's budget powerhouse offering crazy specs for cheap prices.", "The undisputed champion of value-for-money smartphones."], ["سلسلة Xiaomi الاقتصادية التي تقدم مواصفات قوية بسعر رخيص.", "البطل بلا منازع للهواتف ذات القيمة مقابل السعر."]) },
+  { word: "Nothing", hints: bilingualHints(["Transparent back covers with glowing Glyph LED light patterns.", "Carl Pei's minimalist startup reinventing modern phone aesthetics."], ["غطاء خلفي شفاف مع أشرطة إضاءة LED تفاعلية.", "شركة كارل باي المبسطة التي تعيد تعريف جماليات الهواتف."]) },
+  { word: "Huawei", hints: bilingualHints(["Leica camera partnerships, HarmonyOS, and US ban struggles.", "Chinese telecommunications king known for incredible night photography."], ["شراكات كاميرات لايكا، نظام HarmonyOS، وصمود بوجه العقوبات.", "ملك الاتصالات الصيني الشهير بالتصوير الليلي الخارق."]) },
+  { word: "Honor", hints: bilingualHints(["Spun off from Huawei to bring back Google Play Services.", "Sleek magic designs targeting younger tech enthusiasts."], ["انفصلت عن Huawei لتعيد خدمات Google Play لهواتفها.", "تصاميم ساحرة وأنيقة تستهدف عشاق التقنية الشباب."]) },
+  { word: "BlackBerry", hints: bilingualHints(["QWERTY physical keyboards and BBM PIN codes in the business era.", "The ultimate business phone before touchscreen slates took over."], ["لوحات مفاتيح QWERTY حقيقية ورمز BBM في عصر الأعمال.", "هاتف رجال الأعمال الأول قبل انقراض الأزرار لصالح الشاشات."]) },
+  { word: "Pixel", hints: bilingualHints(["Google's flagship phone with pure Android and magical camera AI.", "Unblur photos, magic eraser, and immediate stock updates."], ["هاتف Google الرائد بنظام Android خام وكاميرا ذكية ساحرة.", "إزالة العناصر من الصور، ومحو العيوب، وتحديثات سريعة."]) },
+  { word: "OnePlus", hints: bilingualHints(["Never Settle motto, launching as the original Flagship Killer.", "Warp charging speeds and smooth OxygenOS UI."], ["شعار Never Settle، والانطلاقة كقائل الهواتف الرائدة.", "سرعات شحن خارقة وواجهة سلسة للغاية."]) },
+  { word: "Sony Xperia", hints: bilingualHints(["21:9 cinema aspect ratios, dedicated shutter button, and Bravia tech.", "Made for pro photographers with manual Alpha camera controls."], ["أبعاد شاشة سينمائية 21:9، زر تصوير مستقل، وتقنيات برافيا.", "صُنِع للمصورين المحترفين للتحكم اليدوي الكامل."]) },
+  { word: "LG", hints: bilingualHints(["Innovators of dual screens, curved G Flex, and rear buttons.", "South Korean pioneer that exited the smartphone market in 2021."], ["مبتكرو الشاشات المزدوجة، والشاشات المنحنية، والأزرار الخلفية.", "العملاق الكوري الذي غادر سوق الهواتف الذكية في 2021."]) },
+  { word: "Xiaomi", hints: bilingualHints(["From Mi Band wearables to fast-charging smartphones and smart home tech.", "Massive ecosystem known for high specs at aggressive pricing."], ["من أساور Mi Band إلى الهواتف ذات الشحن الخارق والمنزل الذكي.", "منظومة ضخمة تشتهر بمواصفات عالية وأسعار منافسة."]) },
+  { word: "Motorola", hints: bilingualHints(["Hello Moto! Iconic Razr flip phone nostalgia.", "One of the oldest telecom pioneers, now famous for modern foldables."], ["مرحباً موتو! حنين هاتف Razr القابل للطي القديم.", "أحد أقدم رواد الاتصالات، وتشتهر حالياً بهواتفها القابلة للطي."]) },
+  { word: "Vivo", hints: bilingualHints(["Pioneered under-display fingerprint scanners and gimbal camera stabilization.", "Selfie-focused brand under the BBK Electronics umbrella."], ["ابتكرت بصمة الشاشة الأولى وتثبيت الكاميرا الميكانيكي.", "علامة تركز على صور السيلفي وتتبع مجموعة BBK."]) },
+  { word: "Realme", hints: bilingualHints(["Fast-growing spin-off targeting youth with stylish budget phones.", "Dart charging, bold designs, and entry-level gaming devices."], ["علامة سريعة النمو تستهدف الشباب بهواتف أنيقة واقتصادية.", "تقنيات شحن سريعة، تصاميم جريئة، وأجهزة ألعاب اقتصادية."]) },
+  { word: "OPPO", hints: bilingualHints(["VOOC flash charging pioneers with sleek camera designs.", "Four letter brand starting and ending with O under BBK."], ["رواد الشحن السريع VOOC وتصاميم الكاميرات الأنيقة.", "علامة من أربعة أحرف تبدأ وتختم بحرف O."]) },
+  { word: "ROG Phone", hints: bilingualHints(["ASUS Republic of Gamers beast with air triggers and RGB lighting.", "Overclocked specs built purely to dominate mobile esports."], ["وحش ASUS المخصص للألعاب مع أزرار لمسية وإضاءة RGB.", "مواصفات فائقة صُممت خصيصاً للسيطرة على بطولات الهواتف."]) },
+  { word: "Infinix", hints: bilingualHints(["Budget battery monsters popular in emerging markets.", "Huge screens and large mAh batteries for minimal cost."], ["وحوش البطاريات الاقتصادية الشائعة في الأسواق الناشئة.", "شاشات ضخمة وبطاريات هائلة بأقل تكلفة ممكنة."]) },
+  { word: "Sony Ericsson", hints: bilingualHints(["Classic partnership that gave us Walkman music phones.", "Cyber-shot mobile camera legendary models from the 2000s."], ["الشراكة الكلاسيكية التي قدمت لنا هواتف Walkman الموسيقية.", "سلسلة كاميرات Cyber-shot الأسطورية في الأجهزة القديمة."]) },
+  { word: "Alcatel", hints: bilingualHints(["French telecommunications classic from the early GSM button phone days.", "Known today for budget entry-level feature devices."], ["العلامة الفرنسية الكلاسيكية من أيام الهواتف ذات الأزرار الأولى.", "تُعرف اليوم بتقديم هواتف بسيطة جداً منخفضة التكلفة."]) },
 ];
 
 words.fruits = [
-  { word: "watermelon", hints: bilingualHints(["It is a large fruit with a high water content.", "It is especially popular in summer."], ["هي فاكهة كبيرة تحتوي على نسبة عالية من الماء.", "تشتهر خصوصاً في فصل الصيف."]) },
-  { word: "tangerine", hints: bilingualHints(["It is a small, easy-to-peel citrus fruit.", "Its skin is usually orange."], ["هي فاكهة حمضية صغيرة سهلة التقشير.", "يكون لون قشرتها برتقالياً عادةً."]) },
-  { word: "strawberry", hints: bilingualHints(["It is a red fruit with tiny seeds on its surface.", "It is often used in desserts and smoothies."], ["هي فاكهة حمراء تحمل بذوراً صغيرة على سطحها.", "تُستخدم كثيراً في الحلويات والعصائر."]) },
-  { word: "raspberry", hints: bilingualHints(["It is a soft berry made of many small sections.", "It is often red or dark pink when ripe."], ["هي ثمرة طرية تتكون من وحدات صغيرة كثيرة.", "يكون لونها أحمر أو وردياً داكناً عند النضج."]) },
-  { word: "quince", hints: bilingualHints(["It resembles an apple or pear but is usually cooked.", "Its flesh becomes fragrant and rosy when cooked."], ["تشبه التفاح أو الكمثرى لكنها تُطهى غالباً.", "يصبح لبها عطراً ووردياً عند طهيها."]) },
-  { word: "orange", hints: bilingualHints(["Its name is also the name of its color.", "It is a round citrus fruit rich in juice."], ["اسمها هو نفسه اسم لونها.", "هي فاكهة حمضية مستديرة وغنية بالعصير."]) },
-  { word: "mango", hints: bilingualHints(["It is a tropical fruit with sweet yellow flesh.", "It is commonly used in juice and desserts."], ["هي فاكهة استوائية ذات لب أصفر حلو.", "تُستخدم كثيراً في العصائر والحلويات."]) },
-  { word: "lemon", hints: bilingualHints(["It is a yellow citrus fruit with a sour taste.", "Its juice is often added to drinks and food."], ["هي فاكهة حمضية صفراء ذات طعم حامض.", "يُضاف عصيرها كثيراً إلى المشروبات والطعام."]) },
-  { word: "apple", hints: bilingualHints(["Its name begins with the first letter of the English alphabet.", "It can be red, green, or yellow."], ["يبدأ اسمها بأول حرف في الأبجدية الإنجليزية.", "قد تكون حمراء أو خضراء أو صفراء."]) },
-  { word: "banana", hints: bilingualHints(["It is a curved fruit with a yellow peel.", "It is commonly used in smoothies."], ["هي فاكهة منحنية ذات قشرة صفراء.", "تُستخدم كثيراً في العصائر."]) },
-  { word: "cherry", hints: bilingualHints(["It is a small fruit that often grows in pairs.", "It has a stone in its center."], ["هي فاكهة صغيرة تنمو غالباً في أزواج.", "تحتوي على نواة في وسطها."]) },
-  { word: "fig", hints: bilingualHints(["It is a soft fruit with many tiny seeds.", "It is mentioned in the Quran."], ["هي فاكهة طرية تحتوي على بذور صغيرة كثيرة.", "ورد ذكرها في القرآن الكريم."]) },
-  { word: "grape", hints: bilingualHints(["It grows in bunches on a vine.", "It can be green, red, purple, or black."], ["تنمو في عناقيد على الكرمة.", "قد تكون خضراء أو حمراء أو بنفسجية أو سوداء."]) },
-  { word: "kiwi", hints: bilingualHints(["It has brown fuzzy skin and green flesh.", "Its green flesh contains many small black seeds."], ["لها قشرة بنية ولب أخضر.", "يحتوي لبها الأخضر على بذور سوداء صغيرة كثيرة."]) },
+  { word: "watermelon", hints: bilingualHints(["Green shell on the outside, red juice on the inside, 92% water.", "The ultimate summer picnic refreshing giant."], ["قشرة خضراء من الخارج، ولب أحمر مليء بالعصير، 92% منه ماء.", "الفاكهة المنعشة الأكبر للرحلات الصيفية."]) },
+  { word: "tangerine", hints: bilingualHints(["Orange's smaller, zip-peel relative perfect for lunchboxes.", "Citrus pockets easily pulled apart into sweet wedges."], ["قريب البرتقال الأصغر والسهل التقشير والمناسب للوجبات.", "قطع حمضية صغيرة تفصل بسهولة إلى أجزاء حلوة."]) },
+  { word: "strawberry", hints: bilingualHints(["The only fruit with its tiny seeds wearing on the outside skin.", "Red heart-shaped berry dipped in chocolate on Valentine's."], ["الفاكهة الوحيدة التي ترتدي بذورها الصغير على قشرتها الخارجية.", "ثمرة حمراء على شكل قلب تُغمس في الشوكولاتة."]) },
+  { word: "raspberry", hints: bilingualHints(["Hollow red crown made of dozens of tiny sweet drupelets.", "Slightly tart ruby berry that sits on top of luxury cakes."], ["تاج أحمر مجوف يتكون من عشرات الحبيبات الصغير الحلوة.", "ثمرة ياقوتية حامضة قليلاً تزين قمم الكعكات الفاخرة."]) },
+  { word: "quince", hints: bilingualHints(["Too hard to eat raw, turns fragrant rosy pink when stewed into jam.", "Ancient pear-shaped fruit known for its strong aromatic perfume."], ["قاسية جداً للأكل نيئة، وتتحول للون الوردي العطر عند طهيها مربى.", "فاكهة قديمة تشبه الكمثرى وتشتهر برائحتها العطرية القوية."]) },
+  { word: "orange", hints: bilingualHints(["Vitamin C powerhouse whose name doubles as a primary color.", "Freshly squeezed breakfast juice classic."], ["مصدر غني بفيتامين C واسمها هو نفس اسم لون معروف.", "كوب العصير الطازج الكلاسيكي على مائدة الإفطار."]) },
+  { word: "mango", hints: bilingualHints(["King of tropical fruits with juicy golden-yellow flesh.", "Sweet, fibrous, and sticky fruit with a large flat pit."], ["ملك الفواكه الاستوائية بلبه الذهبي الحلو والمنعش.", "فاكهة حلوة وأليافية تحتوي على نواة عريضة مسطحة."]) },
+  { word: "lemon", hints: bilingualHints(["Sour yellow citrus that turns into a cold refreshing summer drink.", "If life gives you these, make a lemonade!"], ["حمضيات صفراء شديدة الحموضة تتحول لمشروب صيفي منعش.", "إذا أعطتك الحياة منها، اصنع منها مشروباً منعشاً!"]) },
+  { word: "apple", hints: bilingualHints(["One a day keeps the doctor away! Fell on Newton's head.", "Red, green, or yellow crispy fruit with a core."], ["واحدة منها يومياً تبعدك عن الطبيب! سقطت على رأس نيوتن.", "فاكهة مقرمشة حمراء أو خضراء أو صفراء لها نواة وسطية."]) },
+  { word: "banana", hints: bilingualHints(["Yellow curved fruit packed with potassium, loved by monkeys.", "Slippery peel trope in classic comedy cartoons."], ["فاكهة صفراء منحنية مليئة بالبوتاسيوم، يعشقها القردة.", "قشرتها المنسكبة سبب التزحلق الشهير في أفلام الكرتون."]) },
+  { word: "cherry", hints: bilingualHints(["Twin red jewels hanging on stems, sitting atop ice cream sundaes.", "Small pitted fruit that marks the ultimate finishing touch."], ["جوهرتان حمراوان تدليان من غصن، وتزينان مثلجات الأيس كريم.", "فاكهة صغيرة بنواة تعبر عن اللمسة الأخيرة المثالية."]) },
+  { word: "fig", hints: bilingualHints(["Soft chewy fruit with a sweet interior, mentioned in holy scriptures.", "Mediterranean delicacy eaten fresh or sun-dried."], ["فاكهة طرية ومقرمشة البذور حُلوة المذاق ورد ذكرها في القرآن.", "طعام متوسطي يُؤكل طازجاً أو مجففاً تحت الشمس."]) },
+  { word: "grape", hints: bilingualHints(["Grows in tight hanging bunches, converted into raisins when dried.", "Small round spheres that come in green, red, or dark purple."], ["ينمو في عناقيد متراصة، ويتحول إلى زبيب عند تجفيفه.", "كريات صغيرة تأتي بالألوان الأخضر أو الأحمر أو البنفسجي."]) },
+  { word: "kiwi", hints: bilingualHints(["Brown fuzzy jacket on the outside, vibrant green specs inside.", "Name shared with a flightless bird from New Zealand."], ["سترة بنية مزغبة من الخارج، ولب أخضر براق من الداخل.", "تتشارك اسمها مع طائر لا يطير في نيوزيلندا."]) },
 ];
 
 words.soft_Drinks = [
-  { word: "Iced Tea", hints: bilingualHints(["It is tea served cold, often with ice.", "Lemon is a common flavor for it."], ["هو شاي يُقدم بارداً وغالباً مع الثلج.", "يُعد الليمون نكهة شائعة له."]) },
-  { word: "Lemonade", hints: bilingualHints(["It is a refreshing drink made with lemon juice.", "It is usually mixed with water and sugar."], ["هو مشروب منعش يُصنع من عصير الليمون.", "يُمزج عادةً بالماء والسكر."]) },
-  { word: "7UP", hints: bilingualHints(["It is a clear, lemon-lime soft drink.", "Its name begins with the number seven."], ["هو مشروب غازي شفاف بنكهة الليمون واللايم.", "يبدأ اسمه بالرقم سبعة."]) },
-  { word: "Fanta", hints: bilingualHints(["Its orange flavor is one of its best-known varieties.", "It is a colorful carbonated soft drink."], ["نكهة البرتقال من أشهر نكهاته.", "هو مشروب غازي ملون."]) },
-  { word: "Sprite", hints: bilingualHints(["It is a clear lemon-lime soft drink.", "Its branding is commonly associated with green."], ["هو مشروب غازي شفاف بنكهة الليمون واللايم.", "يرتبط شعاره عادةً باللون الأخضر."]) },
-  { word: "Coca-Cola", hints: bilingualHints(["It is one of the world's most recognized soft drink brands.", "Its classic branding is strongly associated with red."], ["هي من أشهر علامات المشروبات الغازية في العالم.", "يرتبط تصميمها الكلاسيكي بقوة باللون الأحمر."]) },
-  { word: "Pepsi", hints: bilingualHints(["It is a cola soft drink brand.", "Blue is strongly associated with its branding."], ["هي علامة تجارية لمشروب غازي بنكهة الكولا.", "يرتبط شعارها بقوة باللون الأزرق."]) },
+  { word: "Iced Tea", hints: bilingualHints(["Brewed leaf drink chilled over ice with a splash of lemon.", "The ultimate non-carbonated summer cold refresher."], ["مشروب أوراق الشاي المغلي المبرد مع الثلج والليمون.", "المشروب البارد غير الغازي المنعش للنعيم الصيفي."]) },
+  { word: "Lemonade", hints: bilingualHints(["Freshly squeezed sour citrus mixed with sugar and cold water.", "Classic driveway stand drink sold by kids in summer."], ["عصير حمضي حامض طازج مع السكر والماء البارد.", "المشروب الكلاسيكي المنعش الذي يبيعه الأطفال صيفاً."]) },
+  { word: "7UP", hints: bilingualHints(["Clear lemon-lime soda with the iconic red dot mascot logo.", "Fido Dido mascot, caffeine-free green bottle drink."], ["مشروب غازي شفاف بنكهة الليمون واللايم مع نقطة حمراء.", "زجاجة خضراء خالية من الكافيين ارتبطت بشخصية فيدو فيدو."]) },
+  { word: "Fanta", hints: bilingualHints(["Bright orange bubbly soda created during 1940s flavor shortages.", "Fruity fizzy drink that turns your tongue orange."], ["مشروب برتقالي فوار برز خلال نقص النكهات في الأربعينات.", "مشروب غازي بنكهات الفواكه يصبغ لسانك باللون البرتقالي."]) },
+  { word: "Sprite", hints: bilingualHints(["Obey your thirst! Green bottle lemon-lime crisp carbonation.", "Clear soda that sparkles with instant bubbly citrus taste."], ["أطع عطشك! مشروب شفاف في زجاجة خضراء بنكهة الليمون.", "صودا شفافة تفور بطعم الحمضيات المنعشة."]) },
+  { word: "Coca-Cola", hints: bilingualHints(["Secret formula soda served in contoured glass bottles.", "Red branding, Santa Claus holiday ads, and world dominance."], ["صودا بخلطة سرية تقدم في زجاجات مموجة الشهيرة.", "هوية حمراء، إعلانات بابا نويل، وسيطرة عالمية."]) },
+  { word: "Pepsi", hints: bilingualHints(["Blue red white globe logo, rival of Coca-Cola in the cola wars.", "The choice of a new generation with famous football commercials."], ["شعار دائري بألوان الأزرق والأحمر والأبيض، غريم كوكاكولا.", "خيار الجيل الجديد مع إعلانات نجوم كرة القدم."]) },
 ];
 
 words.Technology_Science = [
-  { word: "Artificial Intelligence", hints: bilingualHints(["It enables computers to perform tasks that usually require human intelligence.", "Machine learning is one of its major fields."], ["تمكّن الحواسيب من تنفيذ مهام تتطلب عادةً ذكاءً بشرياً.", "يُعد التعلم الآلي أحد مجالاتها الرئيسية."]) },
-  { word: "Quantum Computer", hints: bilingualHints(["It uses quantum bits instead of ordinary bits.", "Its basic unit can represent a superposition of states."], ["تستخدم بتات كمومية بدلاً من البتات العادية.", "يمكن لوحدتها الأساسية تمثيل تراكب من الحالات."]) },
-  { word: "Solar Energy", hints: bilingualHints(["It comes from the light and heat of the Sun.", "Solar panels can convert it into electricity."], ["تأتي من ضوء الشمس وحرارتها.", "يمكن للألواح الشمسية تحويلها إلى كهرباء."]) },
-  { word: "Internet", hints: bilingualHints(["It connects computer networks around the world.", "Websites and online services use it to communicate."], ["تربط شبكات الحاسوب حول العالم.", "تستخدمها المواقع والخدمات للتواصل."]) },
-  { word: "Volcano", hints: bilingualHints(["It can release lava, ash, and gases.", "Mountains with openings in Earth's crust may be one."], ["يمكن أن تطلق الحمم والرماد والغازات.", "قد تكون جبلاً يحتوي على فتحة في قشرة الأرض."]) },
-  { word: "Gravity", hints: bilingualHints(["It pulls objects toward one another.", "It keeps planets in orbit around stars."], ["تجذب الأجسام بعضها نحو بعض.", "تحافظ على دوران الكواكب حول النجوم."]) },
-  { word: "DNA", hints: bilingualHints(["It stores genetic instructions in living organisms.", "Its structure is commonly described as a double helix."], ["تخزن التعليمات الوراثية في الكائنات الحية.", "يوصف تركيبها عادةً باللولب المزدوج."]) },
-  { word: "Robot", hints: bilingualHints(["It is a machine that can perform programmed tasks.", "Some robots are designed to work without constant human control."], ["هي آلة تستطيع تنفيذ مهام مبرمجة.", "صُممت بعض الروبوتات للعمل دون تحكم بشري مستمر."]) },
+  { word: "Artificial Intelligence", hints: bilingualHints(["Neural networks learning to write code, generate art, and chat with you.", "The field driving ChatGPT, LLMs, and self-driving cars."], ["شبكات عصبية تتعلم كتابة الأكواد، وإنشاء الصور، والمحادثة.", "المجال الذي يحرك ChatGPT، الهواتف، والسيارات ذاتية القيادة."]) },
+  { word: "Quantum Computer", hints: bilingualHints(["Uses qubits existing in superposition instead of plain 0s and 1s.", "Ultra-cold computing power that solves impossible calculations."], ["يستخدم البتات الكمومية المترابطة بدلاً من 0 و1 العادية.", "قوة حاسوبية شديدة البرودة تحل معادلات مستحيلة."]) },
+  { word: "Solar Energy", hints: bilingualHints(["Harnessing photons from our local star into green electric power.", "Silicon panels on rooftops collecting clean sun rays."], ["تسخير فوتونات النجم الأقرب لنا لتحويلها إلى كهرباء نظيفة.", "ألواح سيليكون على الأسطح تمتص أشعة الشمس."]) },
+  { word: "Internet", hints: bilingualHints(["A global web of interconnected routers sharing cat memes and data.", "The world wide network that powers every website today."], ["شبكة عالمية من الموجهات المترابطة لتداول البيانات والملفات.", "الشبكة العالمية التي تشغل جميع المواقع اليوم."]) },
+  { word: "Volcano", hints: bilingualHints(["Earth's pressure valve erupting hot liquid magma and ash clouds.", "A mountain that blows its top with liquid fire."], ["صمام ضغط الأرض الذي ينفجر بحمم بركانية وسحب رماد.", "جبل يخرج النار السائلة والمغما من أعماقه."]) },
+  { word: "Gravity", hints: bilingualHints(["The invisible space force keeping your feet planted on Earth.", "What made Newton's apple fall down instead of floating away."], ["القوة المرئية التي تبقي قدميك مثبتتين على الأرض.", "ما جعل تفاحة نيوتن تسقط للأسفل بدلاً من أن تطير."]) },
+  { word: "DNA", hints: bilingualHints(["Double-helix ladder containing the master instruction blueprint of life.", "Four chemical bases (A, T, C, G) defining your biological traits."], ["سلم لولبي مزدوج يحتوي على الشفرة الوراثية الكاملة للحياة.", "أربعة قواعد كيميائية تحدد صفاتك البيولوجية."]) },
+  { word: "Robot", hints: bilingualHints(["Programmable machine built to automate human labor and tasks.", "Metal limbs, sensors, and microchips walking among us."], ["آلة قابلة للبرمجة صُممت لأتمتة المهام والعمل البشري.", "أطراف معدنية، مستشعرات، وشرائح الكترونية تعمل بدقة."]) },
 ];
 
 words.Animals = [
-  { word: "Elephant", hints: bilingualHints(["It is the largest land animal alive today.", "It has a long trunk and large ears."], ["هو أكبر حيوان بري حي حالياً.", "له خرطوم طويل وأذنان كبيرتان."]) },
-  { word: "Penguin", hints: bilingualHints(["It is a bird that cannot fly.", "Many species live in the Southern Hemisphere."], ["هو طائر لا يستطيع الطيران.", "تعيش أنواع كثيرة منه في نصف الكرة الجنوبي."]) },
-  { word: "Dolphin", hints: bilingualHints(["It is a highly intelligent marine mammal.", "It communicates using clicks and whistles."], ["هو حيوان ثديي بحري شديد الذكاء.", "يتواصل باستخدام النقرات والصفير."]) },
-  { word: "Camel", hints: bilingualHints(["It can survive for long periods in dry deserts.", "It is known for its hump and ability to travel on sand."], ["تستطيع العيش لفترات طويلة في الصحارى الجافة.", "تشتهر بسنامها وقدرتها على السير فوق الرمال."]) },
-  { word: "Eagle", hints: bilingualHints(["It is a powerful bird of prey.", "It has excellent eyesight and sharp talons."], ["هو طائر جارح قوي.", "يمتلك بصراً حاداً ومخالب قوية."]) },
-  { word: "Giraffe", hints: bilingualHints(["It is the tallest living land animal.", "Its long neck helps it reach leaves high in trees."], ["هي أطول حيوانات البر الحية.", "تساعدها رقبتها الطويلة على الوصول إلى أوراق الأشجار العالية."]) },
+  { word: "Elephant", hints: bilingualHints(["Gentle giant with a versatile trunk and memories that never fade.", "Long ivory tusks, giant floppy ears, and massive stomping feet."], ["عملاق لطيف بخرطوم متعدد الاستخدامات وذاكرة لا تنسى أبداً.", "أنياب عاجية طويلة، آذان ضخمة، وأقدام ثقيلة."]) },
+  { word: "Penguin", hints: bilingualHints(["Tuxedo-wearing bird that swapped flying for swimming in Antarctic ice.", "Waddling seabird that slides on its belly across ice sheets."], ["طائر يرتدي بدل زفاف رسمية مقايضاً الطيران بالسباحة.", "طائر يتمايل في مشيته وينزلق على بطنه فوق الثلج."]) },
+  { word: "Dolphin", hints: bilingualHints(["Ocean gymnast that clicks, leaps, and uses echolocation to navigate.", "Highly intelligent marine mammal that loves riding ship waves."], ["لاعب جمباز المحيط الذي يصفر ويلقف باستخدام صدى الصوت.", "حيوان ثديي بحري شديد الذكاء يعشق مرافقة أمواج السفن."]) },
+  { word: "Camel", hints: bilingualHints(["Ship of the desert storing fat in humps to survive weeks without water.", "Long eyelashes, tough lips for eating thorns, and desert power."], ["سفينة الصحراء التي تخزن الدهون في السنام لتتحمل العطش.", "رموش طويلة، وشفتان قويتان لأكل الشوك، وتحمل الحرارة."]) },
+  { word: "Eagle", hints: bilingualHints(["Sky predator with razor-sharp talons and incredible zoom eyesight.", "National symbol of strength soaring high above mountain peaks."], ["جوارح السماء بمخالب حادة كالموس وبصر خارق التركيز.", "رمز وطني للقوة يحلق عالياً فوق قمم الجبال."]) },
+  { word: "Giraffe", hints: bilingualHints(["Nature's skyscraper with a long neck and a long purple tongue.", "Patterned spotted coats grazing tree leaves high above ground."], ["ناطحة سحاب الطبيعة برقبة طويلة ولسان أرجواني طويل.", "جلد مبرقش بالبقع يرعى أوراق الأشجار العالية."]) },
 ];
 
 words.Food = [
-  { word: "Chocolate", hints: bilingualHints(["It is made from cacao beans.", "It can be dark, milk, or white."], ["تُصنع من حبوب الكاكاو.", "قد تكون داكنة أو بالحليب أو بيضاء."]) },
-  { word: "Pasta", hints: bilingualHints(["It is commonly made from wheat and water.", "Spaghetti and penne are examples of it."], ["تُصنع عادةً من القمح والماء.", "من أمثلتها السباغيتي والبيني."]) },
-  { word: "Pizza", hints: bilingualHints(["It usually has a flat dough base with toppings.", "It is strongly associated with Italian cuisine."], ["تتكون عادةً من عجينة مسطحة مع إضافات.", "ترتبط بقوة بالمطبخ الإيطالي."]) },
-  { word: "Honey", hints: bilingualHints(["Bees produce it from flower nectar.", "It is naturally sweet and often golden in color."], ["ينتجه النحل من رحيق الأزهار.", "هو حلو المذاق ولونه ذهبي غالباً."]) },
-  { word: "Popcorn", hints: bilingualHints(["It is made by heating a special type of corn.", "It is a popular cinema snack."], ["يُصنع بتسخين نوع خاص من الذرة.", "هو وجبة خفيفة شهيرة في دور السينما."]) },
-  { word: "Bread", hints: bilingualHints(["It is commonly made from flour, water, and yeast.", "It is a staple food in many cultures."], ["يُصنع عادةً من الدقيق والماء والخميرة.", "هو طعام أساسي في ثقافات كثيرة."]) },
-  { word: "Rice", hints: bilingualHints(["It is a grain eaten around the world.", "It can be served steamed, boiled, or cooked in dishes."], ["هي حبوب تؤكل في أنحاء العالم.", "يمكن تقديمها مطهوة على البخار أو مسلوقة أو ضمن أطباق مختلفة."]) },
-  { word: "Dates", hints: bilingualHints(["They grow on palm trees.", "They are naturally sweet and common in the Middle East."], ["تنمو على أشجار النخيل.", "هي حلوة بطبيعتها وشائعة في الشرق الأوسط."]) },
+  { word: "Chocolate", hints: bilingualHints(["Sweet cacao block that releases dopamine and melts in your mouth.", "Dark, milk, or white bars that cure bad moods."], ["قالب كاكاو حلو يفرز الهرمونات السعيدة ويذوب في فمك.", "ألواح داكنة أو بالحليب تحسن المزاج فوراً."]) },
+  { word: "Pasta", hints: bilingualHints(["Italian carb art coming in shapes like Penne, Spaghetti, and Farfalle.", "Boiled wheat dough smothered in marinara or Alfredo sauce."], ["فن النشويات الإيطالي بأشكال مثل البيني والسباغيتي.", "عجين قمح مسلوق مغرق بصلصة الطماطم أو الكريمة."]) },
+  { word: "Pizza", hints: bilingualHints(["Flat baked dough wheel covered with melted mozzarella and toppings.", "Delivered in a square box, sliced into triangles, eaten round!"], ["قرص عجين مخبوز مكسو بجبن الموزاريلا والإضافات.", "تصل في صندوق مربع، وتقطع إلى مثلثات، وتؤكل دائرية!"]) },
+  { word: "Honey", hints: bilingualHints(["Liquid gold made by bees that literally never spoils for thousands of years.", "Sweet nectar drizzled over pancakes or warm tea."], ["ذهب سائل يصنعه النحل لا يفسد مطلقاً حتى بعد آلاف السنين.", "رحيق حلو يُصب فوق الفطائر أو الشاي الدافئ."]) },
+  { word: "Popcorn", hints: bilingualHints(["Exploding corn kernels turned into fluffy white movie snacks.", "Salty, buttered, or caramelized movie theater staple."], ["بذور ذرة تنفجر بالحرارة للتحول إلى رقائق بيضاء هشة.", "وجبة سينمائية خفيفة مملحة أو مدهونة بالزبدة."]) },
+  { word: "Bread", hints: bilingualHints(["Flour, yeast, and water baked into the fundamental staple of humanity.", "The outer crust wrapper of every delicious sandwich."], ["دقيق وخميرة وماء مخبوزة ليشكل الغذاء الأساسي للبشرية.", "الغلاف الخارجي لكل شطيرة شهية."]) },
+  { word: "Rice", hints: bilingualHints(["Small grains that feed over half of the human population daily.", "Steamed white or brown dish that accompanies every stew."], ["حبوب صغيرة تغذي أكثر من نصف سكان الأرض يومياً.", "طبق مطهو على البخار يرافق الأطباق الرئيسية."]) },
+  { word: "Dates", hints: bilingualHints(["Sweet chewy palm fruit traditional for breaking Ramadan fasts.", "Nature's caramel candy growing on Middle Eastern trees."], ["ثمرة نخيل حلوة ومغذية يُفطر عليها تقليدياً في رمضان.", "حلوى الطبيعة الكاراميلية التي تنمو على أشجار النخيل."]) },
 ];
 
 words.Geography_Landmarks = [
-  { word: "Mountain", hints: bilingualHints(["It is a high natural elevation of land.", "The highest point is called its summit."], ["هو ارتفاع طبيعي شاهق من الأرض.", "تُسمى أعلى نقطة فيه القمة."]) },
-  { word: "Desert", hints: bilingualHints(["It receives very little rainfall.", "The Sahara is one of the world's largest examples."], ["تتلقى كمية قليلة جداً من الأمطار.", "تُعد الصحراء الكبرى من أكبر أمثلتها في العالم."]) },
-  { word: "Island", hints: bilingualHints(["It is land completely surrounded by water.", "It can be found in oceans, seas, rivers, or lakes."], ["هي قطعة أرض تحيط بها المياه من كل الجهات.", "يمكن أن توجد في المحيطات والبحار والأنهار والبحيرات."]) },
-  { word: "Waterfall", hints: bilingualHints(["It forms where a river drops over a steep edge.", "Niagara is one of the world's famous examples."], ["تتكون عندما يسقط النهر فوق حافة شديدة الانحدار.", "تُعد شلالات نياجرا من أشهر أمثلتها."]) },
-  { word: "Pyramid", hints: bilingualHints(["It has a polygonal base and triangular sides.", "The pyramids of Giza are famous ancient examples."], ["لها قاعدة متعددة الأضلاع وجوانب مثلثة.", "تُعد أهرامات الجيزة أمثلة أثرية شهيرة."]) },
-  { word: "Map", hints: bilingualHints(["It represents places and their locations.", "It can show roads, borders, rivers, and mountains."], ["تمثل الأماكن ومواقعها.", "يمكن أن توضح الطرق والحدود والأنهار والجبال."]) },
-];
-
-words.Professions = [
-  { word: "Teacher", hints: bilingualHints(["This person helps students learn.", "They may work in a school or training center."], ["يساعد الطلاب على التعلم.", "قد يعمل في مدرسة أو مركز تدريب."]) },
-  { word: "Doctor", hints: bilingualHints(["This person diagnoses and treats illness.", "They may work in a hospital or clinic."], ["يشخّص الأمراض ويعالجها.", "قد يعمل في مستشفى أو عيادة."]) },
-  { word: "Engineer", hints: bilingualHints(["This person designs or builds solutions using science and mathematics.", "Civil, electrical, and software are examples of its fields."], ["يصمم أو يبني حلولاً باستخدام العلوم والرياضيات.", "من مجالاته الهندسة المدنية والكهربائية والبرمجيات."]) },
-  { word: "Farmer", hints: bilingualHints(["This person grows crops or raises animals.", "Their work helps provide food for communities."], ["يزرع المحاصيل أو يربي الحيوانات.", "يساعد عمله في توفير الغذاء للمجتمعات."]) },
-  { word: "Carpenter", hints: bilingualHints(["This person works with wood.", "They can build furniture, doors, and other structures."], ["يعمل بالخشب.", "يمكنه صناعة الأثاث والأبواب وهياكل أخرى."]) },
-  { word: "Pilot", hints: bilingualHints(["This person flies an aircraft.", "They are responsible for controlling the flight."], ["يقود الطائرة.", "يكون مسؤولاً عن التحكم في الرحلة."]) },
-];
-
-words.Nature_Weather = [
-  { word: "Rain", hints: bilingualHints(["It is water that falls from clouds.", "It helps plants and crops grow."], ["هي مياه تسقط من السحب.", "تساعد النباتات والمحاصيل على النمو."]) },
-  { word: "Cloud", hints: bilingualHints(["It is made of tiny water droplets or ice crystals.", "It can bring rain, shade, or storms."], ["تتكون من قطرات ماء صغيرة أو بلورات جليد.", "قد تجلب المطر أو الظل أو العواصف."]) },
-  { word: "Wind", hints: bilingualHints(["It is moving air.", "It can turn wind turbines to produce electricity."], ["هواء متحرك.", "يمكنه تدوير التوربينات لإنتاج الكهرباء."]) },
-  { word: "Rainbow", hints: bilingualHints(["It appears when light passes through water droplets.", "It displays a range of colors in the sky."], ["تظهر عندما يمر الضوء عبر قطرات الماء.", "تعرض مجموعة من الألوان في السماء."]) },
-  { word: "River", hints: bilingualHints(["It is a natural stream of flowing water.", "It usually flows toward a lake, sea, or another river."], ["هو مجرى طبيعي من المياه الجارية.", "يتجه عادةً نحو بحيرة أو بحر أو نهر آخر."]) },
-  { word: "Forest", hints: bilingualHints(["It is a large area covered mainly by trees.", "It provides habitats for many plants and animals."], ["هي مساحة كبيرة تغطيها الأشجار غالباً.", "توفر موائل لكثير من النباتات والحيوانات."]) },
+  { word: "Mountain", hints: bilingualHints(["Giant rocky landform reaching for the clouds, top is a summit.", "Everest is the ultimate towering example of this geology."], ["تضاريس صخرية عملاقة تطال السحاب، وأعلى نقطة فيها قمة.", "إيفرست هو المثال الأعلى ارتفاعاً لهذه الأوتاد الجيولوجية."]) },
+  { word: "Desert", hints: bilingualHints(["Arid wasteland covered in sand dunes or ice with minimal rain.", "Sahara is the hottest famous vast example of this terrain."], ["أرض قاحلة تغطيها الكثبان الرملية وقلة الأمطار.", "الصحراء الكبرى هي أشهر وأوسع نموذج لهذه الطبيعة."]) },
+  { word: "Island", hints: bilingualHints(["Land surrounded completely by water on all four sides.", "Tropical paradise isolated in the middle of oceans or lakes."], ["قطعة يابسة محاطة بالمياه بالكامل من كافة الجهات.", "جنة استوائية معزولة في منتصف المحيطات أو البحيرات."]) },
+  { word: "Waterfall", hints: bilingualHints(["River plummeting dramatically over a steep cliff face.", "Niagara and Victoria fall with mist, roar, and rainbows."], ["نهر ينحدر بقوة متساقطاً من حافة صخرية حادة.", "نياجرا وفيكتوريا تسقطان برذاذ، وهدير، وأقواس قزح."]) },
+  { word: "Pyramid", hints: bilingualHints(["Ancient stone tomb geometry with triangular faces pointing up.", "Giza's ancient structural wonders built by Pharaohs."], ["مقبرة صخرية قديمة بجوانب مثلثية تتلاقى في الأعلى.", "عجائب الجيزة المعمارية القديمة التي بناها الفراعنة."]) },
+  { word: "Map", hints: bilingualHints(["Flat visual representation of terrain, borders, roads, and oceans.", "Google replaced paper versions of this navigation tool."], ["تمثيل بصري مسطح للتضاريس والحدود والطرق والمحيطات.", "استبدلت Google النسخ الورقية من أدوات الملاحة هذه."]) },
 ];
 
 addDifficultyHints();
@@ -729,7 +732,6 @@ let clickedTarget;
 const i18n = {
   en: {
     wordFrom: "Word From :",
-    allWords: "All Words",
     letsStart: `Let's Start <i class="fa-regular fa-hand-peace c-blue"></i>`,
     mistakes: "Number Of Mistake Is :",
     correctWords: "Correct Words",
@@ -799,7 +801,6 @@ difficulty: "Difficulty",
   },
   ar: {
     wordFrom: "الفئة :",
-    allWords: "كل الكلمات",
     letsStart: `لنبدأ <i class="fa-regular fa-hand-peace c-blue"></i>`,
     mistakes: "عدد الأخطاء :",
     correctWords: "الكلمات الصحيحة",
@@ -1036,11 +1037,25 @@ const tapToGuessBtn = document.querySelector(".tap-to-guess-btn");
 const mobileInput = document.querySelector(".mobile-keyboard-input");
 
 tapToGuessBtn.addEventListener("click", () => {
-  tapToGuessBtn.style.display = "none";
   document.querySelectorAll(".letter-span").forEach((span) => span.classList.remove("clicked"));
   inputLockedUntil = 0;
+  
+  // Show input briefly to trigger mobile keyboard, then hide it
+  mobileInput.style.position = "fixed";
+  mobileInput.style.left = "0";
+  mobileInput.style.top = "0";
+  mobileInput.style.width = "0";
+  mobileInput.style.height = "0";
+  mobileInput.style.opacity = "0";
+  mobileInput.style.pointerEvents = "none";
   mobileInput.focus();
   mobileInput.select();
+  
+  // Hide again after a short delay
+  setTimeout(() => {
+    mobileInput.style.position = "absolute";
+    mobileInput.style.left = "-9999px";
+  }, 100);
 });
 
 mobileInput.addEventListener("input", (e) => {
@@ -1799,6 +1814,13 @@ function showTimeUpFeedback() {
 function populateWordTypeDropdown() {
   let dropdown = document.getElementById("wordTypeDropdown");
   if (!dropdown) return;
+
+  // Arrow beside the word type only when more than one type is in play
+  let wordType = document.querySelector(".word-type");
+  if (wordType) {
+    wordType.classList.toggle("has-multi", selectedCategories.length > 1);
+    if (selectedCategories.length <= 1) wordType.classList.remove("open");
+  }
 
   if (selectedCategories.length === 0) {
     dropdown.innerHTML = `<div class="wt-empty">${t("noCategoriesSelected") || "No categories selected"}</div>`;

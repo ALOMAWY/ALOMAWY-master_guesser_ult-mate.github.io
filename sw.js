@@ -4,7 +4,7 @@
    - Google Fonts / CDN: network-first with cache fallback
    - Sounds: cached on first use
 */
-const CACHE_NAME = "master-guesser-v8";
+const CACHE_NAME = "master-guesser-v9";
 
 const APP_SHELL = [
   "./",

@@ -548,10 +548,15 @@ button {
   .container {
     height: 100vh;
     height: 100dvh;
-    overflow-y: auto;
+    overflow: hidden;
+    position: relative;
   }
   .game-draw .letters-parent {
     display: none !important;
+  }
+  .container .game-draw {
+    flex: 0 0 auto;
+    max-height: 26vh;
   }
   .tap-to-guess-btn {
     position: absolute;
@@ -577,11 +582,18 @@ button {
   }
   /* Mobile-only: correct words at top, below header */
   #correct-word {
-    display: block;
-    margin: 0 16px 8px;
-    padding: 8px 12px;
+    position: absolute;
+    top: 56px;
+    left: 12px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    padding: 6px 10px;
     width: auto;
-    border-radius: 12px;
+    max-width: 45vw;
+    border-radius: 16px;
     border: 1px solid var(--panel-border);
     background: var(--black-color);
     background: color-mix(in srgb, var(--black-color) 60%, transparent);
@@ -589,26 +601,29 @@ button {
     -webkit-backdrop-filter: blur(10px);
   }
   #correct-word h5 {
-    display: block;
-    margin-bottom: 4px;
+    display: none;
   }
   #correct-word .words-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
   }
   #correct-word .words-container span {
     font-size: 10px;
-    padding: 2px 8px;
+    padding: 1px 0;
+    width: 100%;
+    text-align: left;
   }
   hr {
     display: none;
   }
-  .guess-word {
-    flex: 1;
+  .container .guess-word {
+    flex: 1 1 auto;
     min-height: 0;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
     padding-bottom: 90px;
     margin-bottom: env(safe-area-inset-bottom);
   }
@@ -634,6 +649,13 @@ button {
   .guess-word .guess-span:not(:empty) {
     border-bottom-color: var(--blue-color);
     box-shadow: 0 0 12px rgba(34, 211, 238, 0.3);
+  }
+  /* Keyboard open : reclaim space so everything fits the shrunk viewport */
+  body.keyboard-open .container .game-draw {
+    max-height: 18vh;
+  }
+  body.keyboard-open .container .guess-word {
+    padding-bottom: 0;
   }
 }
 

@@ -751,6 +751,12 @@ const i18n = {
     playAgain: "Play Again",
     thanksPre: "Thanks For Playing ,",
     youWin: "You Win !",
+    statTime: "Total Time",
+    statDifficulty: "Difficulty",
+    statMistakes: "Mistakes",
+    statProgress: "Progress",
+    categoriesPlayed: "Categories Played",
+    winSub: "Flawless run, ",
     guessedPre: "You Guessed",
     guessedPost: "Words Correctly",
     yourWords: "Your Words",
@@ -820,6 +826,12 @@ difficulty: "Difficulty",
     playAgain: "العب مرة أخرى",
     thanksPre: "شكراً للعب يا",
     youWin: "لقد فزت !",
+    statTime: "الوقت الكلي",
+    statDifficulty: "الصعوبة",
+    statMistakes: "الأخطاء",
+    statProgress: "التقدم",
+    categoriesPlayed: "الفئات التي لعبت",
+    winSub: "جولة مثالية يا",
     guessedPre: "لقد أكملت",
     guessedPost: "كلمة بنجاح",
     yourWords: "كلماتك",
@@ -1087,6 +1099,26 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// Mobile Keyboard : Keep Tap-to-Guess button above the on-screen keyboard
+if (window.visualViewport && tapToGuessBtn) {
+  const adjustForKeyboard = () => {
+    const vv = window.visualViewport;
+    const keyboardHeight = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+    if (keyboardHeight > 100) {
+      tapToGuessBtn.style.position = "fixed";
+      tapToGuessBtn.style.bottom = keyboardHeight + 20 + "px";
+      document.body.classList.add("keyboard-open");
+    } else {
+      tapToGuessBtn.style.position = "";
+      tapToGuessBtn.style.bottom = "";
+      document.body.classList.remove("keyboard-open");
+    }
+  };
+  window.visualViewport.addEventListener("resize", adjustForKeyboard);
+  window.visualViewport.addEventListener("scroll", adjustForKeyboard);
+  adjustForKeyboard();
+}
+
 //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
 
 // Function Add To Correct Words Div
@@ -1101,42 +1133,77 @@ function correctWord() {
 
   correctWordSpan.textContent = randomGuessWord;
 
-  correctWordDiv.appendChild(correctWordSpan);
+  let solvedCount =
+    [...document.querySelectorAll(".correct-word-span")].length + 1;
 
-  document.querySelector(".word-number").innerHTML = `${
-    [...correctWordDiv.childNodes].length
-  } / ${limitTimes}`;
+  document.querySelector(".word-number").innerHTML = `${solvedCount} / ${limitTimes}`;
 
   // Celebration Effect For Correct Word
   if (typeof fxConfetti === "function") {
     fxConfetti();
   }
 
-  // Show Correct Word Feedback
-  showCorrectWordFeedback();
+  // Fly the solved word from the guess area into the correct words list
+  flyWordToCorrectWords(correctWordSpan, correctWordDiv);
 }
 
-// Show Correct Word Feedback Animation
-function showCorrectWordFeedback() {
-  // Create Feedback Element
-  let feedback = document.createElement("div");
-  feedback.className = "correct-feedback";
-  feedback.textContent = t("correctWord");
+// Fly Animation : solved word travels from the guess section into the
+// correct words section, then lands in the list with a springy pop
+function flyWordToCorrectWords(wordSpan, targetContainer) {
+  let source = document.querySelector(".guess-parent");
 
-  // Add To Guess Word Area
-  let guessParent = document.querySelector(".guess-word");
-  guessParent.appendChild(feedback);
+  let land = () => {
+    wordSpan.classList.add("just-landed");
+    targetContainer.appendChild(wordSpan);
+    wordSpan.addEventListener(
+      "animationend",
+      () => wordSpan.classList.remove("just-landed"),
+      { once: true }
+    );
+  };
 
-  // Trigger Animation
-  requestAnimationFrame(() => {
-    feedback.classList.add("show");
-  });
+  if (!source || typeof wordSpan.animate !== "function") {
+    land();
+    return;
+  }
 
-  // Remove After Animation
-  setTimeout(() => {
-    feedback.classList.remove("show");
-    setTimeout(() => feedback.remove(), 300);
-  }, 1500);
+  let s = source.getBoundingClientRect();
+  let tgt = targetContainer.getBoundingClientRect();
+
+  // Start : centre of the guess word area
+  let sx = s.left + s.width / 2;
+  let sy = s.top + s.height / 2;
+
+  // End : where the next chip appears in the correct words list
+  let ex = Math.min(tgt.left + 90, window.innerWidth - 60);
+  let ey = tgt.top + tgt.height / 2;
+
+  let clone = document.createElement("span");
+  clone.className = "fly-word";
+  clone.textContent = wordSpan.textContent;
+  document.body.appendChild(clone);
+
+  let dx = ex - sx;
+  let dy = ey - sy;
+
+  let anim = clone.animate(
+    [
+      { transform: `translate(${sx}px, ${sy}px) scale(1.2)`, opacity: 0 },
+      { transform: `translate(${sx}px, ${sy}px) scale(1.1)`, opacity: 1, offset: 0.15 },
+      { transform: `translate(${sx + dx * 0.5}px, ${sy + dy * 0.5 - 90}px) scale(0.95)`, offset: 0.62 },
+      { transform: `translate(${ex}px, ${ey}px) scale(0.7)`, opacity: 0.2 },
+    ],
+    { duration: 780, easing: "cubic-bezier(.22,.9,.3,1)" }
+  );
+
+  anim.onfinish = () => {
+    clone.remove();
+    land();
+  };
+  anim.oncancel = () => {
+    clone.remove();
+    land();
+  };
 }
 
 //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
@@ -1323,6 +1390,9 @@ function startGame(config) {
   timeLimits = config.timeLimits;
   selectedCategories = config.selectedCategories;
   gameEnded = false;
+
+  // Match clock : total playtime shown on the result screen
+  window.matchStartStamp = Date.now();
   wrongTimes = 0;
 
   // Clear gallows
@@ -1897,51 +1967,136 @@ function showCorrectWords() {
   document.body.appendChild(div);
 }
 
-function gameOverPopup() {
+// Unified Match Result Screen : one themed component for win + game over
+function collectMatchStats() {
+  return {
+    solved: [...document.querySelectorAll(".correct-word-span")],
+    total: limitTimes,
+    mistakes: wrongTimes,
+    elapsedMs: window.matchStartStamp ? Date.now() - window.matchStartStamp : 0,
+    difficulty: gameDifficulty,
+    categories: selectedCategories || [],
+  };
+}
+
+function formatMatchTime(ms) {
+  let totalSec = Math.floor(ms / 1000);
+  let mins = Math.floor(totalSec / 60);
+  let secs = totalSec % 60;
+  return `${mins > 9 ? mins : "0" + mins}:${secs > 9 ? secs : "0" + secs}`;
+}
+
+function resultStatsHTML(stats) {
+  let diffLabel =
+    stats.difficulty === "easy"
+      ? t("difficultyEasy")
+      : stats.difficulty === "high"
+      ? t("difficultyHigh")
+      : t("difficultyMedium");
+
+  return `
+    <div class="result-stats">
+      <div class="result-stat">
+        <i class="fa-regular fa-clock"></i>
+        <b>${formatMatchTime(stats.elapsedMs)}</b>
+        <span>${t("statTime")}</span>
+      </div>
+      <div class="result-stat">
+        <i class="fa-solid fa-gauge-high"></i>
+        <b>${diffLabel}</b>
+        <span>${t("statDifficulty")}</span>
+      </div>
+      <div class="result-stat">
+        <i class="fa-solid fa-heart-crack"></i>
+        <b>${stats.mistakes}</b>
+        <span>${t("statMistakes")}</span>
+      </div>
+      <div class="result-stat">
+        <i class="fa-solid fa-list-check"></i>
+        <b>${stats.solved.length} / ${stats.total}</b>
+        <span>${t("statProgress")}</span>
+      </div>
+    </div>`;
+}
+
+function showResultScreen(win) {
   disebleContainerEvents();
 
-  let div = document.createElement("div");
+  let stats = collectMatchStats();
 
-  div.classList.add("popup");
+  let div = document.createElement("div");
+  div.className = "popup result-screen " + (win ? "result-win" : "result-lose");
 
   div.innerHTML = `
-  <i class="fa-solid fa-skull popup-icon c-danger"></i>
+    <div class="result-orbs" aria-hidden="true"><span></span><span></span><span></span></div>
 
-  <h1 class="popup-header"> ${t("gameOver")} </h1>
+    <i class="fa-solid ${win ? "fa-trophy" : "fa-skull"} popup-icon ${
+      win ? "c-blue" : "c-danger"
+    }"></i>
 
-  <div class="popup-word-reveal">
-    <span class="reveal-label">${t("theWordWas")}</span>
-    <span class="reveal-word">${randomGuessWord}</span>
-    <span class="reveal-cat"
-      ><i class="fa-solid fa-tag"></i> ${t(
-        "cat_" + objectKeys[randomPropOfObject]
-      )}</span
-    >
-  </div>
+    <h1 class="popup-header">${win ? t("youWin") : t("gameOver")}</h1>
 
-  <div class="popup-actions">
-    <button id="correct-words-btn" class="popup-btn ghost">
-      ${t("correctWordsBtn")}
-    </button>
-    <button id="play-again-btn" class="popup-btn solid">
-      ${t("playAgain")}
-    </button>
-  </div>
+    ${
+      win
+        ? `<p class="result-sub">${t("winSub")}<span class="popup-spans">${
+            inputName.value === "" ? '" "' : inputName.value
+          }</span></p>`
+        : `<div class="popup-word-reveal">
+            <span class="reveal-label">${t("theWordWas")}</span>
+            <span class="reveal-word">${randomGuessWord}</span>
+            <span class="reveal-cat"
+              ><i class="fa-solid fa-tag"></i> ${t(
+                "cat_" + objectKeys[randomPropOfObject]
+              )}</span
+            >
+          </div>`
+    }
 
-  <p class="popup-words popup-thanks">${t("thanksPre")}
-    <span class="popup-spans">${
-      inputName.value === "" ? '" "' : inputName.value
-    }</span></p>
+    ${resultStatsHTML(stats)}
+
+    <div class="result-words">
+      <p class="result-words-title">
+        <i class="fa-solid fa-layer-group"></i> ${t("categoriesPlayed")}:
+        ${stats.categories.join(" · ") || "—"}
+      </p>
+      ${
+        stats.solved.length
+          ? `<div class="result-chips">${stats.solved
+              .map(
+                (w, i) =>
+                  `<span class="result-chip"><b>${w.textContent}</b><i>${t(
+                    "cat_" + wordTypeArray[i]
+                  )}</i></span>`
+              )
+              .join("")}</div>`
+          : ""
+      }
+    </div>
+
+    <div class="popup-actions">
+      <button id="play-again-btn" class="popup-btn solid">${t("playAgain")}</button>
+    </div>
+
+    <p class="popup-words popup-thanks">${t("thanksPre")}
+      <span class="popup-spans">${
+        inputName.value === "" ? '" "' : inputName.value
+      }</span></p>
   `;
 
   document.body.appendChild(div);
 
-  document
-    .getElementById("correct-words-btn")
-    .addEventListener("click", showCorrectWords);
+  // Win celebration : confetti waves + victory haptic
+  if (win) {
+    if (typeof fxConfetti === "function") {
+      fxConfetti();
+      setTimeout(() => fxConfetti(), 400);
+      setTimeout(() => fxConfetti(), 800);
+    }
+    fxHaptic([30, 40, 30, 40, 30]);
+  }
 
   document.getElementById("play-again-btn").addEventListener("click", () => {
-    // Remove the game over popup
+    // Remove the result popup
     document.querySelectorAll(".popup").forEach((p) => p.remove());
     document.querySelector(".container").style.opacity = "";
     if (savedGameConfig) {
@@ -1952,6 +2107,15 @@ function gameOverPopup() {
   });
 
   document.getElementsByClassName("container")[0].style.opacity = 0.2;
+}
+
+function gameOverPopup() {
+  showResultScreen(false);
+}
+
+function youWinPopup() {
+  gameEnded = true;
+  showResultScreen(true);
 }
 
 //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-

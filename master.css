@@ -2176,6 +2176,10 @@ body.lang-ar .popup-header {
     max-height: none;
     justify-content: flex-start;
   }
+  /* Match details : 2x2 grid fits phone screens */
+  .result-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
   @keyframes screen-in {
     from {
       opacity: 0;

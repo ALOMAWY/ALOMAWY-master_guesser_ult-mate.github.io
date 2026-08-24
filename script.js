@@ -1152,7 +1152,11 @@ function correctWord() {
 function flyWordToCorrectWords(wordSpan, targetContainer) {
   let source = document.querySelector(".guess-parent");
 
+  // Word is in flight : not yet counted in the DOM
+  window._pendingFlights = (window._pendingFlights || 0) + 1;
+
   let land = () => {
+    window._pendingFlights = Math.max(0, (window._pendingFlights || 0) - 1);
     wordSpan.classList.add("just-landed");
     targetContainer.appendChild(wordSpan);
     wordSpan.addEventListener(
@@ -1160,6 +1164,7 @@ function flyWordToCorrectWords(wordSpan, targetContainer) {
       () => wordSpan.classList.remove("just-landed"),
       { once: true }
     );
+    checkMatchComplete();
   };
 
   if (!source || typeof wordSpan.animate !== "function") {
@@ -1204,6 +1209,20 @@ function flyWordToCorrectWords(wordSpan, targetContainer) {
     clone.remove();
     land();
   };
+}
+
+// Win Check : fires once the solved count reaches the chosen match length,
+// counting words that are still flying to the list
+function checkMatchComplete() {
+  if (gameEnded) return;
+
+  let solved =
+    document.querySelectorAll(".correct-word-span").length +
+    (window._pendingFlights || 0);
+
+  if (solved >= limitTimes) {
+    youWinPopup();
+  }
 }
 
 //-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
@@ -1270,9 +1289,7 @@ function submitFunction() {
       });
       if (littersLength) littersLength.remove();
     }
-    document.querySelectorAll(".correct-word-span").length === limitTimes
-      ? youWinPopup()
-      : false;
+    // Win is checked when the flown word lands (checkMatchComplete)
     continueBtn.click();
   });
 }
@@ -1393,6 +1410,9 @@ function startGame(config) {
 
   // Match clock : total playtime shown on the result screen
   window.matchStartStamp = Date.now();
+
+  // Reset in-flight word counter from any previous match
+  window._pendingFlights = 0;
   wrongTimes = 0;
 
   // Clear gallows

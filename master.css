@@ -344,7 +344,7 @@ button {
   outline: none;
 }
 
-/* Word Type : themed cloud label + arrow pointing into the category box */
+/* Word Type : original chip (stable) + arrow from the compact cloud trigger */
 .game-info .word-type {
   display: flex;
   align-items: center;
@@ -353,17 +353,32 @@ button {
   position: relative;
 }
 
-/* Small cloud holding the label */
-.wt-cloud {
-  position: relative;
+/* Category box : same pill style as before the cloud idea */
+.wt-box {
   display: inline-flex;
   align-items: center;
-  padding: 8px 16px;
+  gap: 6px;
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  padding: 5px 14px;
+  background: rgba(147, 166, 204, 0.06);
+  font-size: 11px;
+  white-space: normal;
+}
+
+/* Compact fixed-size cloud : dropdown trigger */
+.wt-cloud {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 28px;
   border-radius: 999px;
   background: linear-gradient(145deg, rgba(20, 36, 65, 0.92), rgba(9, 13, 27, 0.86));
   border: 1px solid rgba(34, 211, 238, 0.36);
   box-shadow: 0 0 16px rgba(34, 211, 238, 0.12), inset 0 0 12px rgba(34, 211, 238, 0.05);
-  animation: cloud-bob 4.5s ease-in-out infinite;
 }
 .wt-cloud::before,
 .wt-cloud::after {
@@ -374,71 +389,45 @@ button {
   border: 1px solid rgba(34, 211, 238, 0.36);
 }
 .wt-cloud::before {
-  width: 12px;
-  height: 12px;
-  top: -7px;
-  left: 14px;
+  width: 11px;
+  height: 11px;
+  top: -6px;
+  left: 8px;
 }
 .wt-cloud::after {
   width: 8px;
   height: 8px;
-  top: -5px;
-  right: 20px;
+  top: -4px;
+  right: 9px;
 }
-@keyframes cloud-bob {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-3px);
-  }
+.wt-caret {
+  font-size: 10px;
+  color: var(--blue-color);
+  transition: transform 0.2s;
+}
+.game-info .word-type.open .wt-caret {
+  transform: rotate(180deg);
 }
 
-/* Arrow : cloud → category box */
+/* Arrow : category box ← cloud */
 .wt-arrow {
   position: relative;
   flex: none;
   width: 24px;
   height: 2px;
   margin: 0 -2px;
-  background: linear-gradient(90deg, var(--mov-color), var(--blue-color));
+  background: linear-gradient(90deg, var(--blue-color), var(--mov-color));
   filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.35));
 }
 .wt-arrow::after {
   content: "";
   position: absolute;
-  right: -6px;
+  left: -6px;
   top: 50%;
   transform: translateY(-50%);
-  border-left: 7px solid var(--blue-color);
+  border-right: 7px solid var(--blue-color);
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-}
-
-/* Main category box */
-.wt-box {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 10px;
-  border: 1px solid var(--panel-border);
-  background: rgba(147, 166, 204, 0.07);
-  box-shadow: 0 0 14px rgba(147, 166, 204, 0.06);
-}
-.game-info .word-type .wt-box::after {
-  content: "\f078";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  font-size: 10px;
-  color: var(--blue-color);
-  margin-left: 4px;
-  transition: transform 0.2s;
-}
-.game-info .word-type.open .wt-box::after {
-  transform: rotate(180deg);
 }
 .game-info .word-type .wt-label {
   color: var(--blue-color);
@@ -2859,7 +2848,7 @@ body.lang-ar .wt-item {
     font-size: 11px;
   }
 
-  /* Word type : cloud stacks above the box, arrow points straight down */
+  /* Word type : chip on top, arrow points up into it from the cloud below */
   .game-info .word-type {
     flex-direction: column;
     gap: 2px;
@@ -2871,19 +2860,17 @@ body.lang-ar .wt-item {
     margin: 0;
   }
   .wt-arrow::after {
-    right: auto;
     left: 50%;
-    top: auto;
-    bottom: -5px;
+    top: -5px;
     transform: translateX(-50%);
-    border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 7px solid var(--blue-color);
-    border-bottom: none;
+    border-left: 5px solid transparent;
+    border-bottom: 7px solid var(--blue-color);
   }
   .wt-box {
     max-width: 100%;
     justify-content: center;
+    text-align: center;
   }
   .game-info .word-type .wt-value {
     white-space: normal;
@@ -2953,7 +2940,8 @@ body.lang-ar .wt-item {
       font-size: 10px;
     }
     .wt-cloud {
-      padding: 6px 12px;
+      width: 30px;
+      height: 26px;
     }
     .wt-box {
       padding: 5px 10px;

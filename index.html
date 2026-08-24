@@ -93,14 +93,15 @@
           </div>
 
           <div class="word-type">
-            <div class="wt-cloud">
-              <b class="wt-label" data-i18n="wordFrom">Word From :</b>
-            </div>
-            <span class="wt-arrow" aria-hidden="true"></span>
             <div class="wt-box">
+              <b class="wt-label" data-i18n="wordFrom">Word From :</b>
               <span class="wt-value" data-i18n-html="letsStart"
                 >Let's Start <i class="fa-regular fa-hand-peace c-blue"></i
               ></span>
+            </div>
+            <span class="wt-arrow" aria-hidden="true"></span>
+            <div class="wt-cloud">
+              <i class="fa-solid fa-chevron-down wt-caret" aria-hidden="true"></i>
               <div class="wt-dropdown" id="wordTypeDropdown"></div>
             </div>
           </div>
@@ -168,18 +169,12 @@
         </div>
       </div>
 
-      <div id="correct-word" class="words">
-        <h5 data-i18n="correctWords">Correct Words</h5>
-        <div class="words-container"></div>
-        <span class="word-number"> 0 / 10 </span>
-        <div class="btns">
-          <button id="submit-btn" class="submit-btn btn">Submit</button
-          ><button id="continue-btn" class="submit-btn btn">Continue</button>
+      <div class="guess-word">
+        <div class="words">
+          <h5 data-i18n="correctWords">Correct Words</h5>
+          <div class="words-container"></div>
+          <span class="word-number"> 0 / 10 </span>
         </div>
-      </div>
-
-      <hr />
-<div class="guess-word">
         <div class="hint">
           <div class="hint-copy">
             <p class="hint-label" data-i18n="wordHint">Word Hint</p>
@@ -198,6 +193,10 @@
         </div>
         <div class="guess-line">
           <div class="guess-parent"></div>
+        </div>
+        <div class="btns">
+          <button id="submit-btn" class="submit-btn btn">Submit</button
+          ><button id="continue-btn" class="submit-btn btn">Continue</button>
         </div>
         <!-- Hidden input to enable mobile keyboard input -->
         <input type="text" class="mobile-keyboard-input" style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" aria-label="Guess input">

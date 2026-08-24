@@ -204,31 +204,6 @@ button {
   padding: 0;
 }
 
-/* PWA Install Button */
-.install-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(179,102,255,0.5);
-  background: rgba(179,102,255,0.12);
-  color: var(--mov-color);
-  border-radius: 999px;
-  padding: 6px 14px;
-  font-size: 12px;
-  font-family: var(--font-display);
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.install-btn i {
-  font-size: 11px;
-}
-.install-btn:hover {
-  background: rgba(179,102,255,0.28);
-  box-shadow: 0 0 14px var(--glow-orange);
-  transform: translateY(-2px);
-}
-
 /* Settings Menu : groups name/theme/language/help behind one button on small screens.
    On desktop the wrappers dissolve (display: contents) so items stay inline as before. */
 .settings-group,
@@ -243,7 +218,8 @@ button {
   display: none;
 }
 
-/* Timer Pill : always visible in the header */
+/* Timer Pill : always visible in the header.
+   Static width (+5px slack) so digit changes never shift sibling elements */
 .timer-pill {
   display: flex;
   align-items: center;
@@ -252,7 +228,7 @@ button {
   border: 1px solid var(--panel-border);
   border-radius: 999px;
   padding: 5px 12px;
-  background: rgba(147,166,204,0.06);
+  min-width: 120px;
 }
 .timer-pill i {
   color: var(--blue-color);
@@ -378,7 +354,8 @@ button {
   padding: 5px 14px;
   background: rgba(147,166,204,0.06);
   font-size: 11px;
-  white-space: nowrap;
+  max-width: 100%;
+  white-space: normal;
   cursor: pointer;
   position: relative;
 }
@@ -2808,20 +2785,16 @@ body.lang-ar .wt-item {
     font-size: 11px;
   }
 
-  /* Word type chip stays in the bar : shrink + ellipsis instead of full row */
+  /* Word type chip : always shows the full category name, never truncated */
   .game-info .word-type {
-    flex: 1;
-    min-width: 0;
-    max-width: fit-content;
+    flex: none;
+    max-width: 100%;
     justify-content: center;
     padding: 8px 10px;
     font-size: 11px;
   }
   .game-info .word-type .wt-value {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 34vw;
+    white-space: normal;
     letter-spacing: 1px;
   }
   .difficulty-badge {

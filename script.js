@@ -729,6 +729,7 @@ let clickedTarget;
 const i18n = {
   en: {
     wordFrom: "Word From :",
+    allWords: "All Words",
     letsStart: `Let's Start <i class="fa-regular fa-hand-peace c-blue"></i>`,
     mistakes: "Number Of Mistake Is :",
     correctWords: "Correct Words",
@@ -798,6 +799,7 @@ difficulty: "Difficulty",
   },
   ar: {
     wordFrom: "الفئة :",
+    allWords: "كل الكلمات",
     letsStart: `لنبدأ <i class="fa-regular fa-hand-peace c-blue"></i>`,
     mistakes: "عدد الأخطاء :",
     correctWords: "الكلمات الصحيحة",

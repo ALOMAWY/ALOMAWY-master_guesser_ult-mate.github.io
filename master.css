@@ -142,7 +142,8 @@ button {
   min-height: 0;
 }
 .container .guess-word {
-  flex: 0 0 auto;
+  flex: 1;
+  min-height: 0;
 }
 .container hr {
   width: 100%;
@@ -182,7 +183,7 @@ button {
   display: flex;
   align-items: center;
   gap: 6px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 /* Shared round icon button */
@@ -353,32 +354,30 @@ button {
   position: relative;
 }
 
-/* Category box : same pill style as before the cloud idea */
+/* Category box : label only, same pill style as before the cloud idea */
 .wt-box {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
   border: 1px solid var(--panel-border);
   border-radius: 999px;
   padding: 5px 14px;
   background: rgba(147, 166, 204, 0.06);
   font-size: 11px;
-  white-space: normal;
+  white-space: nowrap;
 }
 
-/* Compact fixed-size cloud : dropdown trigger */
+/* Cloud : shows the word type (all words / current category) */
 .wt-cloud {
   position: relative;
-  flex: none;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 28px;
+  gap: 6px;
+  padding: 5px 12px;
   border-radius: 999px;
   background: linear-gradient(145deg, rgba(20, 36, 65, 0.92), rgba(9, 13, 27, 0.86));
   border: 1px solid rgba(34, 211, 238, 0.36);
   box-shadow: 0 0 16px rgba(34, 211, 238, 0.12), inset 0 0 12px rgba(34, 211, 238, 0.05);
+  max-width: 34vw;
 }
 .wt-cloud::before,
 .wt-cloud::after {
@@ -440,8 +439,11 @@ button {
 .game-info .word-type .wt-value {
   color: var(--mov-color);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .game-info .word-type .wt-dropdown {
   position: absolute;
@@ -512,11 +514,6 @@ button {
   color: var(--mov-color);
   font-size: 11px;
 }
-.game-info .word-type .wt-value {
-  color: var(--mov-color);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
 
 @media (max-width: 1090px) {
   .game-info {
@@ -528,8 +525,7 @@ button {
 }
 @media (max-width: 660px) {
   .game-info {
-    flex-direction: column;
-    gap: 10px;
+    gap: 6px;
     padding: 10px;
   }
   .header-tools {
@@ -1097,7 +1093,7 @@ body.lang-ar .popup-header {
   flex-wrap: wrap;
   gap: 6px 10px;
   margin: 0 16px;
-  padding: 6px 14px;
+  padding: 4px 12px;
   min-height: 0;
   min-width: 0;
   border: 1px solid var(--panel-border);
@@ -2848,34 +2844,25 @@ body.lang-ar .wt-item {
     font-size: 11px;
   }
 
-  /* Word type : chip on top, arrow points up into it from the cloud below */
+  /* Word type : stays on the single header line, cloud shrinks with ellipsis */
   .game-info .word-type {
-    flex-direction: column;
-    gap: 2px;
-    justify-content: center;
+    min-width: 0;
   }
   .wt-arrow {
-    width: 2px;
-    height: 20px;
-    margin: 0;
+    width: 14px;
   }
-  .wt-arrow::after {
-    left: 50%;
-    top: -5px;
-    transform: translateX(-50%);
-    border-right: 5px solid transparent;
-    border-left: 5px solid transparent;
-    border-bottom: 7px solid var(--blue-color);
-  }
-  .wt-box {
-    max-width: 100%;
-    justify-content: center;
-    text-align: center;
+  .wt-cloud {
+    padding: 4px 9px;
+    gap: 4px;
+    max-width: 30vw;
   }
   .game-info .word-type .wt-value {
-    white-space: normal;
+    letter-spacing: 0.5px;
+    font-size: 10px;
+  }
+  .game-info .word-type .wt-label {
+    font-size: 9px;
     letter-spacing: 1px;
-    text-align: center;
   }
   .difficulty-badge {
     padding: 3px 8px;
@@ -2940,12 +2927,15 @@ body.lang-ar .wt-item {
       font-size: 10px;
     }
     .wt-cloud {
-      width: 30px;
-      height: 26px;
+      padding: 4px 7px;
+      gap: 3px;
+      max-width: 34vw;
+    }
+    .wt-arrow {
+      width: 10px;
     }
     .wt-box {
-      padding: 5px 10px;
-      gap: 4px;
+      padding: 4px 8px;
     }
   }
 }
